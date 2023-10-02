@@ -1,0 +1,73 @@
+import React from "react";
+import { styled } from "@mui/material/styles";
+import { Button } from "@mui/material";
+
+export default function ButtonLangding(props) {
+  const {
+    nameButton,
+    onClick,
+    component,
+    to,
+    type,
+    width,
+    marginTop,
+    marginLeft,
+    paddingBottom,
+    endIcon,
+    border,
+    bgColor,
+    boxShadow,
+    borderRadius,
+    height,
+    color,
+    startIcon,
+    paddingLeft,
+    variant,
+    marginRight,
+    hovercolor,
+    fullWidth,
+    disabled,
+  } = props;
+  const ColorButton = styled(Button)(({ theme }) => ({
+    // color: theme.palette.getContrastText("#ffff"),
+    backgroundColor: "transparent",
+    "&:hover": {
+      background: "linear-gradient(to right, #d44fac, #890761)",
+      color: "white",
+    },
+    display: "center",
+    textTransform: "none",
+    fontSize: "25px",
+    color: "#d44fac",
+    border: "1px solid #d44fac",
+    fontFamily: ["UTM Swiss Condensed Regular"].join(","),
+  }));
+  return (
+    <ColorButton
+      type={type}
+      onClick={onClick}
+      component={component}
+      to={to}
+      variant={variant}
+      endIcon={endIcon}
+      startIcon={startIcon}
+      disabled={disabled}
+      fullWidth={fullWidth}
+      sx={{
+        color: { color },
+        width: { width },
+        height: { height },
+        marginTop: { marginTop },
+        marginLeft: { marginLeft },
+        paddingBottom: { paddingBottom },
+        paddingLeft: { paddingLeft },
+        boxShadow: { boxShadow },
+        border: { border },
+        borderRadius: borderRadius,
+        marginRight: { marginRight },
+      }}
+    >
+      {nameButton}
+    </ColorButton>
+  );
+}
