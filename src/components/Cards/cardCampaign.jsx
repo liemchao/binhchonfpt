@@ -160,9 +160,7 @@ export default function UserCard(props) {
             }}
           >
             <div>
-              <Typography level="body3" fontWeight="lg">
-                Mô tả
-              </Typography>
+              <Typography level="body3" fontWeight="lg"></Typography>
               {visibilityCandidate ? (
                 <Typography></Typography>
               ) : (
@@ -225,7 +223,7 @@ export default function UserCard(props) {
                 )}
               </Box>
             ) : (
-              <Box sx={{ display: "flex", gap: 2, marginTop: "1%" }}>
+              <Box sx={{ display: "flex", gap: 5, marginTop: "1%" }}>
                 <ButtonLangding
                   height={"3.5rem"}
                   width={"16rem"}
