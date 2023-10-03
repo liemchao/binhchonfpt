@@ -21,7 +21,7 @@ import GoogleButton from "components/Control/GoogleButton";
 import { CustomizedToast } from "components/toast/ToastCustom";
 import API from "config/axios/API/API";
 import { URL_API } from "config/axios/Url/URL";
-import logo from "assets/images/logofpt+VS.png";
+import logo from "assets/images/full 3 logo.png";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 
 const ggProvider = new firebase.auth.GoogleAuthProvider();
@@ -126,7 +126,7 @@ export default function SigninPoppop(props) {
                 }}
               >
                 <Box sx={{ display: "flex", justifyContent: "center", bottom: "-2rem" }}>
-                  <img src={logo} alt="Logo" style={{ width: "60%", height: "100%" }} />
+                  <img src={logo} alt="Logo" style={{ width: "90%", height: "100%" }} />
                 </Box>
                 <Box component="form" noValidate onSubmit={formik.handleSubmit} sx={{ mt: 1 }}>
                   <TextField

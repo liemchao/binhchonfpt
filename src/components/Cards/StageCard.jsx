@@ -12,7 +12,6 @@ import ButtonCustomize from "assets/theme/components/button/ButtonCustomize";
 export default function StageCard(props) {
   const { title, onClickJoin, process, content, starttime, endtime, admin, onClickViewDetail } =
     props;
-  console.log(admin);
   return (
     <Card sx={{ width: 400, maxWidth: "100%", boxShadow: "lg", gap: "2rem" }}>
       <CardOverflow>

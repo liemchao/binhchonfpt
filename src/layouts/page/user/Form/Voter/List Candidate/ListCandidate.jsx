@@ -98,7 +98,6 @@ export default function ListCandidate() {
   const feedback = useSelector((state) => {
     return state.checkfeeback;
   });
-  console.log(feedback);
 
   const getGroupOption = () => {
     const GroupOption = [
