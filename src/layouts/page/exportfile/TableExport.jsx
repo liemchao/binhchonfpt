@@ -103,9 +103,16 @@ function ExcelTable() {
     };
     try {
       const response = await axios.post(
-        "http://ngxuanthuan-001-site1.atempurl.com/api/v1/candidates/list-candidate",
-        payload
+        "https://votingsystemfpt-001-site1.htempurl.com/api/v1/candidates/list-candidate",
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            // other headers if needed
+          },
+        }
       );
+
       CustomizedToast({
         message: "Thêm danh sách thành công",
         type: "SUCCESS",

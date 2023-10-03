@@ -45,9 +45,13 @@ export default function NotificationsPopover() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://ngxuanthuan-001-site1.atempurl.com/api/v1/notifications/${decode.Username}`,
-        token
-      );
+        `https://votingsystemfpt-001-site1.htempurl.com/api/v1/notifications/${decode.Username}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            // other headers if needed
+          },
+        })
       setData(response.data.data);
     } catch (error) {
       console.error("Lỗi khi gọi API:", error);
@@ -57,7 +61,7 @@ export default function NotificationsPopover() {
   const fetchDataProcess = async () => {
     try {
       const response = await axios.put(
-        `http://ngxuanthuan-001-site1.atempurl.com/api/v1/campaigns/update-process`,
+        `/api/v1/campaigns/update-process`,
         token
       );
     } catch (error) {

@@ -42,7 +42,12 @@ export default function FeedbackBubble(props) {
     };
 
     axios
-      .post("http://ngxuanthuan-001-site1.atempurl.com/api/v1/feedbacks", feedbackData)
+      .post("https://votingsystemfpt-001-site1.htempurl.com/api/v1/feedbacks", feedbackData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          // other headers if needed
+        },
+      })
       .then((response) => {
         CustomizedToast({
           message: `Gửi đánh giá thành công`,

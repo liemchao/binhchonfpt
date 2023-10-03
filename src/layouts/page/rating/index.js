@@ -109,7 +109,7 @@ const TopList = () => {
 
     axios
       .get(
-        `http://ngxuanthuan-001-site1.atempurl.com/api/v1/scores?CampaignId=${id}&UserId=${decode.Username}`,
+        `https://votingsystemfpt-001-site1.htempurl.com/api/v1/scores?CampaignId=${id}&UserId=${decode.Username}`,
         config
       )
       .then((response) => {
