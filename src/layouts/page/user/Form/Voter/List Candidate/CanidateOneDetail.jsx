@@ -192,16 +192,20 @@ export default function CandateOneDetail() {
               >
                 {detailCandate.groupName}
               </Typography>
-              <Typography
-                variant="body2"
-                fontSize="30px"
-                sx={{
-                  fontFamily: "VLABRAHAMLINCOLN",
-                  textAlign: "start", // Đặt font chữ tùy chỉnh
-                }}
-              >
-                "{detailCandate.description}".
-              </Typography>
+              {detailCandate.description ? (
+                <Typography
+                  variant="body2"
+                  fontSize="30px"
+                  sx={{
+                    fontFamily: "VLABRAHAMLINCOLN",
+                    textAlign: "start", // Đặt font chữ tùy chỉnh
+                  }}
+                >
+                  "{detailCandate.description}".
+                </Typography>
+              ) : (
+                <></>
+              )}
               {detailCandate.formId ? (
                 <Box
                   sx={{ mt: 4 }}
