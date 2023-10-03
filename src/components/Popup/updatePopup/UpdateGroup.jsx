@@ -104,7 +104,7 @@ export function NavigationPopup(props) {
         });
       } else {
         CustomizedToast({
-          message: "Lỗi mạng",
+          message: "Bạn vào quá nhanh.Vui lòng đăng nhập lại",
           type: "ERROR",
         });
       }
@@ -135,7 +135,7 @@ export function NavigationPopup(props) {
         });
       } else {
         CustomizedToast({
-          message: "Lỗi mạng",
+          message: "Bạn vào quá nhanh.Vui lòng đăng nhập lại",
           type: "ERROR",
         });
       }
@@ -156,72 +156,47 @@ export function NavigationPopup(props) {
             icon={getIcon("akar-icons:edit")}
           />
         </DialogTitle>
-        {id === "6097a517-11ad-4105-b26a-0e93bea2cb43" ? (
-          <DialogContent>
-            <Grid item xs={12} mt={2} ml={3}>
-              <Box
-                sx={{
-                  flexDirection: "row",
+        <DialogContent>
+          <Grid item xs={12} mt={2} ml={3}>
+            <Box
+              sx={{
+                flexDirection: "row",
+              }}
+            >
+              <Select
+                name="groupid"
+                required
+                label="Ngành học"
+                width="14rem"
+                height="10rem"
+                onChange={(e) => {
+                  handleChange1(e);
                 }}
-              >
-                <Select
-                  name="groupid"
-                  required
-                  label="Ngành học"
-                  width="14rem"
-                  height="10rem"
-                  onChange={(e) => {
-                    handleChange1(e);
-                  }}
-                  options={getGroupOption1()}
-                />
-              </Box>
-            </Grid>
-            <Grid item xs={12} mt={2} ml={3}>
-              <Box
-                sx={{
-                  flexDirection: "row",
+                options={getGroupOption1()}
+              />
+            </Box>
+          </Grid>
+          <Grid item xs={12} mt={2} ml={3}>
+            <Box
+              sx={{
+                flexDirection: "row",
+              }}
+            >
+              <Select
+                name="selectedGroup"
+                required
+                label="Giai đoạn học"
+                width="14rem"
+                height="10rem"
+                onChange={(e) => {
+                  handleChange(e);
                 }}
-              >
-                <Select
-                  name="selectedGroup"
-                  required
-                  label="Giai đoạn học"
-                  width="14rem"
-                  height="10rem"
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
-                  options={getGroupOption()}
-                  disabled={!selectedMajor}
-                />
-              </Box>
-            </Grid>
-          </DialogContent>
-        ) : (
-          <DialogContent>
-            <Grid item xs={12} mt={2} ml={3}>
-              <Box
-                sx={{
-                  flexDirection: "row",
-                }}
-              >
-                <Select
-                  name="selectedGroup"
-                  required
-                  label="Nhóm bình chọn"
-                  width="14rem"
-                  height="10rem"
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
-                  options={getGroupOption()}
-                />
-              </Box>
-            </Grid>
-          </DialogContent>
-        )}
-
+                options={getGroupOption()}
+                disabled={!selectedMajor}
+              />
+            </Box>
+          </Grid>
+        </DialogContent>
         <DialogActions>
           <Box display={"flex"} sx={{ justifyContent: "space-between", gap: "2rem", mr: "9rem" }}>
             <ButtonLangding
