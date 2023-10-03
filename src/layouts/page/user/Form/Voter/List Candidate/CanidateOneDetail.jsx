@@ -33,6 +33,7 @@ import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import { getDetailCanidate } from "context/redux/action/action";
 import { getScorebyStage } from "context/redux/action/action";
 import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 const getIcon = (name) => <Iconify icon={name} width={40} height={40} />;
 function SlideTransition(props) {
@@ -63,6 +64,7 @@ export default function CandateOneDetail() {
   // Cắt idStage từ URL
   const idCanidate = url.split("/stage/")[1];
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getDetailCanidate(idCanidate, idStage, token));
@@ -78,7 +80,7 @@ export default function CandateOneDetail() {
   };
 
   const goBack = () => {
-    window.history.back();
+    navigate(`/user/candidate/${idStage}`);
   };
   const handleVotingLike = async (token) => {
     const data = {

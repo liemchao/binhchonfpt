@@ -104,7 +104,7 @@ export function NavigationPopup(props) {
         });
       } else {
         CustomizedToast({
-          message: "Bạn vào quá nhanh.Vui lòng đăng nhập lại",
+          message: "Đang tải danh sách ứng cử viên vui lòng chờ.",
           type: "ERROR",
         });
       }
@@ -135,7 +135,7 @@ export function NavigationPopup(props) {
         });
       } else {
         CustomizedToast({
-          message: "Bạn vào quá nhanh.Vui lòng đăng nhập lại",
+          message: "Đang tải danh sách ứng cử viên vui lòng chờ.",
           type: "ERROR",
         });
       }

@@ -13,13 +13,17 @@ import { callAPIgeCampaignsRepresentative } from "context/redux/action/action";
 import { handleGetCampaignById } from "context/redux/action/action";
 import MainCard from "components/Cards/cardCampaignMain";
 import Logo1 from "assets/images/styled pink 2023.png";
+import QRPopUp from "components/Popup/create/QRPopUp";
 
 export default function Promotions() {
   const containerRef = useRef();
+  const [Link, setLink] = useState(window.location.href);
+
   const [show, setShow] = useState(true);
   const [messageIndex, setMessageIndex] = useState(0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [open, setopen] = useState(false);
 
   useEffect(() => {
     const callAPI = async () => {
@@ -37,6 +41,17 @@ export default function Promotions() {
     },
     [dispatch]
   );
+
+  const handleGetQR = useCallback((id) => {
+    setopen(true);
+    setLink(
+      window.location.href +
+        "user" +
+        "/campaign" +
+        "/stage/" +
+        "6097a517-11ad-4105-b26a-0e93bea2cb43"
+    );
+  }, []);
 
   return (
     <>
@@ -63,11 +78,15 @@ export default function Promotions() {
           process={campaigns.process}
           dayEnd={dayjs(campaigns.endTime).format("DD-MM-YYYY HH:mm:ss")}
           startTime={dayjs(campaigns.startTime).format("DD-MM-YYYY HH:mm:ss")}
+          onClickShare={() => {
+            handleGetQR(campaigns.campaignId);
+          }}
           onClickJoin={() => {
             handleCampaignStage(campaigns.campaignId, navigate);
           }}
         />
       </Box>
+      <QRPopUp OpenPopUp={open} SetOpenPopUp={setopen} link={Link} />
     </>
   );
 }

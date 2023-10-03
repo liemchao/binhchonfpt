@@ -51,12 +51,12 @@ export default function QRPopUp(props) {
           </Box>
           <Box
             sx={{
-              marginLeft: "17%",
+              marginLeft: "30%",
             }}
           >
             <ButtonLangding
               marginTop="2%"
-              width="15rem"
+              width="13rem"
               variant="contained"
               type="submit"
               nameButton="Sao chép liên kết"

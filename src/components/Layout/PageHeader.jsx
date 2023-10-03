@@ -38,7 +38,7 @@ export default function PageHeader(props) {
       <div className={classes.pageHeader}>
         <div className={classes.pageTitle}>
           <Typography
-            variant="h3"
+            variant="h4"
             fontWeight="bold"
             sx={{
               color: "#B83490",

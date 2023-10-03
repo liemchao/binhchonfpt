@@ -189,7 +189,11 @@ export default function Router() {
         },
         {
           path: "candidate/:id/stage/:id",
-          element: <CandateOneDetail />,
+          element: (
+            <ProtectedRouteAuthen roles="user">
+              <CandateOneDetail />
+            </ProtectedRouteAuthen>
+          ),
         },
 
         {
