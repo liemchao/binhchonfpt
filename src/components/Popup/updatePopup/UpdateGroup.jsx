@@ -43,16 +43,6 @@ export function NavigationPopup(props) {
 
   const listGroup = useSelector((state) => state.listGroup);
 
-  const handleConfirm = async () => {
-    SetOpenDialog(true);
-    CustomizedToast({
-      message: "Cập nhật nhóm thành công",
-      type: "SUCCESS",
-    });
-    await dispatch(getScorebyStage(IdStage, decode.Username, token));
-    onClose();
-  };
-
   const getGroupOption1 = () => {
     const GroupOption = [];
     for (var i = 0; i < listGroup.length; i++) {
@@ -79,48 +69,30 @@ export function NavigationPopup(props) {
     return GroupOption;
   };
 
-  const handleChange1 = async (e) => {
-    const a = listGroup.find((c) => c.groupId === e.target.value);
-    setSelectedMajor(a.groupId);
-    try {
-      const req = await API(
-        "PUT",
-        URL_API + `/api/v1/users/${decode.Username}/group/${a.groupId}/campaign/${id}`,
-        null,
-        token
-      );
-      if (req) {
-      }
-    } catch (error) {
-      if (error.response.data.statusCode === 404) {
-        CustomizedToast({
-          message: `${error.response.data.message}`,
-          type: "ERROR",
-        });
-      } else if (error.response.data.statusCode === 400) {
-        CustomizedToast({
-          message: `${error.response.data.message}`,
-          type: "ERROR",
-        });
-      } else {
-        CustomizedToast({
-          message: "Đang tải danh sách ứng cử viên vui lòng chờ.",
-          type: "ERROR",
-        });
-      }
-    }
+  const handleChange1 = (e) => {
+    setSelectedMajor(e.target.value);
   };
 
-  const handleChange = async (e) => {
-    const a = listGroup.find((c) => c.groupId === e.target.value);
+  const handleChange = (e) => {
+    setGroupId(e.target.value);
+  };
+
+  const handleConfirm = async () => {
     try {
-      const req = await API(
-        "PUT",
-        URL_API + `/api/v1/users/${decode.Username}/group/${a.groupId}/campaign/${id}`,
-        null,
-        token
-      );
+      const data = {
+        groupId: groupid,
+        campaignId: id,
+        groupMajorId: selectedMajor,
+      };
+      const req = await API("PUT", URL_API + `/api/v1/users/${decode.Username}/group`, data, token);
       if (req) {
+        SetOpenDialog(true);
+        CustomizedToast({
+          message: "Cập nhật nhóm thành công",
+          type: "SUCCESS",
+        });
+        await dispatch(getScorebyStage(IdStage, decode.Username, token));
+        onClose();
       }
     } catch (error) {
       if (error.response.data.statusCode === 404) {
