@@ -422,7 +422,7 @@ export default function ListCandidate() {
         });
       } else {
         CustomizedToast({
-          message: "Lỗi mạng",
+          message: "Bạn chưa chọn nhóm, vui lòng tải lại trang",
           type: "ERROR",
         });
       }
@@ -926,7 +926,8 @@ export default function ListCandidate() {
           onChange={handlePageChange}
         />
         <ScrollToTopButton />
-        {liststageScore?.votesRemaining?.voteRemaining === 0 ? (
+        {liststageScore?.votesRemaining?.voteRemaining === 0 &&
+        liststageScore?.feedBacked === false ? (
           <FeedbackBubble
             open={true}
             // setOpen={true}

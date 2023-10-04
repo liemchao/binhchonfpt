@@ -51,7 +51,8 @@ export default function NotificationsPopover() {
             Authorization: `Bearer ${token}`,
             // other headers if needed
           },
-        })
+        }
+      );
       setData(response.data.data);
     } catch (error) {
       console.error("Lỗi khi gọi API:", error);
@@ -61,7 +62,7 @@ export default function NotificationsPopover() {
   const fetchDataProcess = async () => {
     try {
       const response = await axios.put(
-        `/api/v1/campaigns/update-process`,
+        `https://votingsystemfpt-001-site1.htempurl.com/api/v1/campaigns/update-process`,
         token
       );
     } catch (error) {
