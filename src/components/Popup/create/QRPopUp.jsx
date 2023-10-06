@@ -9,8 +9,10 @@ import Iconify from "assets/theme/components/icon/Iconify";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 //hih
+
 export default function QRPopUp(props) {
   const { OpenPopUp, SetOpenPopUp, link } = props;
+
   const handleClose = () => {
     SetOpenPopUp(false);
   };
@@ -18,19 +20,27 @@ export default function QRPopUp(props) {
   const [qrCodeUrl, setQRCodeUrl] = useState("");
 
   useEffect(() => {
-    const canvas = document.getElementById("qr-code-canvas");
-    if (canvas) {
-      setQRCodeUrl(canvas.toDataURL());
-    }
+    const generateQRCode = () => {
+      const canvas = document.getElementById("qr-code-canvas");
+      if (canvas) {
+        setQRCodeUrl(canvas.toDataURL());
+      }
+    };
+
+    generateQRCode();
   }, []);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(link);
+  };
 
   return (
     <Paper>
       <Dialog maxWidth="md" open={OpenPopUp} onClose={handleClose}>
         <DialogTitle>
           <PageHeader
-            title="Chia sẻ chiến dịch"
-            subTitle="Bạn có thể chia sẻ chiến dịch đến mọi người"
+            title="Chia sẻ"
+            subTitle="Bạn có thể chia sẻ chương trình đến mọi người"
             icon={getIcon("ph:share-bold")}
           />
         </DialogTitle>
@@ -38,22 +48,16 @@ export default function QRPopUp(props) {
           <Box marginTop="2%">
             <Input
               width="20rem"
-              disable="disable"
+              disabled
               label="Chia sẻ liên kết"
               defaultValue={link}
               value={link}
               onChange={(e) => {
-                () => {
-                  console.log(e.target.value);
-                };
+                console.log(e.target.value);
               }}
             />
           </Box>
-          <Box
-            sx={{
-              marginLeft: "30%",
-            }}
-          >
+          <Box marginLeft="30%">
             <ButtonLangding
               marginTop="2%"
               width="13rem"
@@ -61,9 +65,10 @@ export default function QRPopUp(props) {
               type="submit"
               nameButton="Sao chép liên kết"
               bgColor="#F6911B"
+              onClick={handleCopyLink} // Added onClick event handler
             />
           </Box>
-          <Box sx={{ marginTop: "2%" }}>
+          <Box marginTop="2%">
             <QRCode id="qr-code-canvas" value={link} />
           </Box>
         </DialogContent>

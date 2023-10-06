@@ -3,7 +3,7 @@ import { TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 
 export default function Input(props) {
-  const { name, label, values, onChange, defaultValue, type, min, max, id } = props;
+  const { name, label, values, onChange, defaultValue, type, min, max, id, inputRef } = props;
   return (
     <Box
       sx={{
@@ -25,6 +25,7 @@ export default function Input(props) {
         onChange={onChange}
         min={min}
         max={max}
+        ref={inputRef}
       />
     </Box>
   );
