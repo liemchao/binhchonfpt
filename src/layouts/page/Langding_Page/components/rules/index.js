@@ -128,7 +128,7 @@ const VotingRules = () => {
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                       }}
                     >
-                      nhóm ngành cơ bản
+                      trước chuyên ngành
                     </Typography>
                   </CardContent>
                 </Card>
@@ -194,7 +194,7 @@ const VotingRules = () => {
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                       }}
                     >
-                      nhóm ngành cơ bản
+                      trước chuyên ngành
                     </Typography>
                     <Grid sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <Grid item>

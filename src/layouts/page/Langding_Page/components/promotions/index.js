@@ -14,11 +14,25 @@ import { handleGetCampaignById } from "context/redux/action/action";
 import MainCard from "components/Cards/cardCampaignMain";
 import Logo1 from "assets/images/styled pink 2023.png";
 import QRPopUp from "components/Popup/create/QRPopUp";
+import { makeStyles } from "@mui/styles";
+import Grid from "@mui/material/Grid";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
+    marginTop: "5%",
+  },
+  image: {
+    width: "100%",
+    marginBottom: theme.spacing(2),
+  },
+}));
 export default function Promotions() {
   const containerRef = useRef();
   const [Link, setLink] = useState(window.location.href);
-
+  const classes = useStyles();
   const [show, setShow] = useState(true);
   const [messageIndex, setMessageIndex] = useState(0);
   const dispatch = useDispatch();
@@ -55,37 +69,30 @@ export default function Promotions() {
 
   return (
     <>
-      <Box
-        display="flex"
-        mt={"5rem"}
-        justifyContent="center"
-        alignItems="center"
-        style={{ width: "100%" }}
-      >
-        <img
-          src={Logo1}
-          alt="Logo"
-          style={{ width: "31rem", marginRight: "9.2rem", height: "auto", marginLeft: "3%" }}
-        />
-        <MainCard
-          style={{ width: "100%" }}
-          id={campaigns.campaignId}
-          creater={campaigns.userId}
-          url={campaigns.imgUrl}
-          title={campaigns.title}
-          visibilityCandidate={campaigns.visibilityCandidate}
-          totalCandidate={campaigns.totalCandidate}
-          process={campaigns.process}
-          dayEnd={dayjs(campaigns.endTime).format("DD-MM-YYYY HH:mm:ss")}
-          startTime={dayjs(campaigns.startTime).format("DD-MM-YYYY HH:mm:ss")}
-          onClickShare={() => {
-            handleGetQR(campaigns.campaignId);
-          }}
-          onClickJoin={() => {
-            handleCampaignStage(campaigns.campaignId, navigate);
-          }}
-        />
-      </Box>
+      <Grid container className={classes.root}>
+        <Grid item xs={12} md={5}>
+          <img src={Logo1} alt="Logo" className={classes.image} />
+        </Grid>
+        <Grid item xs={12} md={7}>
+          <MainCard
+            id={campaigns.campaignId}
+            creater={campaigns.userId}
+            url={campaigns.imgUrl}
+            title={campaigns.title}
+            visibilityCandidate={campaigns.visibilityCandidate}
+            totalCandidate={campaigns.totalCandidate}
+            process={campaigns.process}
+            dayEnd={dayjs(campaigns.endTime).format("DD-MM-YYYY HH:mm:ss")}
+            startTime={dayjs(campaigns.startTime).format("DD-MM-YYYY HH:mm:ss")}
+            onClickShare={() => {
+              handleGetQR(campaigns.campaignId);
+            }}
+            onClickJoin={() => {
+              handleCampaignStage(campaigns.campaignId, navigate);
+            }}
+          />
+        </Grid>
+      </Grid>
       <QRPopUp OpenPopUp={open} SetOpenPopUp={setopen} link={Link} />
     </>
   );

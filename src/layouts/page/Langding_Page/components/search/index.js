@@ -144,22 +144,12 @@ export default function Select3() {
                         textIndent: "-2rem", // Khoảng cách đầu dòng
                       }}
                     >
+                      <li>Chương trình dành cho tất cả sinh viên đang học tại FPTU HCMC.</li>
+                      <li>Sinh viên bình chọn cho giảng viên yêu thích.</li>
+                      <li>Hệ thống sẽ tính điểm theo tổng lượt bình chọn của sinh viên.</li>
                       <li>
-                        Chương trình dành cho <strong>tất cả sinh viên</strong> đang học tại
-                        <strong> FPTU HCMC.</strong>
-                      </li>
-                      <li>
-                        Sinh viên sẽ được bình chọn cho giảng viên mà bạn cảm thấy
-                        <strong> được truyền cảm hứng</strong> trong quá trình học tập, trao đổi tại
-                        trường.
-                      </li>
-                      <li>
-                        Hệ thống sẽ tính điểm cho<strong> tổng lượt bình chọn</strong> của sinh viên
-                        dành cho mỗi giảng viên.
-                      </li>
-                      <li>
-                        Sau thời gian bình chọn, ban tổ chức sẽ chọn ra
-                        <strong> top 10.</strong>
+                        Sau thời gian bình chọn, hệ thống lọc ra top 10 giảng viên đạt danh hiệu
+                        <strong> “Inspiring Instructor Awards”.</strong>
                       </li>
                     </Typography>
                     <Box

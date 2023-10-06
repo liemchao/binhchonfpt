@@ -127,12 +127,12 @@ export default function Section3() {
                     >
                       <li>
                         Top 10 giảng viên đạt danh hiệu{" "}
-                        <strong>"Inspiring Instructor Awards"</strong> sẽ được vinh danh trong buổi
-                        lễ trang trọng tại Đại học FPT campus Thành phố Hồ Chí Minh.
+                        <strong>"Inspiring Instructor Awards"</strong> sẽ được vinh danh tại ngày
+                        hội Convocation Day.
                       </li>
-                      <li>
+                      {/* <li>
                         Trao tặng<strong> bộ quà tặng danh riêng cho danh hiệu này.</strong>
-                      </li>
+                      </li> */}
                     </Typography>
                     <Box
                       sx={{

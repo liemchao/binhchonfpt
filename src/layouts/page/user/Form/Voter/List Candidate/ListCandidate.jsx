@@ -124,16 +124,20 @@ export default function ListCandidate() {
       title: "Tất cả",
     },
     {
+      id: "Khối ngành Ngôn ngữ và Mỹ thuật",
+      title: "Khối ngành Ngôn ngữ và Mỹ thuật",
+      nametitle: "Khối ngành giảng viên",
+    },
+    {
+      id: "Khối ngành Quản trị doanh nghiệp",
+      title: "Khối ngành Quản trị doanh nghiệp",
+      nametitle: "Khối ngành giảng viên",
+    },
+    {
       id: "Khối ngành Kỹ thuật",
       title: "Khối ngành Kỹ thuật",
       nametitle: "Khối ngành giảng viên",
     },
-    {
-      id: "Khối ngành Ngôn ngữ và Đồ họa",
-      title: "Khối ngành ngôn ngữ và Đồ họa",
-      nametitle: "Khối ngành giảng viên",
-    },
-    { id: "Khối ngành Kinh tế", title: "Khối ngành Kinh tế", nametitle: "Khối ngành giảng viên" },
   ];
   const getOption2 = () => [
     {
@@ -153,8 +157,8 @@ export default function ListCandidate() {
       title: "Tất cả",
     },
     {
-      id: "Bộ môn Toán",
-      title: "Bộ môn Toán",
+      id: "Bộ môn Giáo dục thể chất",
+      title: "Bộ môn Giáo dục thể chất",
       nametitle: "Ngành học của sinh viên",
     },
     {
@@ -163,18 +167,19 @@ export default function ListCandidate() {
       nametitle: "Ngành học của sinh viên",
     },
     {
-      id: "Bộ môn Giáo dục thể chất",
-      title: "Bộ môn Giáo dục thể chất",
+      id: "Bộ môn Tiếng Anh dự bị",
+      title: "Bộ môn Tiếng Anh dự bị",
       nametitle: "Ngành học của sinh viên",
     },
+    {
+      id: "Bộ môn Toán",
+      title: "Bộ môn Toán",
+      nametitle: "Ngành học của sinh viên",
+    },
+
     {
       id: "Bộ môn Âm nhạc Truyền thống",
       title: "Bộ môn Âm nhạc Truyền thống",
-      nametitle: "Ngành học của sinh viên",
-    },
-    {
-      id: "Bộ môn Tiếng Anh dự bị",
-      title: "Bộ môn Tiếng Anh dự bị",
       nametitle: "Ngành học của sinh viên",
     },
   ];
@@ -220,7 +225,7 @@ export default function ListCandidate() {
             return candidate.isVoted === true;
           });
         });
-      } else if (process === "Khối ngành Kinh tế") {
+      } else if (process === "Khối ngành Quản trị doanh nghiệp") {
         setseacrchResulst(() => {
           return liststageScore.candidate.filter((candidate, index) => {
             return (
@@ -244,7 +249,7 @@ export default function ListCandidate() {
             );
           });
         });
-      } else if (process === "Khối ngành Ngôn ngữ và Đồ họa") {
+      } else if (process === "Khối ngành Ngôn ngữ và Mỹ thuật") {
         setseacrchResulst(() => {
           return liststageScore.candidate.filter((candidate, index) => {
             return (
@@ -270,7 +275,7 @@ export default function ListCandidate() {
             return candidate.fullName.toLowerCase().includes(title.toLowerCase());
           });
         });
-      } else if (process === "Khối ngành Kinh tế") {
+      } else if (process === "Khối ngành Quản trị doanh nghiệp") {
         setseacrchResulst(() => {
           return liststageScore.candidate.filter((candidate, index) => {
             return (
@@ -294,7 +299,7 @@ export default function ListCandidate() {
             );
           });
         });
-      } else if (process === "Khối ngành Ngôn ngữ và Đồ họa") {
+      } else if (process === "Khối ngành Ngôn ngữ và Mỹ thuật") {
         setseacrchResulst(() => {
           return liststageScore.candidate.filter((candidate, index) => {
             return (
@@ -519,19 +524,20 @@ export default function ListCandidate() {
           }}
         >
           {idCampainStore === "6097a517-11ad-4105-b26a-0e93bea2cb43" &&
-          liststageScore?.votesRemaining?.groupNameOfVoter === "Kỳ chuyên ngành (HK1-HK6)" ? (
+          liststageScore?.votesRemaining?.groupNameOfVoter ===
+            "Giai đoạn chuyên ngành (HK1-HK6)" ? (
             <>
               <Select
                 sx={{
                   display: "flex",
                   justifyContent: "flex-end",
-                  width: { xs: "100%", md: "13rem" },
+                  width: { xs: "100%", md: "14rem" },
                   margin: { xs: "1rem 0 0", md: 0 },
                 }}
                 name="groupid"
                 required
                 defaultValue="Tất cả"
-                label={"Nhóm giảng viên dạy cơ bản"}
+                label={"Nhóm giảng viên trước chuyên ngành"}
                 height="10rem"
                 onChange={(e) => {
                   setProcess(e.target.value);
@@ -546,7 +552,7 @@ export default function ListCandidate() {
                   "& > :not(style)": {
                     m: { xs: 2, md: 2 },
                     height: "3.3rem",
-                    width: { xs: "100%", md: "14ch" },
+                    width: { xs: "100%", md: "9ch" },
                   },
                 }}
               >
@@ -610,7 +616,7 @@ export default function ListCandidate() {
                   "& > :not(style)": {
                     m: { xs: 2, md: 2 },
                     height: "3.3rem",
-                    width: { xs: "100%", md: "14ch" },
+                    width: { xs: "100%", md: "13ch" },
                   },
                 }}
               >
@@ -630,7 +636,8 @@ export default function ListCandidate() {
                 />
               </Box>
             </>
-          ) : liststageScore?.votesRemaining?.groupNameOfVoter === "Kỳ chuyên ngành (HK7-HK9)" ? (
+          ) : liststageScore?.votesRemaining?.groupNameOfVoter ===
+            "Giai đoạn chuyên ngành (HK7-HK9)" ? (
             <>
               <Select
                 sx={{
@@ -697,7 +704,7 @@ export default function ListCandidate() {
                 />
               </Box>
             </>
-          ) : liststageScore?.votesRemaining?.groupNameOfVoter === "Kỳ dự bị" ? (
+          ) : liststageScore?.votesRemaining?.groupNameOfVoter === "Giai đoạn dự bị" ? (
             <>
               <Select
                 sx={{
@@ -709,7 +716,7 @@ export default function ListCandidate() {
                 name="groupid"
                 required
                 defaultValue="Tất cả"
-                label={"Nhóm giảng viên cơ bản"}
+                label={"Nhóm giảng viên trước chuyên ngành"}
                 height="10rem"
                 onChange={(e) => {
                   setProcess(e.target.value);

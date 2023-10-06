@@ -124,8 +124,7 @@ export default function Section2() {
                         textAlign: "start", // Căn giữa nội dung
                       }}
                     >
-                      Trải qua các giai đoạn sẽ tìm ra được{" "}
-                      <strong>top 10 giảng viên truyền cảm hứng nhất năm</strong>
+                      Trải qua các giai đoạn
                       <li>Bình chọn</li>
                       <li>Kết thúc bình chọn</li>
                       <li>Công bố top 10</li>
