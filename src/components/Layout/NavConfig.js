@@ -220,11 +220,11 @@ const navConfig6 = [
     icon: getIcon("ic:baseline-campaign"),
   },
 
-  {
-    title: "Top 10",
-    path: "/user/top10",
-    icon: getIcon("icon-park:list-top"),
-  },
+  // {
+  //   title: "Top 10",
+  //   path: "/user/top10",
+  //   icon: getIcon("icon-park:list-top"),
+  // },
   {
     title: "Lịch sử hoạt động",
     path: "/user/history",
