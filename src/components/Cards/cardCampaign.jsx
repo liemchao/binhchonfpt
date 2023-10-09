@@ -173,6 +173,7 @@ export default function UserCard(props) {
                 marginRight: "70%",
                 display: "flex",
                 flexDirection: "row",
+                gap: "15%",
               }}
             >
               <div style={{ flex: 5, marginRight: "10px" }}>
@@ -181,13 +182,13 @@ export default function UserCard(props) {
                 </Typography>
                 <Typography fontWeight="lg">15/10/2023</Typography>
               </div>
-              <div style={{ flex: 5, marginRight: "20px", width: "100%" }}>
+              <div style={{ flex: 5, marginRight: "30px" }}>
                 <Typography sx={{ whiteSpace: "nowrap" }} fontWeight="lg">
                   Thời gian kết thúc
                 </Typography>
                 <Typography fontWeight="lg"> 29/10/2023</Typography>
               </div>
-              <div style={{ flex: 5, marginRight: "20px" }}>
+              <div style={{ flex: 5, marginRight: "30px" }}>
                 <Typography sx={{ whiteSpace: "nowrap" }} fontWeight="lg">
                   Trạng thái
                 </Typography>

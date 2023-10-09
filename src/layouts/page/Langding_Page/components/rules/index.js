@@ -40,7 +40,7 @@ const VotingRules = () => {
                 fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
               }}
             >
-              1 sinh viên có 1 lần tham gia với 3 phiếu bình chọn
+              1 sinh viên có 1 lần tham gia với 3 phiếu bình chọn.
             </Typography>
             <Typography
               variant="h5"
@@ -49,7 +49,7 @@ const VotingRules = () => {
                 fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
               }}
             >
-              1 lượt bình chọn dành cho 1 giảng viên/bộ môn
+              1 lượt bình chọn dành cho 1 giảng viên.
             </Typography>
             <Typography
               variant="h5"
@@ -118,7 +118,7 @@ const VotingRules = () => {
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                       }}
                     >
-                      3 giảng viên dạy
+                      3 giảng viên
                     </Typography>
                     <Typography
                       variant="h5"
@@ -128,7 +128,7 @@ const VotingRules = () => {
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                       }}
                     >
-                      trước chuyên ngành
+                      nhóm môn chung
                     </Typography>
                   </CardContent>
                 </Card>
@@ -184,7 +184,7 @@ const VotingRules = () => {
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                       }}
                     >
-                      1 giảng viên dạy
+                      1 giảng viên
                     </Typography>
                     <Typography
                       variant="h5"
@@ -194,7 +194,7 @@ const VotingRules = () => {
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                       }}
                     >
-                      trước chuyên ngành
+                      nhóm môn chung
                     </Typography>
                     <Grid sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <Grid item>

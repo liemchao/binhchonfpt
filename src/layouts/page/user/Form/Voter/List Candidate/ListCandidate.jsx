@@ -134,8 +134,8 @@ export default function ListCandidate() {
       nametitle: "Khối ngành giảng viên",
     },
     {
-      id: "Khối ngành Kỹ thuật",
-      title: "Khối ngành Kỹ thuật",
+      id: "Khối ngành Kỹ thuật và Bộ môn Toán",
+      title: "Khối ngành Kỹ thuật và Bộ môn Toán",
       nametitle: "Khối ngành giảng viên",
     },
   ];
@@ -156,9 +156,20 @@ export default function ListCandidate() {
       id: "Tất cả",
       title: "Tất cả",
     },
+
+    {
+      id: "Bộ môn Âm nhạc Truyền thống",
+      title: "Bộ môn Âm nhạc truyền thống",
+      nametitle: "Ngành học của sinh viên",
+    },
     {
       id: "Bộ môn Giáo dục thể chất",
       title: "Bộ môn Giáo dục thể chất",
+      nametitle: "Ngành học của sinh viên",
+    },
+    {
+      id: "Bộ môn Phát triển khởi nghiệp",
+      title: "Bộ môn Khởi nghiệp",
       nametitle: "Ngành học của sinh viên",
     },
     {
@@ -169,17 +180,6 @@ export default function ListCandidate() {
     {
       id: "Bộ môn Tiếng Anh dự bị",
       title: "Bộ môn Tiếng Anh dự bị",
-      nametitle: "Ngành học của sinh viên",
-    },
-    {
-      id: "Bộ môn Toán",
-      title: "Bộ môn Toán",
-      nametitle: "Ngành học của sinh viên",
-    },
-
-    {
-      id: "Bộ môn Âm nhạc Truyền thống",
-      title: "Bộ môn Âm nhạc Truyền thống",
       nametitle: "Ngành học của sinh viên",
     },
   ];
@@ -237,11 +237,12 @@ export default function ListCandidate() {
             );
           });
         });
-      } else if (process === "Khối ngành Kỹ thuật") {
+      } else if (process === "Khối ngành Kỹ thuật và Bộ môn Toán") {
         setseacrchResulst(() => {
           return liststageScore.candidate.filter((candidate, index) => {
             return (
               (candidate.groupName === "Bộ môn Kỹ thuật phần mềm" ||
+                candidate.groupName === "Bộ môn Toán" ||
                 candidate.groupName === "Bộ môn CF" ||
                 candidate.groupName === "Bộ môn An toàn thông tin" ||
                 candidate.groupName === "Bộ môn ITS") &&
@@ -279,19 +280,19 @@ export default function ListCandidate() {
         setseacrchResulst(() => {
           return liststageScore.candidate.filter((candidate, index) => {
             return (
-              (candidate.groupName === "Bộ môn Phát triển khởi nghiệp" ||
-                candidate.groupName === "Bộ môn Quản trị Truyền thông đa phương tiện" ||
+              (candidate.groupName === "Bộ môn Quản trị Truyền thông đa phương tiện" ||
                 candidate.groupName === "Bộ môn Quản trị Du lịch và khách sạn" ||
                 candidate.groupName === "Bộ môn Kinh tế") &&
               candidate.fullName.toLowerCase().includes(title.toLowerCase())
             );
           });
         });
-      } else if (process === "Khối ngành Kỹ thuật") {
+      } else if (process === "Khối ngành Kỹ thuật và Bộ môn Toán") {
         setseacrchResulst(() => {
           return liststageScore.candidate.filter((candidate, index) => {
             return (
               (candidate.groupName === "Bộ môn Kỹ thuật phần mềm" ||
+                candidate.groupName === "Bộ môn Toán" ||
                 candidate.groupName === "Bộ môn CF" ||
                 candidate.groupName === "Bộ môn An toàn thông tin" ||
                 candidate.groupName === "Bộ môn ITS") &&
@@ -531,13 +532,13 @@ export default function ListCandidate() {
                 sx={{
                   display: "flex",
                   justifyContent: "flex-end",
-                  width: { xs: "100%", md: "14rem" },
+                  width: { xs: "100%", md: "12rem" },
                   margin: { xs: "1rem 0 0", md: 0 },
                 }}
                 name="groupid"
                 required
                 defaultValue="Tất cả"
-                label={"Nhóm giảng viên trước chuyên ngành"}
+                label={"Giảng viên nhóm môn chung"}
                 height="10rem"
                 onChange={(e) => {
                   setProcess(e.target.value);
@@ -552,13 +553,13 @@ export default function ListCandidate() {
                   "& > :not(style)": {
                     m: { xs: 2, md: 2 },
                     height: "3.3rem",
-                    width: { xs: "100%", md: "9ch" },
+                    width: { xs: "100%", md: "15ch" },
                   },
                 }}
               >
                 <TextField
                   variant="outlined"
-                  label="Cơ bản"
+                  label="Nhóm môn chung"
                   value={
                     liststageScore?.votesRemaining?.voteBM + "/" + liststageScore?.limitVoteOfStage
                   }
@@ -716,7 +717,7 @@ export default function ListCandidate() {
                 name="groupid"
                 required
                 defaultValue="Tất cả"
-                label={"Nhóm giảng viên trước chuyên ngành"}
+                label={"Giảng viên nhóm môn chung"}
                 height="10rem"
                 onChange={(e) => {
                   setProcess(e.target.value);
@@ -736,7 +737,7 @@ export default function ListCandidate() {
               >
                 <TextField
                   variant="outlined"
-                  label="Cơ bản"
+                  label="Nhóm môn chung"
                   value={
                     liststageScore?.votesRemaining?.voteBM + "/" + liststageScore?.limitVoteOfStage
                   }
