@@ -168,24 +168,44 @@ export default function UserCard(props) {
               )}
             </div>
 
-            <div>
-              <Typography fontWeight="lg">Thời gian bắt đầu: 02/10/2023</Typography>
-
-              <Typography fontWeight="lg">Thời gian kết thúc: 15/10/2023</Typography>
-
-              <Typography
-                sx={{
-                  color:
-                    process === "Chưa diễn ra"
-                      ? "black"
-                      : process === "Đang diễn ra"
-                      ? "green"
-                      : "black",
-                }}
-                fontWeight="lg"
-              >
-                Trạng thái: {process}
-              </Typography>
+            <div
+              style={{
+                marginRight: "40%",
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <div style={{ flex: 5, marginRight: "10px" }}>
+                <Typography sx={{ whiteSpace: "nowrap" }} fontWeight="lg">
+                  Thời gian bắt đầu
+                </Typography>
+                <Typography fontWeight="lg">15/10/2023</Typography>
+              </div>
+              <div style={{ flex: 5, marginRight: "20px", width: "100%" }}>
+                <Typography sx={{ whiteSpace: "nowrap" }} fontWeight="lg">
+                  Thời gian kết thúc
+                </Typography>
+                <Typography fontWeight="lg"> 29/10/2023</Typography>
+              </div>
+              <div style={{ flex: 5, marginRight: "20px" }}>
+                <Typography sx={{ whiteSpace: "nowrap" }} fontWeight="lg">
+                  Trạng thái
+                </Typography>
+                <Typography
+                  sx={{
+                    whiteSpace: "nowrap",
+                    color:
+                      process === "Chưa diễn ra"
+                        ? "black"
+                        : process === "Đang diễn ra"
+                        ? "green"
+                        : "black",
+                  }}
+                  fontWeight="lg"
+                >
+                  {process}
+                </Typography>
+              </div>
             </div>
           </Sheet>
           <Box sx={{ display: "flex", gap: 1.5, "& > button": { flex: 1 } }}>
