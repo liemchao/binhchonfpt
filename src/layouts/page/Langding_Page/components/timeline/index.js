@@ -202,7 +202,7 @@ export default function CustomizedSteppers() {
             fontSize: 30,
           }}
         >
-          02/10/2023
+          15/10/2023
         </Typography>
 
         <Typography
@@ -231,7 +231,7 @@ export default function CustomizedSteppers() {
             fontSize: 30,
           }}
         >
-          15/10/2023
+          29/10/2023
         </Typography>
 
         <Typography
@@ -259,7 +259,7 @@ export default function CustomizedSteppers() {
             fontSize: 30,
           }}
         >
-          20/10/2023
+          30/10/2023
         </Typography>
 
         <Typography
@@ -288,7 +288,7 @@ export default function CustomizedSteppers() {
             fontSize: 30,
           }}
         >
-          12/11/2023
+          19/11/2023
         </Typography>
       </div>
     </Stack>
