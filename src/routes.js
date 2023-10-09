@@ -220,11 +220,7 @@ export default function Router() {
 
         {
           path: "result/:id",
-          element: (
-            <ProtectedRouteAuthen roles="user">
-              <TopAndTable />
-            </ProtectedRouteAuthen>
-          ),
+          element: <TopAndTable />
         },
         {
           path: "candidate/:id",
