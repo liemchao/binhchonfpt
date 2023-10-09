@@ -170,7 +170,7 @@ export default function UserCard(props) {
 
             <div
               style={{
-                marginRight: "40%",
+                marginRight: "70%",
                 display: "flex",
                 flexDirection: "row",
               }}
