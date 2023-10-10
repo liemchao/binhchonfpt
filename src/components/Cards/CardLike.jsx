@@ -25,6 +25,7 @@ export default function CardLike(props) {
     score,
     groupName,
     isVoted,
+    onClickUnVote,
   } = props;
 
   const handleClick1 = () => {
@@ -94,7 +95,7 @@ export default function CardLike(props) {
             <ShareIcon />
           </IconButton>
 
-          <IconButton
+          {/* <IconButton
             aria-label="Like minimal photography"
             size="md"
             variant="solid"
@@ -114,7 +115,53 @@ export default function CardLike(props) {
             // disabled={isVoted}
           >
             <Favorite />
-          </IconButton>
+          </IconButton> */}
+
+          {isVoted ? (
+            <IconButton
+              aria-label="Like minimal photography"
+              size="md"
+              variant="solid"
+              color="success"
+              onClick={onClickUnVote}
+              sx={{
+                backgroundColor: isVoted ? "#FFA500" : "#D44FAC",
+                "&:hover": {
+                  backgroundColor: isVoted ? "#D44FAC" : "#F7941D",
+                },
+                position: "absolute",
+                zIndex: 2,
+                borderRadius: "50%",
+                right: "4rem",
+                bottom: 0,
+                transform: "translateY(50%)",
+              }}
+            >
+              <Favorite />
+            </IconButton>
+          ) : (
+            <IconButton
+              aria-label="Like minimal photography"
+              size="md"
+              variant="solid"
+              color="success"
+              onClick={onClickLike}
+              sx={{
+                backgroundColor: isVoted ? "#FFA500" : "#D44FAC",
+                "&:hover": {
+                  backgroundColor: isVoted ? "#D44FAC" : "#F7941D",
+                },
+                position: "absolute",
+                zIndex: 2,
+                borderRadius: "50%",
+                right: "4rem",
+                bottom: 0,
+                transform: "translateY(50%)",
+              }}
+            >
+              <Favorite />
+            </IconButton>
+          )}
         </CardOverflow>
         <CardContent>
           <Typography

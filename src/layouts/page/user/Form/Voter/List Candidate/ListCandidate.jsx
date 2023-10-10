@@ -82,7 +82,7 @@ export default function ListCandidate() {
     const callAPI = async () => {
       await dispatch(getScorebyStage(id, decode.Username, token));
       await dispatch(getGroupId(idCampainStore, token));
-      await dispatch(CheckFeedback(decode.Username, idCampainStore, token));
+      // await dispatch(CheckFeedback(decode.Username, idCampainStore, token));
     };
     callAPI();
   }, [dispatch, id, idCampainStore]);
@@ -94,9 +94,6 @@ export default function ListCandidate() {
 
   const listGroup = useSelector((state) => {
     return state.listGroup;
-  });
-  const feedback = useSelector((state) => {
-    return state.checkfeeback;
   });
 
   const getGroupOption = () => {
@@ -395,19 +392,12 @@ export default function ListCandidate() {
 
   const hanldeUnvote = async (token, idcandidate) => {
     const data = {
-      sendingTime: submitTime,
       userId: decode.Username,
       candidateId: idcandidate,
       stageId: id,
-      votingDetail: [
-        {
-          elementId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          createTime: submitTime,
-        },
-      ],
     };
     try {
-      const req = await API("POST", URL_API + `/api/v1/votes`, data, token);
+      const req = await API("POST", URL_API + `/api/v1/votes/unlike`, data, token);
       if (req) {
         CustomizedToast({
           message: `${req.data?.message}`,
@@ -915,6 +905,9 @@ export default function ListCandidate() {
                     onClickShare={() => {
                       handleGetQR(card?.candidateId);
                     }}
+                    onClickUnVote={() => {
+                      hanldeUnvote(token, card?.candidateId);
+                    }}
                   />
                 </Grid>
               ))}
@@ -959,8 +952,8 @@ export default function ListCandidate() {
             SetisOpen={() => {
               setIsopen(true);
             }}
-            id={listIdArray ? listIdArray?.campaignId : idCampaign?.campaignId}
-            IdStage={liststageScore?.stageId}
+            id="6097a517-11ad-4105-b26a-0e93bea2cb43"
+            IdStage="6097a517-11ad-4105-b26a-0e93bea2cb43"
           />
         </>
       )}
