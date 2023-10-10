@@ -603,7 +603,7 @@ export default function ListCandidate() {
                 name="groupid"
                 required
                 defaultValue="Tất cả"
-                label={"Nhóm giảng viên chuyên ngành"}
+                label={"Giảng viên chuyên ngành"}
                 height="10rem"
                 onChange={(e) => {
                   setProcess(e.target.value);
@@ -650,7 +650,7 @@ export default function ListCandidate() {
                 name="groupid"
                 required
                 defaultValue="Tất cả"
-                label={"Nhóm giảng viên chuyên ngành"}
+                label={"Giảng viên chuyên ngành"}
                 height="10rem"
                 onChange={(e) => {
                   setProcess(e.target.value);

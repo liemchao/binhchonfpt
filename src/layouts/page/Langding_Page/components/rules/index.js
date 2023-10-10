@@ -211,7 +211,7 @@ const VotingRules = () => {
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                       }}
                     >
-                      2 giảng viên dạy
+                      2 giảng viên
                     </Typography>
                     <Typography
                       variant="h5"
@@ -282,7 +282,7 @@ const VotingRules = () => {
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                       }}
                     >
-                      3 giảng viên dạy
+                      3 giảng viên
                     </Typography>
                     <Typography
                       variant="h5"
