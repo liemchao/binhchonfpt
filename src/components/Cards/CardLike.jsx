@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import AspectRatio from "@mui/joy/AspectRatio";
-import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import CardOverflow from "@mui/joy/CardOverflow";
 import Divider from "@mui/joy/Divider";
@@ -10,9 +9,10 @@ import Link from "@mui/joy/Link";
 import Favorite from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import CandateDetail from "layouts/page/user/Candidate/DetailCandidate";
+import { Card } from "@mui/material";
 
 export default function CardLike(props) {
-  const MAX_DESCRIPTION_LENGTH = 50;
+  const MAX_DESCRIPTION_LENGTH = 30;
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [open, setOpen] = useState(false);
   const {
@@ -34,7 +34,17 @@ export default function CardLike(props) {
 
   const truncateDescription = (text, length) => {
     if (!text) {
-      return "";
+      return (
+        <>
+          <Typography
+            visibility="hidden"
+            level="body"
+            sx={{ mt: 0.2, fontWeight: "md", color: "#B83490" }}
+          >
+            "Học như chinh phục người yêu, cứ dành thời gian cho
+          </Typography>
+        </>
+      );
     }
 
     if (text?.length <= length) {
@@ -181,6 +191,7 @@ export default function CardLike(props) {
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
+                fontSize: "15px",
               }}
             >
               {groupName}

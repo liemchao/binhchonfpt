@@ -345,7 +345,7 @@ export default function CampaignOwenrList() {
                         </IconButton>
                       </Tooltip>
                       {item.campaignId === "6097a517-11ad-4105-b26a-0e93bea2cb43" && (
-                        <Tooltip title="Thể lệ chiến dịch" variant="outlined">
+                        <Tooltip title="Thể lệ bình chọn" variant="outlined">
                           <IconButton
                             sx={{
                               backgroundColor: "#D75BAF",

@@ -1,7 +1,6 @@
 import * as React from "react";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
-import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
@@ -10,6 +9,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import boderimage from "../../assets/images/GIOI THIEU - KHUNG TEXT 1.png";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
+import { Card } from "@mui/material";
 
 export default function MainCard(props) {
   const {

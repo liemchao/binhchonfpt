@@ -302,7 +302,7 @@ export default function ListCandidate() {
           return liststageScore.candidate.filter((candidate, index) => {
             return (
               (candidate.groupName === "Bộ môn Hoạt hình kỹ thuật số" ||
-                candidate.groupName === "Bộmôn Tiếng Anh chuyên ngành" ||
+                candidate.groupName === "Bộ môn Tiếng Anh chuyên ngành" ||
                 candidate.groupName === "Bộ môn Thiết kế đồ họa" ||
                 candidate.groupName === "Bộ môn tiếng Nhật") &&
               candidate.fullName.toLowerCase().includes(title.toLowerCase())
@@ -483,7 +483,7 @@ export default function ListCandidate() {
                 >
                   {liststageScore.campaignName}
                   <Tooltip
-                    title="Thể lệ chiến dịch"
+                    title="Thể lệ bình chọn"
                     sx={{
                       marginLeft: "10px",
                       color: "#B83490",
@@ -512,6 +512,7 @@ export default function ListCandidate() {
             display: "flex",
             alignItems: "center",
             flexDirection: { xs: "column", md: "row" },
+            flexWrap: "wrap",
           }}
         >
           {idCampainStore === "6097a517-11ad-4105-b26a-0e93bea2cb43" &&
@@ -522,7 +523,7 @@ export default function ListCandidate() {
                 sx={{
                   display: "flex",
                   justifyContent: "flex-end",
-                  width: { xs: "100%", md: "12rem" },
+                  width: { xs: "90%", md: "12rem" },
                   margin: { xs: "1rem 0 0", md: 0 },
                 }}
                 name="groupid"
@@ -543,7 +544,7 @@ export default function ListCandidate() {
                   "& > :not(style)": {
                     m: { xs: 2, md: 2 },
                     height: "3.3rem",
-                    width: { xs: "100%", md: "15ch" },
+                    width: { xs: "90%", md: "14ch" },
                   },
                 }}
               >
@@ -567,7 +568,7 @@ export default function ListCandidate() {
                 sx={{
                   display: "flex",
                   justifyItems: "flex-end",
-                  "& > :not(style)": { m: { xs: 1, md: 2 }, width: { xs: "100%", md: "24ch" } },
+                  "& > :not(style)": { m: { xs: 1, md: 2 }, width: { xs: "100%", md: "19ch" } },
                   justifyContent: { xs: "flex-start", md: "flex-start" },
                 }}
               >
@@ -587,7 +588,7 @@ export default function ListCandidate() {
                 sx={{
                   display: "flex",
                   justifyContent: "flex-end",
-                  width: { xs: "100%", md: "13rem" },
+                  width: { xs: "100%", md: "11rem" },
                   margin: { xs: "1rem 0 0", md: 0 },
                 }}
                 name="groupid"
@@ -679,7 +680,7 @@ export default function ListCandidate() {
                 sx={{
                   display: "flex",
                   justifyItems: "flex-end",
-                  "& > :not(style)": { m: { xs: 1, md: 2 }, width: { xs: "100%", md: "33ch" } },
+                  "& > :not(style)": { m: { xs: 1, md: 2 }, width: { xs: "100%", md: "21ch" } },
                   justifyContent: { xs: "flex-start", md: "flex-start" },
                 }}
               >

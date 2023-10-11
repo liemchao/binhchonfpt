@@ -215,7 +215,7 @@ const navConfig5 = [
 
 const navConfig6 = [
   {
-    title: "Tất cả chiến dịch",
+    title: "Tất cả chương trình",
     path: "/user/campaign",
     icon: getIcon("ic:baseline-campaign"),
   },
