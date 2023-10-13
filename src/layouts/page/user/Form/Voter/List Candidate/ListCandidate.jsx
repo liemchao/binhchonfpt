@@ -89,7 +89,7 @@ export default function ListCandidate() {
       };
 
       const response = await axios.get(
-        `https://votingsystemfpt-001-site1.htempurl.com/api/v1/candidates/stage/6097a517-11ad-4105-b26a-0e93bea2cb43/user/${decode.Username}?page=${currentPage}&isvoted=false`,
+        `https://votingsystemfpt-001-site1.htempurl.com/api/v1/candidates/stage/6097a517-11ad-4105-b26a-0e93bea2cb43/user/${decode.Username}?page=${currentPage}&byName=${title}&gsg=${process}&special=${process}&isvoted=${isVoted}`,
         config
       );
       setCandidates(response.data.data);
@@ -124,7 +124,7 @@ export default function ListCandidate() {
   const getGroupOption = () => {
     const GroupOption = [
       {
-        id: "Tất cả",
+        id: "false",
         title: "Tất cả",
         choose: true,
       },
@@ -163,7 +163,7 @@ export default function ListCandidate() {
   ];
   const getOption2 = () => [
     {
-      id: "Tất cả",
+      id: "false",
       title: "Tất cả",
     },
     {
@@ -543,7 +543,7 @@ export default function ListCandidate() {
                 }}
                 name="groupid"
                 required
-                defaultValue="Tất cả"
+                defaultValue="all"
                 label={"Giảng viên chuyên ngành"}
                 height="10rem"
                 onChange={(e) => {
