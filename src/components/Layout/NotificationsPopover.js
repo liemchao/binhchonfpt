@@ -87,8 +87,8 @@ export default function NotificationsPopover() {
 
   useEffect(() => {
     setNotifications(data);
-    const unreadNotifications = data.filter((notification) => !notification.isRead);
-    setReadNotifications(data.filter((notification) => notification.isRead));
+    const unreadNotifications = data?.filter((notification) => !notification.isRead);
+    setReadNotifications(data?.filter((notification) => notification.isRead));
     setNotifications(unreadNotifications);
   }, [data]);
 
