@@ -61,6 +61,7 @@ export default function ListCandidate() {
   const [url, setUrl] = useState();
   const [showMore, setShowMore] = useState(false);
   const [process, setProcess] = useState("Tất cả");
+  const [process1, setProcess1] = useState("Tất cả");
   const [seacrchResult, setseacrchResulst] = useState([]);
   const [title, setTitle] = useState("");
   const candidatesPerPage = 6;
@@ -89,7 +90,7 @@ export default function ListCandidate() {
       };
 
       const response = await axios.get(
-        `https://votingsystemfpt-001-site1.htempurl.com/api/v1/candidates/stage/6097a517-11ad-4105-b26a-0e93bea2cb43/user/${decode.Username}?page=${currentPage}&byName=${title}&gsg=${process}&special=${process}&isvoted=${isVoted}`,
+        `https://votingsystemfpt-001-site1.htempurl.com/api/v1/candidates/stage/6097a517-11ad-4105-b26a-0e93bea2cb43/user/${decode.Username}?page=${currentPage}&byName=${title}&gsg=${process}&special=${process1}&isvoted=${isVoted}`,
         config
       );
       setCandidates(response.data.data);
@@ -301,6 +302,14 @@ export default function ListCandidate() {
       }
     }
   };
+  const handleSelect1Change = (e) => {
+    setProcess(e.target.value);
+    setProcess1(null);
+  };
+  const handleSelect2Change = (e) => {
+    setProcess1(e.target.value);
+    setProcess(null);
+  };
 
   const hanldeUnvote = async (token, idcandidate) => {
     const data = {
@@ -439,9 +448,7 @@ export default function ListCandidate() {
                 defaultValue="Tất cả"
                 label={"Giảng viên nhóm môn chung"}
                 height="10rem"
-                onChange={(e) => {
-                  setProcess(e.target.value);
-                }}
+                onChange={handleSelect1Change}
                 options={getOptions1()}
               />
 
@@ -502,9 +509,7 @@ export default function ListCandidate() {
                 defaultValue="Tất cả"
                 label={"Giảng viên chuyên ngành"}
                 height="10rem"
-                onChange={(e) => {
-                  setProcess(e.target.value);
-                }}
+                onChange={handleSelect2Change}
                 options={getOptions()}
               />
               <Box
@@ -547,7 +552,7 @@ export default function ListCandidate() {
                 label={"Giảng viên chuyên ngành"}
                 height="10rem"
                 onChange={(e) => {
-                  setProcess(e.target.value);
+                  setProcess1(e.target.value);
                 }}
                 options={getOptions()}
               />

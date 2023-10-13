@@ -86,10 +86,12 @@ export default function NotificationsPopover() {
   }, [decode.Username]);
 
   useEffect(() => {
-    setNotifications(data);
-    const unreadNotifications = data?.filter((notification) => !notification.isRead);
-    setReadNotifications(data?.filter((notification) => notification.isRead));
-    setNotifications(unreadNotifications);
+    if (data) {
+      setNotifications(data);
+      const unreadNotifications = data?.filter((notification) => !notification.isRead);
+      setReadNotifications(data?.filter((notification) => notification.isRead));
+      setNotifications(unreadNotifications);
+    }
   }, [data]);
 
   const totalUnRead = notifications.filter((item) => !item.isRead).length;
