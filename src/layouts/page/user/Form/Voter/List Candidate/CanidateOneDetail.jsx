@@ -272,12 +272,6 @@ export default function CandateOneDetail() {
           </Box>
         </Box>
       </Container>
-      <QuestionPopUp
-        SetOpenPopUp={setopen}
-        OpenPopUp={open}
-        IdCanidate={idCanidate}
-        IdStage={idStage}
-      />
     </>
   );
 }

@@ -41,6 +41,7 @@ import ScrollToTopButton from "./scollpage";
 import { CheckFeedback } from "context/redux/action/action";
 import PolicyIcon from "@mui/icons-material/Policy";
 import Policy from "components/Popup/add/Policy";
+import axios from "axios";
 
 export default function ListCandidate() {
   const [OpenPopUp, SetOpenPopUp] = useState(false);
@@ -67,8 +68,11 @@ export default function ListCandidate() {
   const [namegroup, setNameGroup] = useState();
   const [isVoted, setisVoted] = useState(false);
   const navigate = useNavigate();
+  const [candidates, setCandidates] = useState([]);
   const [submitTime, setStartTime] = useState(new Date());
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const idCampainStore = "6097a517-11ad-4105-b26a-0e93bea2cb43";
   const SearchStyle = styled(OutlinedInput)(({ theme }) => ({
     width: 240,
     transition: theme.transitions.create(["box-shadow", "width"], {
@@ -77,15 +81,36 @@ export default function ListCandidate() {
     }),
     "&.Mui-focused": { width: 320, boxShadow: "0.7 rem" },
   }));
-  const idCampainStore = localStorage.getItem("campaignId");
+
+  const fetchData = async (token, setCandidates) => {
+    try {
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+
+      const response = await axios.get(
+        `https://votingsystemfpt-001-site1.htempurl.com/api/v1/candidates/stage/6097a517-11ad-4105-b26a-0e93bea2cb43/user/${decode.Username}?page=${currentPage}&isvoted=false`,
+        config
+      );
+      setCandidates(response.data.data);
+    } catch (error) {
+      CustomizedToast({
+        message: `Đã xảy ra lỗi ở cơ sở dữ liệu`,
+        type: "ERROR",
+      });
+    }
+  };
+
+  useEffect(() => {
+    fetchData(token, setCandidates);
+  }, [candidates, token]);
+
   useEffect(() => {
     const callAPI = async () => {
-      await dispatch(getScorebyStage(id, decode.Username, token));
       await dispatch(getGroupId(idCampainStore, token));
-      // await dispatch(CheckFeedback(decode.Username, idCampainStore, token));
     };
     callAPI();
-  }, [dispatch, id, idCampainStore]);
+  }, [dispatch, token]);
 
   const handleGetQR = useCallback((id) => {
     setopen(true);
@@ -200,9 +225,9 @@ export default function ListCandidate() {
   //   return GroupOption;
   // };
 
-  const liststageScore = useSelector((state) => {
-    return state.liststageScore;
-  });
+  // const liststageScore = useSelector((state) => {
+  //   return state.liststageScore;
+  // });
 
   const listIdArray = useSelector((state) => {
     return state.listIdArray;
@@ -213,122 +238,9 @@ export default function ListCandidate() {
   });
 
   useEffect(() => {
-    if (!title) {
-      if (process === "Tất cả") {
-        setseacrchResulst(liststageScore.candidate);
-      } else if (isVoted === "true") {
-        setseacrchResulst(() => {
-          return liststageScore.candidate.filter((candidate, index) => {
-            return candidate.isVoted === true;
-          });
-        });
-      } else if (process === "Khối ngành Quản trị doanh nghiệp") {
-        setseacrchResulst(() => {
-          return liststageScore.candidate.filter((candidate, index) => {
-            return (
-              (candidate.groupName === "Bộ môn Phát triển khởi nghiệp" ||
-                candidate.groupName === "Bộ môn Quản trị Truyền thông đa phương tiện" ||
-                candidate.groupName === "Bộ môn Quản trị Du lịch và khách sạn" ||
-                candidate.groupName === "Bộ môn Kinh tế") &&
-              candidate.fullName.toLowerCase().includes(title.toLowerCase())
-            );
-          });
-        });
-      } else if (process === "Khối ngành Kỹ thuật và Bộ môn Toán") {
-        setseacrchResulst(() => {
-          return liststageScore.candidate.filter((candidate, index) => {
-            return (
-              (candidate.groupName === "Bộ môn Kỹ thuật phần mềm" ||
-                candidate.groupName === "Bộ môn Toán" ||
-                candidate.groupName === "Bộ môn CF" ||
-                candidate.groupName === "Bộ môn An toàn thông tin" ||
-                candidate.groupName === "Bộ môn ITS") &&
-              candidate.fullName.toLowerCase().includes(title.toLowerCase())
-            );
-          });
-        });
-      } else if (process === "Khối ngành Ngôn ngữ và Mỹ thuật") {
-        setseacrchResulst(() => {
-          return liststageScore.candidate.filter((candidate, index) => {
-            return (
-              (candidate.groupName === "Bộ môn Hoạt hình kỹ thuật số" ||
-                candidate.groupName === "Bộ môn Tiếng Anh chuyên ngành" ||
-                candidate.groupName === "Bộ môn Thiết kế đồ họa" ||
-                candidate.groupName === "Bộ môn tiếng Nhật") &&
-              candidate.fullName.toLowerCase().includes(title.toLowerCase())
-            );
-          });
-        });
-      } else {
-        setseacrchResulst(() => {
-          return liststageScore.candidate.filter((candidate, index) => {
-            return candidate.groupName == process;
-          });
-        });
-      }
-    } else {
-      if (process === "Tất cả") {
-        setseacrchResulst(() => {
-          return liststageScore.candidate.filter((candidate, index) => {
-            return candidate.fullName.toLowerCase().includes(title.toLowerCase());
-          });
-        });
-      } else if (process === "Khối ngành Quản trị doanh nghiệp") {
-        setseacrchResulst(() => {
-          return liststageScore.candidate.filter((candidate, index) => {
-            return (
-              (candidate.groupName === "Bộ môn Quản trị Truyền thông đa phương tiện" ||
-                candidate.groupName === "Bộ môn Quản trị Du lịch và khách sạn" ||
-                candidate.groupName === "Bộ môn Kinh tế") &&
-              candidate.fullName.toLowerCase().includes(title.toLowerCase())
-            );
-          });
-        });
-      } else if (process === "Khối ngành Kỹ thuật và Bộ môn Toán") {
-        setseacrchResulst(() => {
-          return liststageScore.candidate.filter((candidate, index) => {
-            return (
-              (candidate.groupName === "Bộ môn Kỹ thuật phần mềm" ||
-                candidate.groupName === "Bộ môn Toán" ||
-                candidate.groupName === "Bộ môn CF" ||
-                candidate.groupName === "Bộ môn An toàn thông tin" ||
-                candidate.groupName === "Bộ môn ITS") &&
-              candidate.fullName.toLowerCase().includes(title.toLowerCase())
-            );
-          });
-        });
-      } else if (process === "Khối ngành Ngôn ngữ và Mỹ thuật") {
-        setseacrchResulst(() => {
-          return liststageScore.candidate.filter((candidate, index) => {
-            return (
-              (candidate.groupName === "Bộ môn Hoạt hình kỹ thuật số" ||
-                candidate.groupName === "Bộ môn Tiếng Anh chuyên ngành" ||
-                candidate.groupName === "Bộ môn Thiết kế đồ họa" ||
-                candidate.groupName === "Bộ môn tiếng Nhật") &&
-              candidate.fullName.toLowerCase().includes(title.toLowerCase())
-            );
-          });
-        });
-      } else {
-        setseacrchResulst(() => {
-          return liststageScore.candidate.filter((candidate, index) => {
-            return (
-              candidate.groupName == process &&
-              candidate.fullName.toLowerCase().includes(title.toLowerCase())
-            );
-          });
-        });
-        // Xử lý cho trường hợp khác (process không khớp với bất kỳ khối ngành nào)
-      }
-    }
-  }, [title, process, liststageScore, isVoted]);
-
-  useEffect(() => {
     const callAPIgetList = async () => {
       if (listIdArray !== null) {
-        dispatch(
-          CheckVoter(decode.Username, listIdArray ? listIdArray?.campaignId : idCampainStore, token)
-        );
+        dispatch(CheckVoter(decode.Username, idCampainStore, token));
       }
     };
     callAPIgetList();
@@ -349,11 +261,11 @@ export default function ListCandidate() {
     [idCandi]
   );
 
-  const hanldeGetQuestion = async (token, idCandidate) => {
-    await dispatch(handleGetQuestByIdCampaign(liststageScore.formId, token));
-    setIdCanidate(idCandidate);
-    SetOpenPopUp(true);
-  };
+  // const hanldeGetQuestion = async (token, idCandidate) => {
+  //   await dispatch(handleGetQuestByIdCampaign(liststageScore.formId, token));
+  //   setIdCanidate(idCandidate);
+  //   SetOpenPopUp(true);
+  // };
 
   const handleVotingLike = async (token, idcandidate) => {
     const data = {
@@ -429,19 +341,17 @@ export default function ListCandidate() {
     SetOpenDialog(true);
   };
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(candidates.totalPage);
 
-  const totalPages = Math.ceil(seacrchResult?.length / candidatesPerPage);
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
 
-  const getCurrentCandidates = () => {
-    const startIndex = (currentPage - 1) * candidatesPerPage;
-    const endIndex = startIndex + candidatesPerPage;
-    return seacrchResult?.slice(startIndex, endIndex);
-  };
-  const campaignId = listIdArray ? listIdArray?.campaignId : idCampaign?.campaignId;
+  // const getCurrentCandidates = () => {
+  //   const startIndex = (currentPage - 1) * candidatesPerPage;
+  //   const endIndex = startIndex + candidatesPerPage;
+  //   return seacrchResult?.slice(startIndex, endIndex);
+  // };
 
   return (
     <Page
@@ -459,7 +369,7 @@ export default function ListCandidate() {
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Paper>
-              {liststageScore.campaignName === "Chiến dịch bình chọn giảng viên FPT 2023" ? (
+              {candidates.campaignName === "Chiến dịch bình chọn giảng viên FPT 2023" ? (
                 <Typography
                   variant="h4"
                   fontWeight="bold"
@@ -481,7 +391,7 @@ export default function ListCandidate() {
                     fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
                   }}
                 >
-                  {liststageScore.campaignName}
+                  {candidates.campaignName}
                   <Tooltip
                     title="Thể lệ bình chọn"
                     sx={{
@@ -515,9 +425,7 @@ export default function ListCandidate() {
             flexWrap: "wrap",
           }}
         >
-          {idCampainStore === "6097a517-11ad-4105-b26a-0e93bea2cb43" &&
-          liststageScore?.votesRemaining?.groupNameOfVoter ===
-            "Giai đoạn chuyên ngành (HK1-HK6)" ? (
+          {candidates.votesRemaining?.groupNameOfVoter === "Giai đoạn chuyên ngành (HK1-HK6)" ? (
             <>
               <Select
                 sx={{
@@ -551,9 +459,7 @@ export default function ListCandidate() {
                 <TextField
                   variant="outlined"
                   label="Nhóm môn chung"
-                  value={
-                    liststageScore?.votesRemaining?.voteBM + "/" + liststageScore?.limitVoteOfStage
-                  }
+                  value={candidates?.votesRemaining?.voteBM + "/" + candidates?.limitVoteOfStage}
                   InputProps={{
                     startAdornment: (
                       <div style={{ color: "#D44FAC", marginTop: "2px" }}>
@@ -615,9 +521,7 @@ export default function ListCandidate() {
                 <TextField
                   variant="outlined"
                   label="Chuyên ngành"
-                  value={
-                    liststageScore?.votesRemaining?.voteAM + "/" + liststageScore?.limitVoteOfStage
-                  }
+                  value={candidates?.votesRemaining?.voteAM + "/" + candidates?.limitVoteOfStage}
                   InputProps={{
                     startAdornment: (
                       <div style={{ color: "#D44FAC", marginTop: "2px" }}>
@@ -628,8 +532,7 @@ export default function ListCandidate() {
                 />
               </Box>
             </>
-          ) : liststageScore?.votesRemaining?.groupNameOfVoter ===
-            "Giai đoạn chuyên ngành (HK7-HK9)" ? (
+          ) : candidates.votesRemaining?.groupNameOfVoter === "Giai đoạn chuyên ngành (HK7-HK9)" ? (
             <>
               <Select
                 sx={{
@@ -662,9 +565,7 @@ export default function ListCandidate() {
                 <TextField
                   variant="outlined"
                   label="Chuyên ngành"
-                  value={
-                    liststageScore?.votesRemaining?.voteAM + "/" + liststageScore?.limitVoteOfStage
-                  }
+                  value={candidates?.votesRemaining?.voteAM + "/" + candidates?.limitVoteOfStage}
                   InputProps={{
                     startAdornment: (
                       <div style={{ color: "#D44FAC", marginTop: "2px" }}>
@@ -696,7 +597,7 @@ export default function ListCandidate() {
                 />
               </Box>
             </>
-          ) : liststageScore?.votesRemaining?.groupNameOfVoter === "Giai đoạn dự bị" ? (
+          ) : candidates?.votesRemaining?.groupNameOfVoter === "Giai đoạn dự bị" ? (
             <>
               <Select
                 sx={{
@@ -729,9 +630,7 @@ export default function ListCandidate() {
                 <TextField
                   variant="outlined"
                   label="Nhóm môn chung"
-                  value={
-                    liststageScore?.votesRemaining?.voteBM + "/" + liststageScore?.limitVoteOfStage
-                  }
+                  value={candidates?.votesRemaining?.voteBM + "/" + candidates?.limitVoteOfStage}
                   InputProps={{
                     startAdornment: (
                       <div style={{ color: "#D44FAC", marginTop: "2px" }}>
@@ -797,9 +696,7 @@ export default function ListCandidate() {
                   variant="outlined"
                   label="Số phiếu hiện có"
                   value={
-                    liststageScore?.votesRemaining?.voteRemaining +
-                    "/" +
-                    liststageScore?.limitVoteOfStage
+                    candidates?.votesRemaining?.voteRemaining + "/" + candidates?.limitVoteOfStage
                   }
                   InputProps={{
                     startAdornment: (
@@ -855,39 +752,12 @@ export default function ListCandidate() {
             />
           </Box>
         </Box>
-        {liststageScore.formId ? (
-          <Box sx={{ display: "flex", justifyContent: "space-between", ml: "1rem" }}>
-            <Grid container spacing={3} mt={-1} bottom={2} sx={{ gap: "6rem" }}>
-              {getCurrentCandidates()?.map((card, index) => (
-                <Grid item xs={6} md={3} key={index}>
-                  <MultipleInteractionCard
-                    id={card.candidateId}
-                    handleClick={() => {
-                      handleClickOpen(card?.candidateId);
-                    }}
-                    groupName={card?.groupName}
-                    isVoted={card?.isVoted}
-                    score={card?.stageScore}
-                    image={card?.avatarUrl}
-                    name={card?.fullName}
-                    onClickVote={() => {
-                      hanldeGetQuestion(token, card?.candidateId);
-                    }}
-                    onClickUnVote={() => {
-                      hanldeUnvote(token, card?.candidateId);
-                    }}
-                    onClickShare={() => {
-                      handleGetQR(card?.candidateId);
-                    }}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
+        {candidates.formId ? (
+          <></>
         ) : (
           <Box sx={{ display: "flex", justifyContent: "space-between", ml: "-0.3rem" }}>
             <Grid container spacing={3} mt={-4} bottom={1} sx={{ gap: "6rem" }}>
-              {getCurrentCandidates()?.map((card, index) => (
+              {candidates.candidate?.map((card, index) => (
                 <Grid item xs={6} md={3} key={index}>
                   <CardLike
                     id={card?.candidateId}
@@ -928,8 +798,7 @@ export default function ListCandidate() {
           onChange={handlePageChange}
         />
         <ScrollToTopButton />
-        {liststageScore?.votesRemaining?.voteRemaining === 0 &&
-        liststageScore?.feedBacked === false ? (
+        {candidates?.votesRemaining?.voteRemaining === 0 && candidates?.feedBacked === false ? (
           <FeedbackBubble
             open={true}
             // setOpen={true}
@@ -939,12 +808,12 @@ export default function ListCandidate() {
           <></>
         )}
       </Container>
-      <QuestionPopUp
+      {/* <QuestionPopUp
         SetOpenPopUp={SetOpenPopUp}
         OpenPopUp={OpenPopUp}
         IdCanidate={IdCanidate}
-        IdStage={liststageScore?.stageId}
-      />
+        IdStage={candidates?.stageId}
+      /> */}
       {isopen ? (
         <></>
       ) : (
@@ -963,7 +832,7 @@ export default function ListCandidate() {
         SetOpenPopUp={setHasopen}
         name={name}
         image={url}
-        idform={liststageScore?.formId}
+        idform={candidates?.formId}
         idStage={id}
         idCandi={idCandi}
         score={scores}

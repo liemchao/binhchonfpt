@@ -221,12 +221,7 @@ export default function CandateDetail(props) {
           </ProductDetailWrapper>
         </DialogContent>
       </Dialog>
-      <QuestionPopUp
-        SetOpenPopUp={setopen}
-        OpenPopUp={open}
-        IdCanidate={IdCanidate}
-        IdStage={IdStage}
-      />
+     
     </>
   );
 }

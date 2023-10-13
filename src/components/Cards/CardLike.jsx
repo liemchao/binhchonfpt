@@ -9,7 +9,7 @@ import Link from "@mui/joy/Link";
 import Favorite from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import CandateDetail from "layouts/page/user/Candidate/DetailCandidate";
-import { Card } from "@mui/material";
+import { Card } from "@mui/joy";
 
 export default function CardLike(props) {
   const MAX_DESCRIPTION_LENGTH = 30;

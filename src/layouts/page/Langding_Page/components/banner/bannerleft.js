@@ -3,7 +3,9 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import MainCard from "components/Cards/cardCampaignMain";
 import Logo1 from "assets/images/styled pink.png";
 import CardText from "components/Cards/CardText";
-import { Card, CardContent } from "@mui/joy";
+import { CardContent } from "@mui/joy";
+import { Card } from "@mui/material";
+
 import Sheet from "@mui/joy/Sheet";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 

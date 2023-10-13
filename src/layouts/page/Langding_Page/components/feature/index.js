@@ -1,5 +1,5 @@
 import Box from "@mui/joy/Box";
-import Card from "@mui/joy/Card";
+import { Card } from "@mui/material";
 import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
