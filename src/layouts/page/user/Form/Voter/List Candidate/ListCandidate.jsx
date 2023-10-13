@@ -448,7 +448,9 @@ export default function ListCandidate() {
                 defaultValue="Tất cả"
                 label={"Giảng viên nhóm môn chung"}
                 height="10rem"
-                onChange={handleSelect1Change}
+                onChange={(e) => {
+                  setProcess(e.target.value);
+                }}
                 options={getOptions1()}
               />
 
@@ -509,7 +511,9 @@ export default function ListCandidate() {
                 defaultValue="Tất cả"
                 label={"Giảng viên chuyên ngành"}
                 height="10rem"
-                onChange={handleSelect2Change}
+                onChange={(e) => {
+                  setProcess1(e.target.value);
+                }}
                 options={getOptions()}
               />
               <Box
@@ -551,9 +555,7 @@ export default function ListCandidate() {
                 defaultValue="all"
                 label={"Giảng viên chuyên ngành"}
                 height="10rem"
-                onChange={(e) => {
-                  setProcess1(e.target.value);
-                }}
+                onChange={handleSelect2Change}
                 options={getOptions()}
               />
               <Box
@@ -616,9 +618,7 @@ export default function ListCandidate() {
                 defaultValue="Tất cả"
                 label={"Giảng viên nhóm môn chung"}
                 height="10rem"
-                onChange={(e) => {
-                  setProcess(e.target.value);
-                }}
+                onChange={handleSelect1Change}
                 options={getOptions1()}
               />
               <Box
