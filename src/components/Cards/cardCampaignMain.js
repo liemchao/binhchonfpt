@@ -134,9 +134,9 @@ export default function MainCard(props) {
                 }}
               >
                 Danh hiệu <strong>Inspiring Instructor Awards 2023</strong> nhằm tôn vinh những nỗ
-                lực, cống hiến của Giảng viên trong hành trình trao truyền kiến thức và cảm hứng đến
-                sinh viên <strong>FPTU HCMC</strong> trong 3 học kỳ:{" "}
-                <strong>Fall 2022, Spring 2023 và Summer 2023.</strong>
+                lực, cống hiến của Giảng viên trong hành trình định hướng, giúp đỡ sinh viên thu
+                nhận kiến thức và truyền cảm hứng đến sinh viên <strong>FPTU HCMC</strong> trong 3
+                học kỳ: <strong>Fall 2022, Spring 2023 và Summer 2023.</strong>
               </Typography>
               <Box
                 sx={{

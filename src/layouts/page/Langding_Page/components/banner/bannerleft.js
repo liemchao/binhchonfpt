@@ -148,9 +148,7 @@ export default function MyComponent() {
                       }}
                     >
                       <li>
-                        Danh hiệu <strong>"Inspiring Instructor Awards"</strong> nhằm tôn vinh những
-                        nỗ lực, cống hiến của Giảng viên trong hành trình trao truyền kiến thức và
-                        cảm hứng đến sinh viên FPTU HCMC.
+                        Danh hiệu <strong>"Inspiring Instructor Awards"</strong> nhằm tôn vinh những nỗ lực, cống hiến của Giảng viên trong hành trình định hướng, giúp đỡ sinh viên thu nhận kiến thức và truyền cảm hứng đến sinh viên FPTU HCMC.
                       </li>
                       <li>
                         Đây là danh hiệu được bình chọn định kỳ hằng năm và dành cho tất cả giảng
