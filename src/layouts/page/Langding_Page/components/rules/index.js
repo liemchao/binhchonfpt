@@ -29,6 +29,10 @@ const VotingRules = () => {
               sx={{
                 color: "#B83490",
                 fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
+                "@media (max-width: 600px)": {
+                  fontSize: "1.2rem",
+                  // Kích thước chữ khi màn hình nhỏ hơn 600px
+                },
               }}
             >
               Quy tắc bình chọn:
@@ -38,6 +42,10 @@ const VotingRules = () => {
               sx={{
                 color: "#B83490",
                 fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
+                "@media (max-width: 600px)": {
+                  fontSize: "1.2rem",
+                  // Kích thước chữ khi màn hình nhỏ hơn 600px
+                },
               }}
             >
               1 sinh viên có 1 lần tham gia với 3 phiếu bình chọn.
@@ -47,6 +55,10 @@ const VotingRules = () => {
               sx={{
                 color: "#B83490",
                 fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                "@media (max-width: 600px)": {
+                  fontSize: "1.2rem",
+                  // Kích thước chữ khi màn hình nhỏ hơn 600px
+                },
               }}
             >
               1 lượt bình chọn dành cho 1 giảng viên.
@@ -58,6 +70,10 @@ const VotingRules = () => {
               sx={{
                 color: "#B83490",
                 fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                "@media (max-width: 600px)": {
+                  fontSize: "1.1rem",
+                  // Kích thước chữ khi màn hình nhỏ hơn 600px
+                },
               }}
             >
               Quy tắc tính điểm phụ thuộc vào giai đoạn học của sinh viên:
@@ -70,7 +86,14 @@ const VotingRules = () => {
               <Grid
                 item
                 xs={4}
-                sx={{ backgroundColor: "transparent", position: "relative", border: "none" }}
+                sx={{
+                  backgroundColor: "transparent",
+                  position: "relative",
+                  border: "none",
+                  "@media (max-width: 600px)": {
+                    xs: 12,
+                  },
+                }}
               >
                 <Card
                   sx={{
@@ -86,6 +109,10 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       Giai đoạn
@@ -96,19 +123,50 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       DỰ BỊ
                     </Typography>
                     <Grid sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <Grid item>
-                        <FavoriteIcon sx={{ color: "red", fontSize: 30 }} />
+                        <FavoriteIcon
+                          sx={{
+                            color: "red",
+                            fontSize: 30,
+                            "@media (max-width: 600px)": {
+                              fontSize: "1.2rem",
+                              // Kích thước chữ khi màn hình nhỏ hơn 600px
+                            },
+                          }}
+                        />
                       </Grid>
                       <Grid item>
-                        <FavoriteIcon sx={{ color: "red", fontSize: 30 }} />
+                        <FavoriteIcon
+                          sx={{
+                            color: "red",
+                            fontSize: 30,
+                            "@media (max-width: 600px)": {
+                              fontSize: "1.2rem",
+                              // Kích thước chữ khi màn hình nhỏ hơn 600px
+                            },
+                          }}
+                        />
                       </Grid>
                       <Grid item>
-                        <FavoriteIcon sx={{ color: "red", fontSize: 30 }} />
+                        <FavoriteIcon
+                          sx={{
+                            color: "red",
+                            fontSize: 30,
+                            "@media (max-width: 600px)": {
+                              fontSize: "1.2rem",
+                              // Kích thước chữ khi màn hình nhỏ hơn 600px
+                            },
+                          }}
+                        />
                       </Grid>
                     </Grid>
                     <Typography
@@ -116,6 +174,10 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       3 giảng viên
@@ -126,6 +188,10 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       nhóm môn chung
@@ -133,7 +199,19 @@ const VotingRules = () => {
                   </CardContent>
                 </Card>
               </Grid>
-              <Grid item xs={4} sx={{ backgroundColor: "transparent" }}>
+              <Grid
+                item
+                xs={4}
+                sx={{
+                  backgroundColor: "transparent",
+                  position: "relative",
+                  border: "none",
+                  "@media (max-width: 600px)": {
+                    xs: 6,
+                    // Thay đổi kích thước card khi màn hình nhỏ hơn 600px
+                  },
+                }}
+              >
                 <Card
                   sx={{
                     backgroundColor: "transparent",
@@ -147,6 +225,10 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       Giai đoạn
@@ -157,6 +239,10 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       CHUYÊN NGÀNH
@@ -168,13 +254,26 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       (HK1-HK6)
                     </Typography>
                     <Grid sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <Grid item>
-                        <FavoriteIcon sx={{ color: "red", fontSize: 30 }} />
+                        <FavoriteIcon
+                          sx={{
+                            color: "red",
+                            fontSize: 30,
+                            "@media (max-width: 600px)": {
+                              fontSize: "1.2rem",
+                              // Kích thước chữ khi màn hình nhỏ hơn 600px
+                            },
+                          }}
+                        />
                       </Grid>
                     </Grid>
                     <Typography
@@ -182,6 +281,10 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       1 giảng viên
@@ -192,16 +295,38 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       nhóm môn chung
                     </Typography>
                     <Grid sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <Grid item>
-                        <FavoriteIcon sx={{ color: "red", fontSize: 30 }} />
+                        <FavoriteIcon
+                          sx={{
+                            color: "red",
+                            fontSize: 30,
+                            "@media (max-width: 600px)": {
+                              fontSize: "1.2rem",
+                              // Kích thước chữ khi màn hình nhỏ hơn 600px
+                            },
+                          }}
+                        />
                       </Grid>
                       <Grid item>
-                        <FavoriteIcon sx={{ color: "red", fontSize: 30 }} />
+                        <FavoriteIcon
+                          sx={{
+                            color: "red",
+                            fontSize: 30,
+                            "@media (max-width: 600px)": {
+                              fontSize: "1.2rem",
+                              // Kích thước chữ khi màn hình nhỏ hơn 600px
+                            },
+                          }}
+                        />
                       </Grid>
                     </Grid>
                     <Typography
@@ -209,6 +334,10 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       2 giảng viên
@@ -219,6 +348,10 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       chuyên ngành
@@ -226,7 +359,19 @@ const VotingRules = () => {
                   </CardContent>
                 </Card>
               </Grid>
-              <Grid item xs={4}>
+              <Grid
+                item
+                xs={4}
+                sx={{
+                  backgroundColor: "transparent",
+                  position: "relative",
+                  border: "none",
+                  "@media (max-width: 600px)": {
+                    xs: 6,
+                    // Thay đổi kích thước card khi màn hình nhỏ hơn 600px
+                  },
+                }}
+              >
                 <Card
                   sx={{
                     backgroundColor: "transparent",
@@ -240,6 +385,10 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       Giai đoạn
@@ -250,6 +399,10 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       CHUYÊN NGÀNH
@@ -260,19 +413,50 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       (HK7-HK9)
                     </Typography>
                     <Grid sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <Grid item>
-                        <FavoriteIcon sx={{ color: "red", fontSize: 30 }} />
+                        <FavoriteIcon
+                          sx={{
+                            color: "red",
+                            fontSize: 30,
+                            "@media (max-width: 600px)": {
+                              fontSize: "1.2rem",
+                              // Kích thước chữ khi màn hình nhỏ hơn 600px
+                            },
+                          }}
+                        />
                       </Grid>
                       <Grid item>
-                        <FavoriteIcon sx={{ color: "red", fontSize: 30 }} />
+                        <FavoriteIcon
+                          sx={{
+                            color: "red",
+                            fontSize: 30,
+                            "@media (max-width: 600px)": {
+                              fontSize: "1.2rem",
+                              // Kích thước chữ khi màn hình nhỏ hơn 600px
+                            },
+                          }}
+                        />
                       </Grid>
                       <Grid item>
-                        <FavoriteIcon sx={{ color: "red", fontSize: 30 }} />
+                        <FavoriteIcon
+                          sx={{
+                            color: "red",
+                            fontSize: 30,
+                            "@media (max-width: 600px)": {
+                              fontSize: "1.2rem",
+                              // Kích thước chữ khi màn hình nhỏ hơn 600px
+                            },
+                          }}
+                        />
                       </Grid>
                     </Grid>
                     <Typography
@@ -280,6 +464,10 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       3 giảng viên
@@ -290,6 +478,10 @@ const VotingRules = () => {
                       sx={{
                         color: "#B83490",
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
                       }}
                     >
                       chuyên ngành

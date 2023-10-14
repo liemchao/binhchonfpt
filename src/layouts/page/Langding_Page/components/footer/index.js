@@ -26,15 +26,15 @@ export default function Footer() {
     <Box
       sx={{
         color: Colors.black,
-        p: { xs: 4, md: 10 },
+        p: { xs: 2, md: 10 }, // Điều chỉnh padding theo kích thước màn hình
         pt: 1,
         pb: 1,
         fontSize: { xs: "12px", md: "14px" },
-        mt: "3rem",
+        mt: { xs: "2rem", md: "3rem" }, // Điều chỉnh margin-top theo kích thước màn hình
       }}
     >
       <Grid container spacing={4}>
-        <Grid item md={2} lg={6}>
+        <Grid item xs={12} md={6} lg={6}>
           <FooterTitle
             variant="h4"
             fontWeight="bold"
@@ -94,19 +94,16 @@ export default function Footer() {
             </ListItemText>
           </List>
         </Grid>
-        <Grid container justifyContent="right" sx={{ mt: "-5rem" }}>
-          <Grid item>
-            <Copyright
-              sx={{
-                position: "relative",
-                float: "right",
-
-                "& > span": {
-                  marginLeft: "8px",
-                },
-              }}
-            />
-          </Grid>
+        <Grid item xs={12} md={6} lg={6} sx={{ textAlign: "right" }}>
+          <Copyright
+            sx={{
+              position: "relative",
+              float: "right",
+              "& > span": {
+                marginLeft: "8px",
+              },
+            }}
+          />
         </Grid>
       </Grid>
     </Box>

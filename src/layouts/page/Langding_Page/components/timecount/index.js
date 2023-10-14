@@ -1,12 +1,14 @@
 import { Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import "./custom-fonts.css";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 const CountdownTimer = ({ startTime, endTime }) => {
   const [remainingTime, setRemainingTime] = useState(calculateRemainingTime());
   const gradient = "linear-gradient(to bottom, #df40af 45%, #ac0078 5%, #1e2024 50% )";
   const textShadow = "2px 5px 5px rgba(0, 0, 0, 0.3)"; // Điều chỉnh shadow theo nhu cầu của bạn
-
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   useEffect(() => {
     const timer = setInterval(() => {
       setRemainingTime(calculateRemainingTime());
@@ -47,15 +49,21 @@ const CountdownTimer = ({ startTime, endTime }) => {
       style={{
         display: "flex",
         justifyContent: "center",
-        gap: "20px",
         flexDirection: "column",
         alignItems: "center",
       }}
     >
-      <div style={{ display: "flex", justifyContent: "center", gap: "6rem" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: isMobile ? "2rem" : "6rem",
+          marginBottom: "2rem",
+        }}
+      >
         <Typography
           display="inline"
-          fontSize={"12rem"}
+          fontSize={{ xs: "4rem", md: "12rem" }}
           sx={{
             background: gradient,
             WebkitBackgroundClip: "text",
@@ -68,20 +76,20 @@ const CountdownTimer = ({ startTime, endTime }) => {
         </Typography>
         <Typography
           display="inline"
-          fontSize={"12rem"}
+          fontSize={{ xs: "4rem", md: "12rem" }}
           sx={{
             background: gradient,
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             fontFamily: "Antique Book Cover",
-            textShadow: textShadow, // Đặt font chữ tùy chỉnh
+            textShadow: textShadow,
           }}
         >
           {remainingTime.hours}
         </Typography>
         <Typography
           display="inline"
-          fontSize={"12rem"}
+          fontSize={{ xs: "4rem", md: "12rem" }}
           sx={{
             background: gradient,
             WebkitBackgroundClip: "text",
@@ -94,26 +102,34 @@ const CountdownTimer = ({ startTime, endTime }) => {
         </Typography>
         <Typography
           display="inline"
-          fontSize={"12rem"}
+          fontSize={{ xs: "4rem", md: "12rem" }}
           sx={{
             background: gradient,
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             fontFamily: "Antique Book Cover",
-            textShadow: textShadow, // Đặt font chữ tùy chỉnh
+            textShadow: textShadow,
           }}
         >
           {remainingTime.seconds}
         </Typography>
       </div>
-      <div style={{ display: "flex", justifyContent: "center", gap: "10rem", marginTop: "-5%" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "-1rem",
+          marginBottom: "2rem",
+        }}
+      >
         <Typography
           variant="h5"
           display="inline"
-          fontSize={"3rem"}
+          fontSize={{ xs: "2rem", md: "3rem" }}
           sx={{
             color: "#fffff",
             fontFamily: "VLABRAHAMLINCOLN",
+            marginRight: isMobile ? "2rem" : "8rem", // Khoảng cách giữa các từ
           }}
         >
           Ngày
@@ -121,10 +137,11 @@ const CountdownTimer = ({ startTime, endTime }) => {
         <Typography
           variant="h5"
           display="inline"
-          fontSize={"3rem"}
+          fontSize={{ xs: "2rem", md: "3rem" }}
           sx={{
             color: "#fffff",
             fontFamily: "VLABRAHAMLINCOLN",
+            marginRight: isMobile ? "2rem" : "8rem", // Khoảng cách giữa các từ
           }}
         >
           Giờ
@@ -132,10 +149,11 @@ const CountdownTimer = ({ startTime, endTime }) => {
         <Typography
           variant="h5"
           display="inline"
-          fontSize={"3rem"}
+          fontSize={{ xs: "2rem", md: "3rem" }}
           sx={{
             color: "#fffff",
             fontFamily: "VLABRAHAMLINCOLN",
+            marginRight: isMobile ? "2rem" : "12rem", // Khoảng cách giữa các từ
           }}
         >
           Phút
@@ -143,7 +161,7 @@ const CountdownTimer = ({ startTime, endTime }) => {
         <Typography
           variant="h5"
           display="inline"
-          fontSize={"3rem"}
+          fontSize={{ xs: "2rem", md: "3rem" }}
           sx={{
             color: "#fffff",
             fontFamily: "VLABRAHAMLINCOLN",

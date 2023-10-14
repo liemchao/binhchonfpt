@@ -50,8 +50,8 @@ export default function Promotions() {
     return state.campaignOne;
   });
   const handleCampaignStage = useCallback(
-    async (id, navigate) => {
-      await dispatch(handleGetCampaignById(id, navigate));
+    async (navigate) => {
+      await dispatch(handleGetCampaignById("6097a517-11ad-4105-b26a-0e93bea2cb43", navigate));
     },
     [dispatch]
   );
@@ -88,7 +88,7 @@ export default function Promotions() {
               handleGetQR(campaigns.campaignId);
             }}
             onClickJoin={() => {
-              handleCampaignStage(campaigns.campaignId, navigate);
+              handleCampaignStage(navigate);
             }}
           />
         </Grid>

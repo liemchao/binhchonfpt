@@ -57,7 +57,7 @@ export default function LangdingPage() {
           <Promotions />
           <Box
             sx={{
-              mt: "-5rem",
+              mt: "-2rem",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",

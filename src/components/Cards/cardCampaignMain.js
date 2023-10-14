@@ -10,8 +10,12 @@ import { useEffect } from "react";
 import boderimage from "../../assets/images/GIOI THIEU - KHUNG TEXT 1.png";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import { Card } from "@mui/material";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 export default function MainCard(props) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const {
     title,
     process,
@@ -124,7 +128,7 @@ export default function MainCard(props) {
               <Typography
                 level="body"
                 fontWeight="normal"
-                fontSize={32}
+                fontSize={isMobile ? 18 : 32}
                 sx={{
                   color: "#B83490",
                   fontFamily: "UTM Swiss Condensed Regular",
@@ -141,7 +145,7 @@ export default function MainCard(props) {
               <Box
                 sx={{
                   display: "flex",
-                  gap: 3,
+                  gap: isMobile ? 1 : 3,
                   mt: 2,
                   position: "absolute",
                   left: "50%",
@@ -149,16 +153,16 @@ export default function MainCard(props) {
                 }}
               >
                 <ButtonLangding
-                  height={"3.5rem"}
-                  width={"12rem"}
+                  height={isMobile ? "3.5rem" : "3.5rem"}
+                  width={isMobile ? "8rem" : "12rem"}
                   nameButton="CHIA SẺ"
                   bgColor="#d44fac"
                   onClick={onClickShare}
                   borderRadius={"50px"}
                 />
                 <ButtonLangding
-                  height={"3.5rem"}
-                  width={"12rem"}
+                  height={isMobile ? "3.5rem" : "3.5rem"}
+                  width={isMobile ? "8rem" : "12rem"}
                   nameButton="THAM GIA"
                   bgColor="#d44fac"
                   onClick={onClickJoin}
@@ -167,8 +171,8 @@ export default function MainCard(props) {
               </Box>
               <div style={{ visibility: "hidden" }}>
                 <ButtonLangding
-                  height={"3.5rem"}
-                  width={"15rem"}
+                  height={isMobile ? "2.5rem" : "3.5rem"}
+                  width={isMobile ? "8rem" : "15rem"}
                   nameButton="THAM GIA"
                   bgColor="#d44fac"
                   // onClick={onClickJoin}

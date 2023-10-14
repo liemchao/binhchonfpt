@@ -95,10 +95,7 @@ export default function ListCandidate() {
       );
       setCandidates(response.data.data);
     } catch (error) {
-      CustomizedToast({
-        message: `Đã xảy ra lỗi ở cơ sở dữ liệu`,
-        type: "ERROR",
-      });
+      console.log(error);
     }
   };
 
@@ -207,28 +204,7 @@ export default function ListCandidate() {
     },
   ];
 
-  // const getGroupOption1 = () => {
-  //   const GroupOption = [
-  //     {
-  //       id: "Tất cả",
-  //       title: "Tất cả",
-  //       choose: true,
-  //     },
-  //   ];
-  //   for (var i = 0; i < listGroup.length; i++) {
-  //     if (listGroup[i].isVoter === false) {
-  //       GroupOption.push({
-  //         id: listGroup[i].name,
-  //         title: listGroup[i].name,
-  //       });
-  //     }
-  //   }
-  //   return GroupOption;
-  // };
 
-  // const liststageScore = useSelector((state) => {
-  //   return state.liststageScore;
-  // });
 
   const listIdArray = useSelector((state) => {
     return state.listIdArray;
