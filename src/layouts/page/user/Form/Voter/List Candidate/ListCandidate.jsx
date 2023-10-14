@@ -42,6 +42,7 @@ import { CheckFeedback } from "context/redux/action/action";
 import PolicyIcon from "@mui/icons-material/Policy";
 import Policy from "components/Popup/add/Policy";
 import axios from "axios";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 export default function ListCandidate() {
   const [OpenPopUp, SetOpenPopUp] = useState(false);
@@ -72,7 +73,8 @@ export default function ListCandidate() {
   const [candidates, setCandidates] = useState([]);
   const [submitTime, setStartTime] = useState(new Date());
   const [currentPage, setCurrentPage] = useState(1);
-
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const idCampainStore = "6097a517-11ad-4105-b26a-0e93bea2cb43";
   const SearchStyle = styled(OutlinedInput)(({ theme }) => ({
     width: 240,
@@ -203,8 +205,6 @@ export default function ListCandidate() {
       nametitle: "Ngành học của sinh viên",
     },
   ];
-
-
 
   const listIdArray = useSelector((state) => {
     return state.listIdArray;
@@ -371,7 +371,7 @@ export default function ListCandidate() {
                   variant="h4"
                   fontWeight="bold"
                   sx={{
-                    fontSize: "40px",
+                    fontSize: isMobile ? "20px" : "40px",
                     color: "#B83490",
                     fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
                   }}

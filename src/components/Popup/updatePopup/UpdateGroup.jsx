@@ -20,7 +20,7 @@ import API from "config/axios/API/API";
 import { getScorebyStage } from "context/redux/action/action";
 import Policy from "../add/Policy";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
-
+import { useTheme, useMediaQuery } from "@mui/material";
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
 export function NavigationPopup(props) {
@@ -31,7 +31,8 @@ export function NavigationPopup(props) {
   const [groupid, setGroupId] = useState("");
   const [selectedMajor, setSelectedMajor] = useState("");
   const [OpenDiaLog, SetOpenDialog] = useState(false);
-
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   useEffect(() => {
     const callAPI = async () => {
       if (token !== null) {
@@ -129,7 +130,7 @@ export function NavigationPopup(props) {
           />
         </DialogTitle>
         <DialogContent>
-          <Grid item xs={12} mt={2} ml={3}>
+          <Grid item xs={12} mt={isMobile ? 1 : 2} ml={3}>
             <Box
               sx={{
                 flexDirection: "row",
@@ -139,8 +140,14 @@ export function NavigationPopup(props) {
                 name="groupid"
                 required
                 label="Ngành học"
-                width="14rem"
-                height="10rem"
+                sx={{
+                  width: "24rem",
+                  height: "4rem",
+                  "@media (max-width: 600px)": {
+                    width: "14rem",
+                    height: "4rem", // Thu nhỏ kích thước cho màn hình mobile
+                  },
+                }}
                 onChange={(e) => {
                   handleChange1(e);
                 }}
@@ -158,8 +165,14 @@ export function NavigationPopup(props) {
                 name="selectedGroup"
                 required
                 label="Giai đoạn học"
-                width="14rem"
-                height="10rem"
+                sx={{
+                  width: "24rem",
+                  height: "4rem",
+                  "@media (max-width: 600px)": {
+                    width: "14rem",
+                    height: "4rem", // Thu nhỏ kích thước cho màn hình mobile
+                  },
+                }}
                 onChange={(e) => {
                   handleChange(e);
                 }}
@@ -170,15 +183,20 @@ export function NavigationPopup(props) {
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Box display={"flex"} sx={{ justifyContent: "space-between", gap: "2rem", mr: "9rem" }}>
+          <Box
+            display={"flex"}
+            mr={isMobile ? "1rem" : "9rem"}
+            sx={{ justifyContent: "space-between", gap: "2rem" }}
+          >
             <ButtonLangding
-              height={"4rem"}
-              width={"7rem"}
+              height={isMobile ? "4rem" : "4rem"}
+              width={isMobile ? "6rem" : "7rem"}
               onClick={onClose}
               nameButton="Hủy bỏ"
             ></ButtonLangding>
             <ButtonLangding
-              height={"4rem"}
+              height={isMobile ? "4rem" : "4rem"}
+              width={isMobile ? "7rem" : "7rem"}
               bottom="2rem"
               onClick={handleConfirm}
               nameButton="Xác nhận"

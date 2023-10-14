@@ -11,6 +11,7 @@ import Searchbar from "./Searchbar";
 import NotificationsPopover from "./NotificationsPopover";
 import AccountPopover from "./AccountPopover";
 import Logo from "assets/images/full 3 logo.png";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 // ----------------------------------------------------------------------
 
@@ -53,6 +54,8 @@ DashboardNavbar.propTypes = {
 };
 
 export default function DashboardNavbar({ onOpenSidebar, open }) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <>
       {open ? (
@@ -81,12 +84,24 @@ export default function DashboardNavbar({ onOpenSidebar, open }) {
             <IconButton onClick={onOpenSidebar} sx={{ mr: 1, color: "text.primary" }}>
               <Iconify icon="eva:menu-2-fill" />
             </IconButton>
-            <Box sx={{ flexGrow: 1, marginRight: "-20rem", display: "flex", alignItems: "center" }}>
+            <Box
+              marginRight={isMobile ? "3.5rem" : "-20rem"}
+              sx={{
+                flexGrow: 1,
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
               <div style={{ flex: 1 }}></div>
               <img
                 src={Logo}
                 alt="Logo"
-                style={{ mt: "2%", width: "25%", height: "auto", marginRight: "-2rem" }}
+                width={isMobile ? "150%" : "25%"}
+                height={isMobile ? "150%" : "auto"}
+                style={{
+                  mt: "2%",
+                  marginRight: "-2rem",
+                }}
               />
               <div style={{ flex: 1 }}></div>
             </Box>

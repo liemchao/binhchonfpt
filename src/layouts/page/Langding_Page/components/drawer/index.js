@@ -14,12 +14,24 @@ import CloseIcon from "@mui/icons-material/Close";
 import { DrawerCloseButton } from "../../styles/appbar";
 import { lighten } from "polished";
 import { Colors } from "../../styles/theme";
+import ButtonLangding from "assets/theme/components/button/ButtonLangding";
+import { useNavigate } from "react-router-dom";
 
 const MiddleDivider = styled((props) => <Divider variant="middle" {...props} />)``;
 
 export default function AppDrawer() {
-  const { drawerOpen, setDrawerOpen } = useUIContext();
+  const navigate = useNavigate();
 
+  const { drawerOpen, setDrawerOpen } = useUIContext();
+  const handleLangePage = () => {
+    navigate("/");
+  };
+  const handleIntroduce = () => {
+    navigate("/introduce");
+  };
+  const handleLogin = () => {
+    navigate("/authentication/sign-in");
+  };
   return (
     <>
       {drawerOpen && (
@@ -35,15 +47,39 @@ export default function AppDrawer() {
       <Drawer open={drawerOpen}>
         <List>
           <ListItemButton>
-            <ListItemText>Trang chủ</ListItemText>
+            <ButtonLangding
+              width={"10rem"}
+              nameButton="Trang chủ"
+              bgColor="#d44fac"
+              hovercolor="#d44fac"
+              onClick={() => {
+                handleLangePage();
+              }}
+            />
           </ListItemButton>
 
           <ListItemButton>
-            <ListItemText>Chức năng</ListItemText>
+            <ButtonLangding
+              width={"10rem"}
+              nameButton="Giới thiệu"
+              bgColor="#d44fac"
+              hovercolor="#d44fac"
+              onClick={() => {
+                handleIntroduce();
+              }}
+            />
           </ListItemButton>
 
           <ListItemButton>
-            <ListItemText>Chiến dịch</ListItemText>
+            <ButtonLangding
+              width={"10rem"}
+              nameButton="Đăng nhập"
+              bgColor="#d44fac"
+              hovercolor="#d44fac"
+              onClick={() => {
+                handleLogin();
+              }}
+            />
           </ListItemButton>
           <MiddleDivider />
         </List>
