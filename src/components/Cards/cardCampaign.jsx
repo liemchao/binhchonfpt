@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import dayjs from "dayjs";
 import { Description } from "@mui/icons-material";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 export default function UserCard(props) {
   const {
@@ -36,6 +37,8 @@ export default function UserCard(props) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(
     process === "Chưa bắt đầu" || process === "Đã kết thúc"
   );
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   useEffect(() => {
     setIsButtonDisabled(process === "Chưa bắt đầu" || process === "Đã kết thúc");
   }, [process]);
@@ -106,39 +109,39 @@ export default function UserCard(props) {
           resize: "horizontal",
         }}
       >
-        <AspectRatio
-          ratio="1"
-          maxHeight={210}
-          backgroundColor="transparent"
-          sx={{ minWidth: 200, flex: 1, borderRadius: "10px", marginTop: "2%" }}
+        <div
+          style={{
+            aspectRatio: "1/1", // Thay thế tỷ lệ khung hình ở đây
+            maxHeight: 210,
+            backgroundColor: "transparent",
+            minWidth: 200,
+            flex: 1,
+            borderRadius: "10px",
+            marginTop: "2%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            overflow: "hidden",
+          }}
+          borderRadius={"50px"}
         >
-          <div
+          <img
+            src={url}
+            srcSet={url}
+            loading="lazy"
+            alt=""
             style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              overflow: "hidden",
+              maxWidth: "100%",
+              maxHeight: "100%",
+              objectFit: "contain",
             }}
-            borderRadius={"50px"}
-          >
-            <img
-              src={url}
-              srcSet={url}
-              loading="lazy"
-              alt=""
-              style={{
-                maxWidth: "100%",
-                maxHeight: "100%",
-                objectFit: "contain",
-              }}
-            />
-          </div>
-        </AspectRatio>
+          />
+        </div>
         <CardContent>
           <Typography
             fontWeight="bold"
             sx={{
-              fontSize: "40px",
+              fontSize: isMobile ? "23px" : "40px",
               color: "#B83490",
               fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
             }}
@@ -173,7 +176,7 @@ export default function UserCard(props) {
                 marginRight: "70%",
                 display: "flex",
                 flexDirection: "row",
-                gap: "15%",
+                gap: isMobile ? "6%" : "15%",
               }}
             >
               <div style={{ flex: 5, marginRight: "10px" }}>
@@ -246,8 +249,8 @@ export default function UserCard(props) {
             ) : (
               <Box sx={{ display: "flex", gap: 5, marginTop: "1%" }}>
                 <ButtonLangding
-                  height={"3.5rem"}
-                  width={"16rem"}
+                  height={isMobile ? "3.5rem" : "3.5rem"}
+                  width={isMobile ? "8rem" : "16rem"}
                   nameButton="Chia sẻ"
                   bgColor={isButtonDisabled ? "#CCCCCC" : "#FFA500"}
                   hovercolor={isButtonDisabled ? "#CCCCCC" : "#F7941D"}
@@ -258,8 +261,8 @@ export default function UserCard(props) {
                 {publishTheResult && process === "Đã kết thúc" ? (
                   <ButtonLangding
                     nameButton="Kết quả"
-                    height={"3.5rem"}
-                    width={"16rem"}
+                    height={isMobile ? "3.5rem" : "3.5rem"}
+                    width={isMobile ? "8rem" : "16rem"}
                     bgColor={"#FFA500"}
                     hovercolor={"#F7941D"}
                     onClick={onClickResult}
@@ -268,8 +271,8 @@ export default function UserCard(props) {
                 ) : (
                   <ButtonLangding
                     nameButton="Tham gia"
-                    height={"3.5rem"}
-                    width={"16rem"}
+                    height={isMobile ? "3.5rem" : "3.5rem"}
+                    width={isMobile ? "8rem" : "16rem"}
                     bgColor={isButtonDisabled ? "#CCCCCC" : "#FFA500"}
                     hovercolor={isButtonDisabled ? "#CCCCCC" : "#F7941D"}
                     onClick={onClickJoin}

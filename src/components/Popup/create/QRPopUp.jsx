@@ -7,12 +7,15 @@ import ButtonCustomize from "assets/theme/components/button/ButtonCustomize";
 import { Girl } from "@mui/icons-material";
 import Iconify from "assets/theme/components/icon/Iconify";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
+import { useTheme, useMediaQuery } from "@mui/material";
+
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 //hih
 
 export default function QRPopUp(props) {
   const { OpenPopUp, SetOpenPopUp, link } = props;
-
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const handleClose = () => {
     SetOpenPopUp(false);
   };
@@ -57,7 +60,7 @@ export default function QRPopUp(props) {
               }}
             />
           </Box>
-          <Box marginLeft="30%">
+          <Box marginLeft={isMobile ? "10%" : "30%"}>
             <ButtonLangding
               marginTop="2%"
               width="13rem"

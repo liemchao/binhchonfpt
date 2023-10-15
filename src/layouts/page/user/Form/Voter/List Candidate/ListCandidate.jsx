@@ -272,7 +272,7 @@ export default function ListCandidate() {
         });
       } else {
         CustomizedToast({
-          message: "Lỗi mạng",
+          message: "Thao tác quá nhanh. Vui lòng thực hiện lại",
           type: "ERROR",
         });
       }
@@ -315,7 +315,7 @@ export default function ListCandidate() {
         });
       } else {
         CustomizedToast({
-          message: "Bạn chưa chọn nhóm, vui lòng tải lại trang",
+          message: "Thao tác quá nhanh. Vui lòng thực hiện lại",
           type: "ERROR",
         });
       }
@@ -519,21 +519,23 @@ export default function ListCandidate() {
             </>
           ) : candidates.votesRemaining?.groupNameOfVoter === "Giai đoạn chuyên ngành (HK7-HK9)" ? (
             <>
-              <Select
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  width: { xs: "100%", md: "21rem" },
-                  margin: { xs: "1rem 0 0", md: 0 },
-                }}
-                name="groupid"
-                required
-                defaultValue="all"
-                label={"Giảng viên chuyên ngành"}
-                height="10rem"
-                onChange={handleSelect2Change}
-                options={getOptions()}
-              />
+              <Box sx={{ marginTop: isMobile ? "10px" : "0px" }}>
+                <Select
+                  sx={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    width: { xs: "100%", md: "21rem" },
+                    margin: { xs: "1px 0 0", md: 0 },
+                  }}
+                  name="groupid"
+                  required
+                  defaultValue="all"
+                  label={"Giảng viên chuyên ngành"}
+                  height="10rem"
+                  onChange={handleSelect2Change}
+                  options={getOptions()}
+                />
+              </Box>
               <Box
                 component="form"
                 sx={{

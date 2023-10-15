@@ -1,8 +1,11 @@
 import { Box, Card, Paper, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 export default function PageHeader(props) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const useStyles = makeStyles((theme) => ({
     root: {
       backgroundColor: "#fdfdff",
@@ -43,6 +46,7 @@ export default function PageHeader(props) {
             sx={{
               color: "#B83490",
               fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
+              fontSize: isMobile ? "20px" : "40px",
             }}
           >
             {title}
@@ -52,6 +56,7 @@ export default function PageHeader(props) {
             sx={{
               color: "#B83490",
               fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
+              fontSize: isMobile ? "20px" : "20px",
             }}
           >
             {subTitle}
