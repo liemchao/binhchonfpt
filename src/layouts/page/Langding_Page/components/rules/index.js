@@ -356,6 +356,21 @@ const VotingRules = () => {
                     >
                       chuyên ngành
                     </Typography>
+                    <Typography
+                      visibility="hidden"
+                      variant="h5"
+                      fontWeight="bold"
+                      sx={{
+                        color: "#B83490",
+                        fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
+                        "@media (max-width: 600px)": {
+                          fontSize: "10px",
+                          // Kích thước chữ khi màn hình nhỏ hơn 600px
+                        },
+                      }}
+                    >
+                      chuyên ngành
+                    </Typography>
                   </CardContent>
                 </Card>
               </Grid>

@@ -190,7 +190,7 @@ export default function ListCandidate() {
       nametitle: "Ngành học của sinh viên",
     },
     {
-      id: "Bộ môn Phát triển khởi nghiệp",
+      id: "Bộ môn Khởi nghiệp",
       title: "Bộ môn Khởi nghiệp",
       nametitle: "Ngành học của sinh viên",
     },
@@ -407,61 +407,61 @@ export default function ListCandidate() {
             display: "flex",
             alignItems: "center",
             flexDirection: { xs: "column", md: "row" },
-            flexWrap: "wrap",
+            marginTop: isMobile ? "0px" : "1%",
           }}
         >
           {candidates.votesRemaining?.groupNameOfVoter === "Giai đoạn chuyên ngành (HK1-HK6)" ? (
-            <>
-              <Select
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  width: { xs: "90%", md: "12rem" },
-                  margin: { xs: "1rem 0 0", md: 0 },
-                }}
-                name="groupid"
-                required
-                defaultValue="Tất cả"
-                label={"Giảng viên nhóm môn chung"}
-                height="10rem"
-                onChange={(e) => {
-                  setProcess(e.target.value);
-                }}
-                options={getOptions1()}
-              />
-
-              <Box
-                component="form"
-                sx={{
-                  display: "flex",
-                  "& > :not(style)": {
-                    m: { xs: 2, md: 2 },
-                    height: "3.3rem",
-                    width: { xs: "90%", md: "14ch" },
-                  },
-                }}
+            <Grid container sx={{ display: "flex", flexWrap: isMobile ? "wrap" : "nowrap" }}>
+              <Grid
+                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                item
+                xs={isMobile ? 7 : 12}
+                sm={6}
+                md={3}
+                lg={3}
               >
-                <TextField
-                  variant="outlined"
-                  label="Nhóm môn chung"
-                  value={candidates?.votesRemaining?.voteBM + "/" + candidates?.limitVoteOfStage}
-                  InputProps={{
-                    startAdornment: (
-                      <div style={{ color: "#D44FAC", marginTop: "2px" }}>
-                        <Favorite />
-                      </div>
-                    ),
+                <Select
+                  name="groupid"
+                  required
+                  defaultValue="Tất cả"
+                  label={"Giảng viên nhóm môn chung"}
+                  height="10rem"
+                  onChange={(e) => {
+                    setProcess(e.target.value);
                   }}
+                  options={getOptions1()}
                 />
-              </Box>
-              <Box
-                component="form"
-                sx={{
-                  display: "flex",
-                  justifyItems: "flex-end",
-                  "& > :not(style)": { m: { xs: 1, md: 2 }, width: { xs: "100%", md: "19ch" } },
-                  justifyContent: { xs: "flex-start", md: "flex-start" },
-                }}
+              </Grid>
+              <Grid
+                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                item
+                xs={isMobile ? 5 : 12}
+                sm={6}
+                md={1}
+                lg={1.5}
+              >
+                <Box>
+                  <TextField
+                    variant="outlined"
+                    label="Nhóm môn chung"
+                    value={candidates?.votesRemaining?.voteBM + "/" + candidates?.limitVoteOfStage}
+                    InputProps={{
+                      startAdornment: (
+                        <div style={{ color: "#D44FAC", marginTop: "2px" }}>
+                          <Favorite />
+                        </div>
+                      ),
+                    }}
+                  />
+                </Box>
+              </Grid>
+              <Grid
+                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                item
+                ml={isMobile ? 0 : 3}
+                sm={6}
+                md={3}
+                lg={isMobile ? 1 : 2}
               >
                 <TextField
                   inputProps={{ "aria-label": "search candidate" }}
@@ -473,102 +473,124 @@ export default function ListCandidate() {
                   label="Tìm kiếm theo tên"
                   variant="outlined"
                 />
-              </Box>
-
-              <Select
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  width: { xs: "100%", md: "11rem" },
-                  margin: { xs: "1rem 0 0", md: 0 },
-                }}
-                name="groupid"
-                required
-                defaultValue="Tất cả"
-                label={"Giảng viên chuyên ngành"}
-                height="10rem"
-                onChange={(e) => {
-                  setProcess1(e.target.value);
-                }}
-                options={getOptions()}
-              />
-              <Box
-                component="form"
-                sx={{
-                  display: "flex",
-                  "& > :not(style)": {
-                    m: { xs: 2, md: 2 },
-                    height: "3.3rem",
-                    width: { xs: "100%", md: "13ch" },
-                  },
-                }}
+              </Grid>
+              <Grid
+                item
+                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                ml={isMobile ? 0 : 3}
+                xs={isMobile ? 7 : 12}
+                sm={6}
+                md={3}
+                lg={2.5}
               >
-                <TextField
-                  variant="outlined"
-                  label="Chuyên ngành"
-                  value={candidates?.votesRemaining?.voteAM + "/" + candidates?.limitVoteOfStage}
-                  InputProps={{
-                    startAdornment: (
-                      <div style={{ color: "#D44FAC", marginTop: "2px" }}>
-                        <Favorite />
-                      </div>
-                    ),
-                  }}
-                />
-              </Box>
-            </>
-          ) : candidates.votesRemaining?.groupNameOfVoter === "Giai đoạn chuyên ngành (HK7-HK9)" ? (
-            <>
-              <Box sx={{ marginTop: isMobile ? "10px" : "0px" }}>
                 <Select
-                  sx={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    width: { xs: "100%", md: "21rem" },
-                    margin: { xs: "1px 0 0", md: 0 },
-                  }}
                   name="groupid"
                   required
-                  defaultValue="all"
+                  defaultValue="Tất cả"
+                  label={"Giảng viên chuyên ngành"}
+                  height="10rem"
+                  onChange={(e) => {
+                    setProcess1(e.target.value);
+                  }}
+                  options={getOptions()}
+                />
+              </Grid>
+              <Grid
+                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                item
+                xs={isMobile ? 5 : 12}
+                sm={6}
+                md={2}
+                lg={1.2}
+              >
+                <Box>
+                  <TextField
+                    variant="outlined"
+                    label="Chuyên ngành"
+                    value={candidates?.votesRemaining?.voteAM + "/" + candidates?.limitVoteOfStage}
+                    InputProps={{
+                      startAdornment: (
+                        <div style={{ color: "#D44FAC", marginTop: "2px" }}>
+                          <Favorite />
+                        </div>
+                      ),
+                    }}
+                  />
+                </Box>
+              </Grid>
+
+              <Grid
+                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                item
+                xs={isMobile ? 6 : 12}
+                ml={isMobile ? 0 : 3}
+                sm={6}
+                md={2}
+                lg={1}
+              >
+                <Select
+                  name="isvoted"
+                  required
+                  defaultValue="Tất cả"
+                  label="Trạng thái"
+                  onChange={(e) => {
+                    setisVoted(e.target.value);
+                  }}
+                  options={getOption2()}
+                />
+              </Grid>
+            </Grid>
+          ) : candidates.votesRemaining?.groupNameOfVoter === "Giai đoạn chuyên ngành (HK7-HK9)" ? (
+            <Grid container sx={{ display: "flex", flexWrap: isMobile ? "wrap" : "nowrap" }}>
+              <Grid
+                item
+                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                ml={isMobile ? 0 : 0}
+                xs={isMobile ? 7 : 12}
+                sm={6}
+                md={3}
+                lg={4}
+              >
+                <Select
+                  name="groupid"
+                  required
+                  defaultValue="Tất cả"
                   label={"Giảng viên chuyên ngành"}
                   height="10rem"
                   onChange={handleSelect2Change}
                   options={getOptions()}
                 />
-              </Box>
-              <Box
-                component="form"
-                sx={{
-                  display: "flex",
-                  "& > :not(style)": {
-                    m: { xs: 2, md: 2 },
-                    height: "3.3rem",
-                    width: { xs: "100%", md: "24ch" },
-                  },
-                }}
+              </Grid>
+              <Grid
+                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                item
+                xs={isMobile ? 5 : 12}
+                sm={6}
+                md={2}
+                lg={3}
               >
-                <TextField
-                  variant="outlined"
-                  label="Chuyên ngành"
-                  value={candidates?.votesRemaining?.voteAM + "/" + candidates?.limitVoteOfStage}
-                  InputProps={{
-                    startAdornment: (
-                      <div style={{ color: "#D44FAC", marginTop: "2px" }}>
-                        <Favorite />
-                      </div>
-                    ),
-                  }}
-                />
-              </Box>
-
-              <Box
-                component="form"
-                sx={{
-                  display: "flex",
-                  justifyItems: "flex-end",
-                  "& > :not(style)": { m: { xs: 1, md: 2 }, width: { xs: "100%", md: "21ch" } },
-                  justifyContent: { xs: "flex-start", md: "flex-start" },
-                }}
+                <Box>
+                  <TextField
+                    variant="outlined"
+                    label="Chuyên ngành"
+                    value={candidates?.votesRemaining?.voteAM + "/" + candidates?.limitVoteOfStage}
+                    InputProps={{
+                      startAdornment: (
+                        <div style={{ color: "#D44FAC", marginTop: "2px" }}>
+                          <Favorite />
+                        </div>
+                      ),
+                    }}
+                  />
+                </Box>
+              </Grid>
+              <Grid
+                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                item
+                ml={isMobile ? 0 : 14}
+                sm={6}
+                md={2}
+                lg={isMobile ? 1 : 2}
               >
                 <TextField
                   inputProps={{ "aria-label": "search candidate" }}
@@ -580,58 +602,80 @@ export default function ListCandidate() {
                   label="Tìm kiếm theo tên"
                   variant="outlined"
                 />
-              </Box>
-            </>
+              </Grid>
+
+              <Grid
+                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                item
+                xs={isMobile ? 6 : 12}
+                ml={isMobile ? 0 : 2}
+                sm={6}
+                md={2}
+                lg={1.5}
+              >
+                <Select
+                  name="isvoted"
+                  required
+                  defaultValue="Tất cả"
+                  label="Trạng thái"
+                  onChange={(e) => {
+                    setisVoted(e.target.value);
+                  }}
+                  options={getOption2()}
+                />
+              </Grid>
+            </Grid>
           ) : candidates?.votesRemaining?.groupNameOfVoter === "Giai đoạn dự bị" ? (
-            <>
-              <Select
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  width: { xs: "100%", md: "21rem" },
-                  margin: { xs: "1rem 0 0", md: 0 },
-                }}
-                name="groupid"
-                required
-                defaultValue="Tất cả"
-                label={"Giảng viên nhóm môn chung"}
-                height="10rem"
-                onChange={handleSelect1Change}
-                options={getOptions1()}
-              />
-              <Box
-                component="form"
-                sx={{
-                  display: "flex",
-                  "& > :not(style)": {
-                    m: { xs: 2, md: 2 },
-                    height: "3.3rem",
-                    width: { xs: "100%", md: "24ch" },
-                  },
-                }}
+            <Grid container sx={{ display: "flex", flexWrap: isMobile ? "wrap" : "nowrap" }}>
+              <Grid
+                item
+                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                ml={isMobile ? 0 : 0}
+                xs={isMobile ? 7 : 12}
+                sm={6}
+                md={3}
+                lg={4}
               >
-                <TextField
-                  variant="outlined"
-                  label="Nhóm môn chung"
-                  value={candidates?.votesRemaining?.voteBM + "/" + candidates?.limitVoteOfStage}
-                  InputProps={{
-                    startAdornment: (
-                      <div style={{ color: "#D44FAC", marginTop: "2px" }}>
-                        <Favorite />
-                      </div>
-                    ),
-                  }}
+                <Select
+                  name="groupid"
+                  required
+                  defaultValue="Tất cả"
+                  label={"Giảng viên nhóm môn chung"}
+                  height="10rem"
+                  onChange={handleSelect1Change}
+                  options={getOptions1()}
                 />
-              </Box>
-
-              <Box
-                component="form"
-                sx={{
-                  display: "flex",
-                  justifyItems: "flex-end",
-                  "& > :not(style)": { m: { xs: 1, md: 2 }, width: { xs: "100%", md: "24ch" } },
-                  justifyContent: { xs: "flex-start", md: "flex-start" },
-                }}
+              </Grid>
+              <Grid
+                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                item
+                xs={isMobile ? 5 : 12}
+                sm={6}
+                md={2}
+                lg={3}
+              >
+                <Box>
+                  <TextField
+                    variant="outlined"
+                    label="Nhóm môn chung"
+                    value={candidates?.votesRemaining?.voteBM + "/" + candidates?.limitVoteOfStage}
+                    InputProps={{
+                      startAdornment: (
+                        <div style={{ color: "#D44FAC", marginTop: "2px" }}>
+                          <Favorite />
+                        </div>
+                      ),
+                    }}
+                  />
+                </Box>
+              </Grid>
+              <Grid
+                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                item
+                ml={isMobile ? 0 : 14}
+                sm={6}
+                md={2}
+                lg={isMobile ? 1 : 2}
               >
                 <TextField
                   inputProps={{ "aria-label": "search candidate" }}
@@ -643,8 +687,29 @@ export default function ListCandidate() {
                   label="Tìm kiếm theo tên"
                   variant="outlined"
                 />
-              </Box>
-            </>
+              </Grid>
+
+              <Grid
+                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                item
+                xs={isMobile ? 6 : 12}
+                ml={isMobile ? 0 : 2}
+                sm={6}
+                md={2}
+                lg={1.5}
+              >
+                <Select
+                  name="isvoted"
+                  required
+                  defaultValue="Tất cả"
+                  label="Trạng thái"
+                  onChange={(e) => {
+                    setisVoted(e.target.value);
+                  }}
+                  options={getOption2()}
+                />
+              </Grid>
+            </Grid>
           ) : (
             <>
               <Select
@@ -696,7 +761,6 @@ export default function ListCandidate() {
                   display: "flex",
                   justifyItems: "flex-end",
                   "& > :not(style)": { m: { xs: 1, md: 2 }, width: { xs: "100%", md: "24ch" } },
-                  justifyContent: { xs: "flex-start", md: "flex-start" },
                 }}
               >
                 <TextField
@@ -712,34 +776,12 @@ export default function ListCandidate() {
               </Box>
             </>
           )}
-          <Box
-            component="form"
-            sx={{
-              "& > :not(style)": { m: { xs: 2, md: 1 }, width: { xs: "100%", md: "20ch" } },
-            }}
-          >
-            <Select
-              sx={{
-                display: "flex",
-                alignItems: "center",
-              }}
-              name="isvoted"
-              required
-              defaultValue="Tất cả"
-              label="Trạng thái"
-              height="8rem"
-              onChange={(e) => {
-                setisVoted(e.target.value);
-              }}
-              options={getOption2()}
-            />
-          </Box>
         </Box>
         {candidates.formId ? (
           <></>
         ) : (
           <Box sx={{ display: "flex", justifyContent: "space-between", ml: "-0.3rem" }}>
-            <Grid container spacing={3} mt={-4} bottom={1} sx={{ gap: "6rem" }}>
+            <Grid container spacing={3} mt={-2} bottom={1} sx={{ gap: "6rem" }}>
               {candidates.candidate?.map((card, index) => (
                 <Grid item xs={6} md={3} key={index}>
                   <CardLike
