@@ -5,48 +5,49 @@ import Logo1 from "assets/images/styled pink.png";
 import CardText from "components/Cards/CardText";
 import { CardContent } from "@mui/joy";
 import { Card } from "@mui/material";
-
 import Sheet from "@mui/joy/Sheet";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
+import { useMediaQuery } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingTop: 12,
-    paddingBottom: 12,
+    paddingTop: (isMobile) => (isMobile ? "6rem" : "12rem"),
+    paddingBottom: (isMobile) => (isMobile ? "6rem" : "12rem"),
     // borderTop: `1px solid blue`,
   },
   sectionTitle: {
-    marginBottom: 4,
+    marginBottom: (isMobile) => (isMobile ? "3rem" : "4rem"),
     [theme.breakpoints.up("md")]: {
-      marginBottom: 6,
+      marginBottom: (isMobile) => (isMobile ? "5rem" : "6rem"),
     },
   },
   featureItem: {
-    marginBottom: 20,
+    marginBottom: (isMobile) => (isMobile ? "10rem" : "20rem"),
     [theme.breakpoints.up("md")]: {
-      marginBottom: 0,
+      marginBottom: (isMobile) => (isMobile ? "0rem" : "20rem"),
     },
   },
   featureItemImg: {
-    marginBottom: 1,
+    marginBottom: (isMobile) => (isMobile ? "1rem" : "0.75rem"),
     [theme.breakpoints.up("md")]: {
-      marginBottom: "0.75 rem",
+      marginBottom: (isMobile) => (isMobile ? "0.75rem" : "1rem"),
       order: 2,
     },
   },
 }));
 
 export default function MyComponent() {
-  const classes = useStyles();
-
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const classes = useStyles(isMobile);
   return (
     <section id="section-3" className={classes.root}>
       <>
         <Box
           display="flex"
-          mt={"1rem"}
+          flexDirection={isMobile ? "column" : "row"} // Adjust the flexDirection based on screen size
+          mt={isMobile ? "-6rem" : "-6rem"} // Adjust the margin top based on screen size
           justifyContent="center"
-          alignItems="center"
+          alignItems={isMobile ? "initial" : "center"} // Adjust the alignItems based on screen size
           style={{ width: "100%" }}
         >
           <Box
@@ -123,7 +124,7 @@ export default function MyComponent() {
                 >
                   <div style={{ marginTop: "-2rem" }}>
                     <Typography
-                      fontSize="60px"
+                      fontSize={isMobile ? "30px" : "60px"}
                       sx={{
                         color: "#B83490",
                         fontFamily: "VLABRAHAMLINCOLN",
@@ -136,19 +137,21 @@ export default function MyComponent() {
                     <Typography
                       level="body"
                       fontWeight="normal"
-                      fontSize="25px"
+                      fontSize={isMobile ? "15px" : "25px"}
                       sx={{
                         marginLeft: "2rem",
                         color: "#B83490",
                         fontFamily: "UTM Swiss Condensed Regular",
                         // Đặt font chữ tùy chỉnh
-                        marginTop: "-1rem",
-                        textIndent: "-2rem", // Khoảng cách đầu dòng
+                        marginTop: isMobile ? "1rem" : "0rem",
+                        textIndent: isMobile ? "-1.5rem" : "-2rem", // Khoảng cách đầu dòng
                         textAlign: "start", // Căn giữa nội dung
                       }}
                     >
                       <li>
-                        Danh hiệu <strong>"Inspiring Instructor Awards"</strong> nhằm tôn vinh những nỗ lực, cống hiến của Giảng viên trong hành trình định hướng, giúp đỡ sinh viên thu nhận kiến thức và truyền cảm hứng đến sinh viên FPTU HCMC.
+                        Danh hiệu <strong>"Inspiring Instructor Awards"</strong> nhằm tôn vinh những
+                        nỗ lực, cống hiến của Giảng viên trong hành trình định hướng, giúp đỡ sinh
+                        viên thu nhận kiến thức và truyền cảm hứng đến sinh viên FPTU HCMC.
                       </li>
                       <li>
                         Đây là danh hiệu được bình chọn định kỳ hằng năm và dành cho tất cả giảng
@@ -183,7 +186,12 @@ export default function MyComponent() {
           <img
             src={Logo1}
             alt="Logo"
-            style={{ width: "30rem", marginRight: "9.2rem", height: "auto", marginLeft: "3%" }}
+            style={{
+              width: "30rem",
+              marginRight: "9.2rem",
+              height: "auto",
+              marginLeft: isMobile ? "-2%" : "3%",
+            }}
           />
         </Box>
       </>

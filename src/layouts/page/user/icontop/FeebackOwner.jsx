@@ -2,6 +2,7 @@ import { filter } from "lodash";
 import { useState } from "react";
 import * as React from "react";
 import { Link as RouterLink, useNavigate, useParams } from "react-router-dom";
+import { CSVLink } from "react-csv";
 
 // material
 import {
@@ -170,13 +171,9 @@ export default function FeedbackOwer() {
           <Typography variant="h4" gutterBottom>
             {/* <Icon icon="emojione-monotone:pot-of-form" fontSize={100} /> */}
           </Typography>
-          <ButtonLangding
-            nameButton="Xuất tập tin"
-            bgColor="#FFA500"
-            hovercolor="#F7941D"
-            component={RouterLink}
-            to="#"
-          />
+          <CSVLink style={{ textDecoration: "none" }} data={feedback} filename="Feedback">
+            <ButtonLangding nameButton="Xuất tập tin" bgColor="#FFA500" hovercolor="#F7941D" />
+          </CSVLink>
         </Stack>
 
         <Card>

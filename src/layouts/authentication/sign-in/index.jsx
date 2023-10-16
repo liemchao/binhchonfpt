@@ -68,7 +68,6 @@ export default function SignInSide() {
       userName: "",
       password: "",
     },
-
     onSubmit: async (values) => {
       const adminData = {
         userName: formik.values.userName,
@@ -87,13 +86,20 @@ export default function SignInSide() {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100vh",
+        minHeight: "100vh", // Sử dụng minHeight thay vì height để tránh tràn màn hình
       }}
     >
-      <Grid container justifyContent="center" alignItems="center" style={{ height: "100%" }}>
+      <Grid container justifyContent="center" alignItems="center" style={{ minHeight: "100vh" }}>
         <Grid item xs={12} sm={8} md={5}>
-          <Box sx={{ display: "flex", justifyContent: "center", bottom: "-2rem" }}>
-            <img src={logo} alt="Logo" style={{ width: "56%", height: "auto" }} />
+          <Box sx={{ display: "flex", justifyContent: "center", marginBottom: "2rem" }}>
+            <img
+              src={logo}
+              alt="Logo"
+              style={{
+                width: "100%", // Để hình ảnh lấp đầy chiều rộng của container
+                height: "auto",
+              }}
+            />
           </Box>
           <Box
             sx={{
@@ -111,14 +117,28 @@ export default function SignInSide() {
               position: "relative",
             }}
           >
-            <Box type="row" sx={{ marginRight: "2rem", visibility: "hidden" }}>
+            <Box
+              type="row"
+              sx={{
+                visibility: "hidden",
+              }}
+            >
               <img
                 src={Logo1}
                 alt="Logo"
-                style={{ width: "140px", marginRight: "-2rem", height: "auto" }}
+                style={{
+                  width: "80px",
+                  marginRight: "-2rem",
+                  height: "80%",
+                }}
               />
             </Box>
-            <Box component="form" noValidate onSubmit={formik.handleSubmit} sx={{ mt: "-2rem" }}>
+            <Box
+              component="form"
+              noValidate
+              onSubmit={formik.handleSubmit}
+              sx={{ marginTop: "-2rem" }}
+            >
               <TextField
                 margin="normal"
                 required
@@ -133,6 +153,12 @@ export default function SignInSide() {
                 error={formik.touched.userName && formik.errors.userName}
                 helperText={formik.touched.userName && formik.errors.userName}
                 onBlur={formik.handleBlur}
+                sx={{
+                  [defaultTheme.breakpoints.down("sm")]: {
+                    marginBottom: "1rem",
+                    marginLeft: "1rem", // Kiểu cho màn hình nhỏ hơn "sm"
+                  },
+                }}
               />
               <TextField
                 margin="normal"
@@ -157,9 +183,24 @@ export default function SignInSide() {
                 error={formik.touched.password && formik.errors.password}
                 helperText={formik.touched.password && formik.errors.password}
                 onBlur={formik.handleBlur}
+                sx={{
+                  [defaultTheme.breakpoints.down("sm")]: {
+                    marginBottom: "1rem",
+                    marginLeft: "1rem", // Kiểu cho màn hình nhỏ hơn "sm"
+                  },
+                }}
               />
               <Grid container>
-                <Grid item xs>
+                <Grid
+                  item
+                  xs
+                  sx={{
+                    [defaultTheme.breakpoints.down("sm")]: {
+                      marginBottom: "1rem",
+                      marginLeft: "1rem", // Kiểu cho màn hình nhỏ hơn "sm"
+                    },
+                  }}
+                >
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -178,15 +219,41 @@ export default function SignInSide() {
                   </Link> */}
                 </Grid>
               </Grid>
-              <ButtonLangding
-                type="submit"
-                variant="contained"
-                fullWidth
-                borderRadius="20px"
-                sx={{ mt: 3, mb: 2 }}
-                nameButton="Đăng nhập"
-              />
-              <Grid item xs={12} display={"flex"} justifyContent={"flex-end"} mt={"2%"}>
+              <Grid
+                item
+                xs={12}
+                display={"flex"}
+                justifyContent={"flex-end"}
+                sx={{
+                  [defaultTheme.breakpoints.down("sm")]: {
+                    marginBottom: "1rem",
+                    marginLeft: "1rem", // Kiểu cho màn hình nhỏ hơn "sm"
+                  },
+                }}
+                mt={"2%"}
+              >
+                <ButtonLangding
+                  type="submit"
+                  variant="contained"
+                  fullWidth
+                  borderRadius="20px"
+                  sx={{ mt: 3, mb: 2 }}
+                  nameButton="Đăng nhập"
+                />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                display={"flex"}
+                justifyContent={"flex-end"}
+                sx={{
+                  [defaultTheme.breakpoints.down("sm")]: {
+                    marginBottom: "1rem",
+                    marginLeft: "1rem", // Kiểu cho màn hình nhỏ hơn "sm"
+                  },
+                }}
+                mt={"2%"}
+              >
                 <ButtonLangding
                   variant="contained"
                   fullWidth

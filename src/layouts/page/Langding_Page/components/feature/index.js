@@ -4,16 +4,14 @@ import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
 import ButtonCustomize from "assets/theme/components/button/ButtonCustomize";
-import { useState } from "react";
-import { useEffect } from "react";
+
 // import boderimage from "../../assets/images/GIOI THIEU - KHUNG TEXT 1.png";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import Logo1 from "assets/images/Group 9.png";
-
-// import các icon từ '@mui/icons-material'
-import { Assessment, CheckCircle, Security } from "@mui/icons-material";
+import { useMediaQuery } from "@mui/material";
 
 export default function Section2() {
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   return (
     <section id="section-2">
       <>
@@ -22,18 +20,24 @@ export default function Section2() {
           mt={"1rem"}
           justifyContent="center"
           alignItems="center"
+          flexDirection={{ xs: "column", sm: "row" }} // Flex direction sẽ thay đổi khi trên web hoặc mobile
           style={{ width: "100%" }}
         >
           <img
             src={Logo1}
             alt="Logo"
-            style={{ width: "30rem", marginRight: "9.2rem", height: "auto", marginLeft: "3%" }}
+            style={{
+              width: isMobile ? "20rem" : "30rem",
+              marginRight: "9.2rem",
+              height: "auto",
+              marginLeft: isMobile ? "50%" : "3%",
+            }}
           />
           <Box
             sx={{
               width: "100%",
               position: "relative",
-              overflow: { xs: "auto", sm: "initial" },
+              overflow: { xs: "initial", sm: "auto" }, // Overflow thay đổi khi trên web hoặc mobile
             }}
           >
             <Box
@@ -79,7 +83,6 @@ export default function Section2() {
                 position: "relative", // Thêm thuộc tính position: "relative"
                 backgroundColor: "transparent", // Đặt màu nền của card là trong suốt
                 boxShadow: "none",
-
                 backgroundImage: `url("https://i.imgur.com/dqFqy9W.png")`,
                 backgroundSize: "100% 100%",
               }}
@@ -102,7 +105,7 @@ export default function Section2() {
                 >
                   <div style={{ marginTop: "-2rem" }}>
                     <Typography
-                      fontSize="60px"
+                      fontSize={{ xs: "40px", sm: "60px" }} // Kích thước font chữ thay đổi khi trên web hoặc mobile
                       sx={{
                         color: "#B83490",
                         fontFamily: "VLABRAHAMLINCOLN",
@@ -115,7 +118,7 @@ export default function Section2() {
                     <Typography
                       level="body"
                       fontWeight="normal"
-                      fontSize="25px"
+                      fontSize={{ xs: "20px", sm: "25px" }} // Kích thước font chữ thay đổi khi trên web hoặc mobile
                       sx={{
                         color: "#B83490",
                         fontFamily: "UTM Swiss Condensed Regular",
@@ -145,7 +148,6 @@ export default function Section2() {
                         width={"15rem"}
                         nameButton="THAM GIA"
                         bgColor="#d44fac"
-                        // onClick={onClickJoin}
                         borderRadius={"50px"}
                       />
                     </div>

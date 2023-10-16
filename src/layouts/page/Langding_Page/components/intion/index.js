@@ -10,8 +10,10 @@ import Logo1 from "assets/images/award.png";
 
 // import các icon từ '@mui/icons-material'
 import { Assessment, CheckCircle, Security } from "@mui/icons-material";
+import { useMediaQuery } from "@mui/material";
 
 export default function Section3() {
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   return (
     <section id="section-2">
       <>
@@ -20,18 +22,24 @@ export default function Section3() {
           mt={"1rem"}
           justifyContent="center"
           alignItems="center"
+          flexDirection={{ xs: "column", sm: "row" }} // Flex direction sẽ thay đổi khi trên web hoặc mobile
           style={{ width: "100%" }}
         >
           <img
             src={Logo1}
             alt="Logo"
-            style={{ width: "30rem", marginRight: "9.2rem", height: "auto", marginLeft: "3%" }}
+            style={{
+              width: isMobile ? "20rem" : "30rem",
+              marginRight: "9.2rem",
+              height: "auto",
+              marginLeft: isMobile ? "40%" : "3%",
+            }}
           />
           <Box
             sx={{
               width: "100%",
               position: "relative",
-              overflow: { xs: "auto", sm: "initial" },
+              overflow: { xs: "initial", sm: "auto" }, // Overflow thay đổi khi trên web hoặc mobile
             }}
           >
             <Box
@@ -77,7 +85,6 @@ export default function Section3() {
                 position: "relative", // Thêm thuộc tính position: "relative"
                 backgroundColor: "transparent", // Đặt màu nền của card là trong suốt
                 boxShadow: "none",
-
                 backgroundImage: `url("https://i.imgur.com/dqFqy9W.png")`,
                 backgroundSize: "100% 100%",
               }}
@@ -100,7 +107,7 @@ export default function Section3() {
                 >
                   <div style={{ marginTop: "-2rem" }}>
                     <Typography
-                      fontSize="60px"
+                      fontSize={{ xs: "30px", sm: "60px" }} // Kích thước font chữ thay đổi khi trên web hoặc mobile
                       sx={{
                         color: "#B83490",
                         fontFamily: "VLABRAHAMLINCOLN",
@@ -113,15 +120,12 @@ export default function Section3() {
                     <Typography
                       level="body"
                       fontWeight="normal"
-                      fontSize="25px"
+                      fontSize={{ xs: "15px", sm: "25px" }} // Kích thước font chữ thay đổi khi trên web hoặc mobile
                       sx={{
                         color: "#B83490",
                         fontFamily: "UTM Swiss Condensed Regular",
                         // Đặt font chữ tùy chỉnh
-                        marginTop: "-1rem",
-                        marginLeft: "2.5rem",
-
-                        textIndent: "-2rem",
+                        marginTop: isMobile ? "0.3rem" : "0rem",
                         textAlign: "start", // Căn giữa nội dung
                       }}
                     >
@@ -130,9 +134,6 @@ export default function Section3() {
                         <strong>"Inspiring Instructor Awards"</strong> sẽ được vinh danh tại ngày
                         hội Convocation Day.
                       </li>
-                      {/* <li>
-                        Trao tặng<strong> bộ quà tặng danh riêng cho danh hiệu này.</strong>
-                      </li> */}
                     </Typography>
                     <Box
                       sx={{
@@ -150,7 +151,6 @@ export default function Section3() {
                         width={"15rem"}
                         nameButton="THAM GIA"
                         bgColor="#d44fac"
-                        // onClick={onClickJoin}
                         borderRadius={"50px"}
                       />
                     </div>
