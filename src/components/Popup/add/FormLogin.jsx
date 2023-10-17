@@ -177,7 +177,7 @@ export default function SigninPoppop(props) {
                     onClick={handleLogin}
                     borderRadius="20px"
                     sx={{ mt: 3, mb: 2 }}
-                    nameButton="Đăng nhập"
+                    nameButton="Đăng nhập với tài khoản"
                   />
                   <Grid item xs={12} display={"flex"} justifyContent={"flex-end"} mt={"2%"}>
                     <ButtonLangding
@@ -186,7 +186,7 @@ export default function SigninPoppop(props) {
                       fullWidth
                       borderRadius="20px"
                       sx={{ mt: 3, mb: 2 }}
-                      nameButton="Đăng nhập với tài khoản Google"
+                      nameButton="Đăng nhập với Gmail"
                       onClick={hanldeLoginWithgg}
                     />
                   </Grid>

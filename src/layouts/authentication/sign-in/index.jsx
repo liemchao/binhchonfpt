@@ -238,7 +238,7 @@ export default function SignInSide() {
                   fullWidth
                   borderRadius="20px"
                   sx={{ mt: 3, mb: 2 }}
-                  nameButton="Đăng nhập"
+                  nameButton="Đăng nhập với tài khoản"
                 />
               </Grid>
               <Grid
@@ -258,8 +258,15 @@ export default function SignInSide() {
                   variant="contained"
                   fullWidth
                   borderRadius="20px"
-                  sx={{ mt: 3, mb: 2 }}
-                  nameButton="Đăng nhập với tài khoản Google"
+                  sx={{
+                    mt: 3,
+                    mb: 2,
+
+                    [defaultTheme.breakpoints.down("sm")]: {
+                      fontSize: "10px", // Kiểu cho màn hình nhỏ hơn "sm"
+                    },
+                  }}
+                  nameButton="Đăng nhập với Gmail"
                   onClick={hanldeLoginWithgg}
                 />
               </Grid>
