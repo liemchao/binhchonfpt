@@ -143,7 +143,7 @@ export default function MyComponent() {
                         color: "#B83490",
                         fontFamily: "UTM Swiss Condensed Regular",
                         // Đặt font chữ tùy chỉnh
-                        marginTop: isMobile ? "1rem" : "0rem",
+                        marginTop: isMobile ? "0.2rem" : "0rem",
                         textIndent: isMobile ? "-1.5rem" : "-2rem", // Khoảng cách đầu dòng
                         textAlign: "start", // Căn giữa nội dung
                       }}
@@ -187,10 +187,10 @@ export default function MyComponent() {
             src={Logo1}
             alt="Logo"
             style={{
-              width: "30rem",
+              width: isMobile ? "15rem" : "30rem",
               marginRight: "9.2rem",
               height: "auto",
-              marginLeft: isMobile ? "-2%" : "3%",
+              marginLeft: isMobile ? "15%" : "3%",
             }}
           />
         </Box>

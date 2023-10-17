@@ -17,7 +17,7 @@ export default function Section2() {
       <>
         <Box
           display="flex"
-          mt={"1rem"}
+          mt={isMobile ? "-3rem" : "1rem"}
           justifyContent="center"
           alignItems="center"
           flexDirection={{ xs: "column", sm: "row" }} // Flex direction sẽ thay đổi khi trên web hoặc mobile
@@ -27,7 +27,7 @@ export default function Section2() {
             src={Logo1}
             alt="Logo"
             style={{
-              width: isMobile ? "20rem" : "30rem",
+              width: isMobile ? "15rem" : "30rem",
               marginRight: "9.2rem",
               height: "auto",
               marginLeft: isMobile ? "50%" : "3%",
@@ -37,7 +37,8 @@ export default function Section2() {
             sx={{
               width: "100%",
               position: "relative",
-              overflow: { xs: "initial", sm: "auto" }, // Overflow thay đổi khi trên web hoặc mobile
+              overflow: { xs: "initial", sm: "initial" }, // Overflow thay đổi khi trên web hoặc mobile
+              marginTop: isMobile ? "1rem" : "-1rem",
             }}
           >
             <Box
@@ -105,7 +106,7 @@ export default function Section2() {
                 >
                   <div style={{ marginTop: "-2rem" }}>
                     <Typography
-                      fontSize={{ xs: "40px", sm: "60px" }} // Kích thước font chữ thay đổi khi trên web hoặc mobile
+                      fontSize={{ xs: "30px", sm: "60px" }} // Kích thước font chữ thay đổi khi trên web hoặc mobile
                       sx={{
                         color: "#B83490",
                         fontFamily: "VLABRAHAMLINCOLN",
@@ -118,12 +119,12 @@ export default function Section2() {
                     <Typography
                       level="body"
                       fontWeight="normal"
-                      fontSize={{ xs: "20px", sm: "25px" }} // Kích thước font chữ thay đổi khi trên web hoặc mobile
+                      fontSize={{ xs: "16px", sm: "25px" }} // Kích thước font chữ thay đổi khi trên web hoặc mobile
                       sx={{
                         color: "#B83490",
                         fontFamily: "UTM Swiss Condensed Regular",
                         // Đặt font chữ tùy chỉnh
-                        marginTop: "-1rem",
+                        marginTop: isMobile ? "0rem" : "-1rem",
                         textAlign: "start", // Căn giữa nội dung
                       }}
                     >

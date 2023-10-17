@@ -12,12 +12,8 @@ import {
 import IconButton from "@mui/joy/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import styled from "@emotion/styled";
-import { Product, ProductImage } from "../../../../../page/Langding_Page/styles/product";
 import Favorite from "@mui/icons-material/Favorite";
 
-import { useTheme } from "@mui/material/styles";
-import { useMediaQuery } from "@mui/material";
-import ButtonCustomize from "assets/theme/components/button/ButtonCustomize";
 // import Favorite from "@mui/icons-material/Favorite";
 import Iconify from "assets/theme/components/icon/Iconify";
 import QuestionPopUp from "components/Popup/create/QuestionPopUp";
@@ -34,6 +30,7 @@ import { getDetailCanidate } from "context/redux/action/action";
 import { getScorebyStage } from "context/redux/action/action";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 const getIcon = (name) => <Iconify icon={name} width={40} height={40} />;
 function SlideTransition(props) {
@@ -118,6 +115,7 @@ export default function CandateOneDetail() {
   };
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <>
       <Container variant="permanant" fullScreen>
@@ -127,7 +125,7 @@ export default function CandateOneDetail() {
         <Box>
           {detailCandate?.campaignId === "6097a517-11ad-4105-b26a-0e93bea2cb43" ? (
             <Typography
-              fontSize="60px"
+              fontSize={isMobile ? "30px" : "60px"}
               sx={{
                 color: "#B83490",
                 fontFamily: "VLABRAHAMLINCOLN",
@@ -154,7 +152,7 @@ export default function CandateOneDetail() {
             flexDirection={matches ? "column" : "row"}
             alignItems="center"
           >
-            <Box sx={{ mr: 4 }}>
+            <Box sx={{ mr: isMobile ? -10 : 4 }}>
               <img
                 src={
                   detailCandate.avatarUrl !== null && detailCandate.avatarUrl !== undefined
@@ -170,7 +168,7 @@ export default function CandateOneDetail() {
             </Box>
             <Box sx={{}}>
               <Typography
-                fontSize="70px"
+                fontSize={isMobile ? "40px" : "70px"}
                 sx={{
                   whiteSpace: "nowrap",
                   color: "#B83490",
@@ -182,7 +180,7 @@ export default function CandateOneDetail() {
                 {detailCandate.fullName}
               </Typography>
               <Typography
-                fontSize="30px"
+                fontSize={isMobile ? "20px" : "30px"}
                 fontWeight="bold"
                 sx={{
                   color: "#B83490",
@@ -195,7 +193,7 @@ export default function CandateOneDetail() {
               {detailCandate.description ? (
                 <Typography
                   variant="body2"
-                  fontSize="30px"
+                  fontSize={isMobile ? "25px" : "30px"}
                   sx={{
                     fontFamily: "VLABRAHAMLINCOLN",
                     textAlign: "start", // Đặt font chữ tùy chỉnh

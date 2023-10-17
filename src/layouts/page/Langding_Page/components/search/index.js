@@ -186,10 +186,10 @@ export default function Select3() {
             src={Logo1}
             alt="Logo"
             style={{
-              width: isMobile ? "20rem" : "30rem",
+              width: isMobile ? "15rem" : "30rem",
               marginRight: "9.2rem",
               height: "auto",
-              marginLeft: isMobile ? "-2%" : "3%",
+              marginLeft: isMobile ? "17%" : "3%",
             }}
           />
         </Box>

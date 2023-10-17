@@ -29,7 +29,7 @@ export default function Section3() {
             src={Logo1}
             alt="Logo"
             style={{
-              width: isMobile ? "20rem" : "30rem",
+              width: isMobile ? "15rem" : "30rem",
               marginRight: "9.2rem",
               height: "auto",
               marginLeft: isMobile ? "40%" : "3%",
@@ -39,7 +39,8 @@ export default function Section3() {
             sx={{
               width: "100%",
               position: "relative",
-              overflow: { xs: "initial", sm: "auto" }, // Overflow thay đổi khi trên web hoặc mobile
+              overflow: { xs: "initial", sm: "initial" }, // Overflow thay đổi khi trên web hoặc mobile
+              marginTop: isMobile ? "1rem" : "-1rem",
             }}
           >
             <Box

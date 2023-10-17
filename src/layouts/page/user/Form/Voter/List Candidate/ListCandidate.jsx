@@ -352,7 +352,7 @@ export default function ListCandidate() {
     >
       <Container>
         <Grid container spacing={2}>
-          <Grid item xs={12}>
+          <Grid item mt={isMobile ? "-1.4rem" : "0"} xs={12}>
             <Paper>
               {candidates.campaignName === "Chiến dịch bình chọn giảng viên FPT 2023" ? (
                 <Typography
@@ -411,7 +411,7 @@ export default function ListCandidate() {
           }}
         >
           {candidates.votesRemaining?.groupNameOfVoter === "Giai đoạn chuyên ngành (HK1-HK6)" ? (
-            <Grid container sx={{ display: "flex", flexWrap: isMobile ? "wrap" : "nowrap" }}>
+            <Grid container sx={{ display: "flex", flexWrap: isMobile ? "nowrap" : "nowrap" }}>
               <Grid
                 sx={{ marginTop: isMobile ? "10px" : "0px" }}
                 item
@@ -421,33 +421,43 @@ export default function ListCandidate() {
                 lg={3}
               >
                 <Select
+                  sx={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
                   name="groupid"
                   required
                   defaultValue="Tất cả"
                   label={"Giảng viên nhóm môn chung"}
-                  height="10rem"
-                  onChange={(e) => {
-                    setProcess(e.target.value);
-                  }}
+                  onChange={handleSelect1Change}
                   options={getOptions1()}
                 />
               </Grid>
               <Grid
                 sx={{ marginTop: isMobile ? "10px" : "0px" }}
                 item
-                xs={isMobile ? 5 : 12}
+                gap={isMobile ? 2 : 0}
+                ml={isMobile ? 0 : -1}
+                xs={isMobile ? 4.5 : 12}
                 sm={6}
                 md={1}
                 lg={1.5}
               >
                 <Box>
                   <TextField
+                    sx={{ padding: isMobile ? "1px" : "0px" }}
                     variant="outlined"
                     label="Nhóm môn chung"
                     value={candidates?.votesRemaining?.voteBM + "/" + candidates?.limitVoteOfStage}
                     InputProps={{
                       startAdornment: (
-                        <div style={{ color: "#D44FAC", marginTop: "2px" }}>
+                        <div
+                          style={{
+                            color: "#D44FAC",
+                            marginTop: "2px",
+                          }}
+                        >
                           <Favorite />
                         </div>
                       ),
@@ -476,7 +486,9 @@ export default function ListCandidate() {
               </Grid>
               <Grid
                 item
-                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                sx={{
+                  marginTop: isMobile ? "10px" : "0px",
+                }}
                 ml={isMobile ? 0 : 3}
                 xs={isMobile ? 7 : 12}
                 sm={6}
@@ -484,21 +496,25 @@ export default function ListCandidate() {
                 lg={2.5}
               >
                 <Select
+                  sx={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
                   name="groupid"
                   required
                   defaultValue="Tất cả"
                   label={"Giảng viên chuyên ngành"}
                   height="10rem"
-                  onChange={(e) => {
-                    setProcess1(e.target.value);
-                  }}
+                  onChange={handleSelect2Change}
                   options={getOptions()}
                 />
               </Grid>
               <Grid
                 sx={{ marginTop: isMobile ? "10px" : "0px" }}
                 item
-                xs={isMobile ? 5 : 12}
+                ml={isMobile ? 0 : -1}
+                xs={isMobile ? 4.5 : 12}
                 sm={6}
                 md={2}
                 lg={1.2}
@@ -529,6 +545,11 @@ export default function ListCandidate() {
                 lg={1}
               >
                 <Select
+                  sx={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
                   name="isvoted"
                   required
                   defaultValue="Tất cả"
@@ -780,7 +801,13 @@ export default function ListCandidate() {
         {candidates.formId ? (
           <></>
         ) : (
-          <Box sx={{ display: "flex", justifyContent: "space-between", ml: "-0.3rem" }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              ml: isMobile ? "-0.7rem" : "-0.3rem",
+            }}
+          >
             <Grid container spacing={3} mt={-2} bottom={1} sx={{ gap: "6rem" }}>
               {candidates.candidate?.map((card, index) => (
                 <Grid item xs={6} md={3} key={index}>
