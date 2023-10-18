@@ -185,18 +185,18 @@ export function NavigationPopup(props) {
         <DialogActions>
           <Box
             display={"flex"}
-            mr={isMobile ? "1rem" : "9rem"}
+            mr={isMobile ? "2rem" : "9rem"}
             sx={{ justifyContent: "space-between", gap: "2rem" }}
           >
             <ButtonLangding
-              height={isMobile ? "4rem" : "4rem"}
-              width={isMobile ? "6rem" : "7rem"}
+              height={isMobile ? "3.5rem" : "4rem"}
+              width={isMobile ? "5rem" : "7rem"}
               onClick={onClose}
               nameButton="Hủy bỏ"
             ></ButtonLangding>
             <ButtonLangding
-              height={isMobile ? "4rem" : "4rem"}
-              width={isMobile ? "7rem" : "7rem"}
+              height={isMobile ? "3.5rem" : "4rem"}
+              width={isMobile ? "5rem" : "7rem"}
               bottom="2rem"
               onClick={handleConfirm}
               nameButton="Xác nhận"

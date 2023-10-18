@@ -21,6 +21,7 @@ import Logo1 from "assets/images/logos/LogoFVS.svg";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 const ggProvider = new firebase.auth.GoogleAuthProvider();
 const schema = yup.object().shape({});
@@ -46,7 +47,8 @@ export default function SignInSide() {
   const [idFireBase, setIdFireBase] = useState();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
@@ -91,12 +93,18 @@ export default function SignInSide() {
     >
       <Grid container justifyContent="center" alignItems="center" style={{ minHeight: "100vh" }}>
         <Grid item xs={12} sm={8} md={5}>
-          <Box sx={{ display: "flex", justifyContent: "center", marginBottom: "2rem" }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: isMobile ? "0rem" : "2rem",
+            }}
+          >
             <img
               src={logo}
               alt="Logo"
               style={{
-                width: "100%", // Để hình ảnh lấp đầy chiều rộng của container
+                width: isMobile ? "70%" : "100%", // Để hình ảnh lấp đầy chiều rộng của container
                 height: "auto",
               }}
             />
@@ -115,6 +123,7 @@ export default function SignInSide() {
               backgroundColor: "transparent",
               backgroundSize: "cover",
               position: "relative",
+              marginRight: "10%",
             }}
           >
             <Box

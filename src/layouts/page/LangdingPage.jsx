@@ -14,8 +14,11 @@ import HeaderUnthor from "layouts/header/headerUnthor";
 import Iconify from "assets/theme/components/icon/Iconify";
 import logo from "assets/images/logos/LogoFVS.svg";
 //----------------------------------------------------------------
+import { useTheme, useMediaQuery } from "@mui/material";
 
 export default function PrimarySearchAppBar() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const currentYear = new Date().getFullYear();
   return (
     <>

@@ -20,6 +20,7 @@ import NewPopUp from "components/Popup/create/NewPopUp";
 import UserCard from "components/Cards/cardCampaign";
 import dayjs from "dayjs";
 import { handleGetCampaignById } from "context/redux/action/action";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 export const createAction = ({ type, payload }) => {
   return { type, payload };
@@ -38,6 +39,8 @@ export default function CampaignList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   useEffect(() => {
     const callAPI = async () => {
       await dispatch(callAPIgetListCampaigns(token));
@@ -118,49 +121,53 @@ export default function CampaignList() {
   return (
     <Page title="Campaign">
       <Container>
-        <Stack direction="row" alignItems="center" mb={1}>
-          <Box sx={{ flex: 1, paddingRight: "1rem" }}>
-            {" "}
-            <Box
-              component="form"
-              sx={{
-                "& > :not(style)": { m: 0.5, width: "25ch" },
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField
-                inputProps={{ "aria-label": "search candidate" }}
-                id="outlined-basic"
-                value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value);
+        {isMobile ? (
+          <></>
+        ) : (
+          <Stack direction="row" alignItems="center" mb={1}>
+            <Box sx={{ flex: 1, paddingRight: "1rem" }}>
+              {" "}
+              <Box
+                component="form"
+                sx={{
+                  "& > :not(style)": { m: 0.5, width: "25ch" },
                 }}
-                label="Tìm kiếm theo tên"
-                variant="outlined"
+                noValidate
+                autoComplete="off"
+              >
+                <TextField
+                  inputProps={{ "aria-label": "search candidate" }}
+                  id="outlined-basic"
+                  value={title}
+                  onChange={(e) => {
+                    setTitle(e.target.value);
+                  }}
+                  label="Tìm kiếm theo tên"
+                  variant="outlined"
+                />
+              </Box>
+            </Box>
+            <Box sx={{ display: "flex", justifyContent: "flex-start", padding: 1 }}>
+              <Select
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  width: { xs: "100%", md: "13rem" },
+                  margin: { xs: "1rem 0 0", md: 0 },
+                }}
+                name="fiter"
+                required
+                defaultValue={"Tất cả"}
+                label="Trạng thái chiến dịch"
+                height="10rem"
+                onChange={(e) => {
+                  setProcess(e.target.value);
+                }}
+                options={getOptions()}
               />
             </Box>
-          </Box>
-          <Box sx={{ display: "flex", justifyContent: "flex-start", padding: 1 }}>
-            <Select
-              sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-                width: { xs: "100%", md: "13rem" },
-                margin: { xs: "1rem 0 0", md: 0 },
-              }}
-              name="fiter"
-              required
-              defaultValue={"Tất cả"}
-              label="Trạng thái chiến dịch"
-              height="10rem"
-              onChange={(e) => {
-                setProcess(e.target.value);
-              }}
-              options={getOptions()}
-            />
-          </Box>
-        </Stack>
+          </Stack>
+        )}
 
         <Box
           sx={{

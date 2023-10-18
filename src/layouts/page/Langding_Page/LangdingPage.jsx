@@ -18,7 +18,7 @@ import ImageThele from "../../../assets/images/The le tham gia.png";
 import ImageMocTime from "../../../assets/images/Moc thoi gian.png";
 import ImageTimeCount from "../../../assets/images/Thoi gian con lai.png";
 import ImageCampaign from "../../../assets/images/Chien dich dang dien ra.png";
-
+import { useTheme, useMediaQuery } from "@mui/material";
 import { Link } from "react-scroll";
 import ScrollToTopButton from "../user/Form/Voter/List Candidate/scollpage";
 import ScrollToTopButtonTop from "../user/Form/Voter/List Candidate/scollLandingPage";
@@ -41,6 +41,8 @@ export default function LangdingPage() {
       transform: "translateY(-50%)",
     },
   };
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Container
@@ -92,10 +94,11 @@ export default function LangdingPage() {
             sx={{
               backgroundImage: `url("https://res.cloudinary.com/dxevluwyr/image/upload/v1694590664/bg1_culbrm.png")`,
               backgroundSize: "100% 100%",
+              mt: isMobile ? -24 : 5,
             }}
           >
-            <Box display="flex" justifyContent="center" sx={{ p: 2, mt: 5 }}>
-              <img src={ImageMocTime}></img>
+            <Box display="flex" justifyContent="center" sx={{ p: 1, mt: 5 }}>
+              <img style={{ width: isMobile ? "70%" : "40%" }} src={ImageMocTime}></img>
             </Box>
             <MyTimeline />
             <Box display="flex" justifyContent="center" sx={{ p: 2, visibility: "hidden" }}>
@@ -103,7 +106,7 @@ export default function LangdingPage() {
             </Box>
           </Box>
           <Box id="section3" display="flex" justifyContent="center" sx={{ p: 2 }}>
-            <img src={ImageThele}></img>
+            <img style={{ width: isMobile ? "80%" : "50%" }} src={ImageThele}></img>
           </Box>
           <VotingRules />
           <Box

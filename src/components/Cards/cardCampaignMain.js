@@ -128,7 +128,7 @@ export default function MainCard(props) {
               <Typography
                 level="body"
                 fontWeight="normal"
-                fontSize={isMobile ? 18 : 32}
+                fontSize={isMobile ? 13 : 32}
                 sx={{
                   color: "#B83490",
                   fontFamily: "UTM Swiss Condensed Regular",

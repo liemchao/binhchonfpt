@@ -114,8 +114,9 @@ export default function CandateOneDetail() {
     }
   };
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down("md"));
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+  
   return (
     <>
       <Container variant="permanant" fullScreen>
@@ -168,7 +169,7 @@ export default function CandateOneDetail() {
             </Box>
             <Box sx={{}}>
               <Typography
-                fontSize={isMobile ? "40px" : "70px"}
+                fontSize={isMobile ? "30px" : "70px"}
                 sx={{
                   whiteSpace: "nowrap",
                   color: "#B83490",
@@ -180,7 +181,7 @@ export default function CandateOneDetail() {
                 {detailCandate.fullName}
               </Typography>
               <Typography
-                fontSize={isMobile ? "20px" : "30px"}
+                fontSize={isMobile ? "15px" : "30px"}
                 fontWeight="bold"
                 sx={{
                   color: "#B83490",
@@ -193,7 +194,7 @@ export default function CandateOneDetail() {
               {detailCandate.description ? (
                 <Typography
                   variant="body2"
-                  fontSize={isMobile ? "25px" : "30px"}
+                  fontSize={isMobile ? "20px" : "30px"}
                   sx={{
                     fontFamily: "VLABRAHAMLINCOLN",
                     textAlign: "start", // Đặt font chữ tùy chỉnh

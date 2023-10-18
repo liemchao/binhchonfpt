@@ -411,7 +411,7 @@ export default function ListCandidate() {
           }}
         >
           {candidates.votesRemaining?.groupNameOfVoter === "Giai đoạn chuyên ngành (HK1-HK6)" ? (
-            <Grid container sx={{ display: "flex", flexWrap: isMobile ? "nowrap" : "nowrap" }}>
+            <Grid container sx={{ display: "flex", flexWrap: isMobile ? "wrap" : "nowrap" }}>
               <Grid
                 sx={{ marginTop: isMobile ? "10px" : "0px" }}
                 item
@@ -425,6 +425,7 @@ export default function ListCandidate() {
                     whiteSpace: "nowrap",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
+                    height: isMobile ? "2.5rem" : "2.5rem",
                   }}
                   name="groupid"
                   required
@@ -437,15 +438,15 @@ export default function ListCandidate() {
               <Grid
                 sx={{ marginTop: isMobile ? "10px" : "0px" }}
                 item
-                gap={isMobile ? 2 : 0}
-                ml={isMobile ? 0 : -1}
-                xs={isMobile ? 4.5 : 12}
+                ml={isMobile ? 2 : -1}
+                xs={isMobile ? 4 : 12}
                 sm={6}
                 md={1}
                 lg={1.5}
               >
                 <Box>
                   <TextField
+                    size="small"
                     sx={{ padding: isMobile ? "1px" : "0px" }}
                     variant="outlined"
                     label="Nhóm môn chung"
@@ -466,7 +467,11 @@ export default function ListCandidate() {
                 </Box>
               </Grid>
               <Grid
-                sx={{ marginTop: isMobile ? "10px" : "0px" }}
+                sx={{
+                  marginTop: isMobile ? "2px" : "0px",
+
+                  width: isMobile ? "190px" : "200px",
+                }}
                 item
                 ml={isMobile ? 0 : 3}
                 sm={6}
@@ -474,6 +479,7 @@ export default function ListCandidate() {
                 lg={isMobile ? 1 : 2}
               >
                 <TextField
+                  size="small"
                   inputProps={{ "aria-label": "search candidate" }}
                   id="outlined-basic"
                   value={title}
@@ -500,6 +506,7 @@ export default function ListCandidate() {
                     whiteSpace: "nowrap",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
+                    height: isMobile ? "2.5rem" : "2.5rem",
                   }}
                   name="groupid"
                   required
@@ -513,14 +520,15 @@ export default function ListCandidate() {
               <Grid
                 sx={{ marginTop: isMobile ? "10px" : "0px" }}
                 item
-                ml={isMobile ? 0 : -1}
-                xs={isMobile ? 4.5 : 12}
+                ml={isMobile ? 2 : -1}
+                xs={isMobile ? 4 : 12}
                 sm={6}
                 md={2}
                 lg={1.2}
               >
                 <Box>
                   <TextField
+                    size="small"
                     variant="outlined"
                     label="Chuyên ngành"
                     value={candidates?.votesRemaining?.voteAM + "/" + candidates?.limitVoteOfStage}
@@ -549,6 +557,7 @@ export default function ListCandidate() {
                     whiteSpace: "nowrap",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
+                    height: isMobile ? "2.5rem" : "2.5rem",
                   }}
                   name="isvoted"
                   required

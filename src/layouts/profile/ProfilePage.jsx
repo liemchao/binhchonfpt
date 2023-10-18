@@ -17,7 +17,6 @@ import BioCard from "./BioCard";
 import RecipeReviewCard from "./RecipeReviewCard";
 import { useState } from "react";
 import EditProfile from "components/Popup/create/EditProfile";
-import liem from "../../assets/images/liem.jpg";
 import NewActive from "components/Popup/create/NewActive";
 import ActityCard from "./Actitycard";
 import jwt_decode from "jwt-decode";
@@ -32,29 +31,29 @@ const schema = yup.object().shape({
   email: yup.string().required().trim(),
 });
 
-const blogs = [
-  {
-    img: liem,
-    title: "Chiến dịch mùa hè xanh!",
-    subtitle:
-      "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    btncolor: "error",
-  },
-  {
-    img: liem,
-    title: "Chiến dịch mùa xuân xanh",
-    subtitle:
-      "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    btncolor: "warning",
-  },
-  {
-    img: liem,
-    title: "Chiến dịch mùa xanh cỏ ",
-    subtitle:
-      "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    btncolor: "primary",
-  },
-];
+// const blogs = [
+//   {
+//     img: liem,
+//     title: "Chiến dịch mùa hè xanh!",
+//     subtitle:
+//       "Some quick example text to build on the card title and make up the bulk of the card's content.",
+//     btncolor: "error",
+//   },
+//   {
+//     img: liem,
+//     title: "Chiến dịch mùa xuân xanh",
+//     subtitle:
+//       "Some quick example text to build on the card title and make up the bulk of the card's content.",
+//     btncolor: "warning",
+//   },
+//   {
+//     img: liem,
+//     title: "Chiến dịch mùa xanh cỏ ",
+//     subtitle:
+//       "Some quick example text to build on the card title and make up the bulk of the card's content.",
+//     btncolor: "primary",
+//   },
+// ];
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,

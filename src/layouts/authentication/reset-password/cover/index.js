@@ -25,7 +25,7 @@ import Button from "@mui/material/Button";
 // Authentication layout components
 
 // Images
-import bgImage from "assets/images/liem.jpg";
+import bgImage from "assets/images/logo-ct.png";
 import ButtonCustomize from "assets/theme/components/button/ButtonCustomize";
 
 function Cover() {

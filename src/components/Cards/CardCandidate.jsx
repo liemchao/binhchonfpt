@@ -10,7 +10,6 @@ import Link from "@mui/joy/Link";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 import ShareIcon from "@mui/icons-material/Share";
 import Iconify from "assets/theme/components/icon/Iconify";
-import imge from "assets/images/liem.jpg";
 const getIcon = (name) => <Iconify icon={name} width={40} height={40} />;
 export default function MultipleInteractionCard(props) {
   const {

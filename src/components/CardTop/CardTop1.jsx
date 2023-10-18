@@ -9,7 +9,6 @@ import Link from "@mui/joy/Link";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 import ShareIcon from "@mui/icons-material/Share";
 import Iconify from "assets/theme/components/icon/Iconify";
-import imge from "assets/images/liem.jpg";
 import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";

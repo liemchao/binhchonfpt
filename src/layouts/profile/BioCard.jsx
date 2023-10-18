@@ -10,7 +10,6 @@ import { CardActions } from "@mui/material";
 import IconButton from "@mui/joy/IconButton";
 import Typography from "@mui/joy/Typography";
 import ButtonCustomize from "assets/theme/components/button/ButtonCustomize";
-import liem from "../../assets/images/liem.jpg";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 export default function BioCard(props) {
   let { avatar, name, sologan } = props;

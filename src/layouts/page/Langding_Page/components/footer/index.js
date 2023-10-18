@@ -47,7 +47,7 @@ export default function Footer() {
           <List>
             <ListItemText>
               <Typography
-                variant="h5"
+                variant="h6"
                 sx={{
                   fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                 }}
@@ -70,7 +70,7 @@ export default function Footer() {
             <ListItemText>
               <Typography
                 lineHeight={3}
-                variant="h5"
+                variant="h6"
                 sx={{
                   fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                 }}

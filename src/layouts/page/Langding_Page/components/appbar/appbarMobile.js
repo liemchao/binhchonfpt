@@ -15,9 +15,9 @@ export default function AppbarMobile({ matches }) {
       </IconButton>
       <AppbarHeader textAlign={"center"} variant="h4">
         <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
-          <img src={Logo} alt="Logo" style={{ width: "100px", height: "auto" }} />
-          <img src={Logo2} alt="Logo" style={{ width: "100px", height: "auto" }} />
-          <img src={Logo1} alt="Logo" style={{ width: "100px", height: "auto" }} />
+          <img src={Logo} alt="Logo" style={{ width: "80px", height: "auto" }} />
+          <img src={Logo2} alt="Logo" style={{ width: "80px", height: "auto" }} />
+          <img src={Logo1} alt="Logo" style={{ width: "80px", height: "auto" }} />
           <div style={{ flex: 1 }}></div>
         </Box>
       </AppbarHeader>

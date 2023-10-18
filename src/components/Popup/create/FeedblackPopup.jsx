@@ -15,6 +15,7 @@ import jwt_decode from "jwt-decode";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 import { CustomizedToast } from "components/toast/ToastCustom";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 export default function FeedbackBubble(props) {
   const idCampainStore = localStorage.getItem("campaignId");
@@ -24,6 +25,8 @@ export default function FeedbackBubble(props) {
   const [rating, setRating] = useState(0);
   const token = localStorage.getItem("token");
   const decode = jwt_decode(token);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const handleFeedback = () => {
     setOpen(true);
   };
@@ -79,7 +82,7 @@ export default function FeedbackBubble(props) {
             color: "#B83490",
             fontFamily: "UTM Swiss Condensed Regular",
             fontWeight: "bold",
-            fontSize: "30px",
+            fontSize: isMobile ? "17px" : "30px",
           }}
         >
           Trải nghiệm khi tham gia bình chọn

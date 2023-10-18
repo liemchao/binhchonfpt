@@ -17,7 +17,7 @@ export default function Section2() {
       <>
         <Box
           display="flex"
-          mt={isMobile ? "-3rem" : "1rem"}
+          mt={isMobile ? "-6rem" : "1rem"}
           justifyContent="center"
           alignItems="center"
           flexDirection={{ xs: "column", sm: "row" }} // Flex direction sẽ thay đổi khi trên web hoặc mobile

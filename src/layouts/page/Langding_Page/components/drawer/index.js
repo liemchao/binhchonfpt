@@ -48,7 +48,7 @@ export default function AppDrawer() {
         <List>
           <ListItemButton>
             <ButtonLangding
-              width={"10rem"}
+              width={"5rem"}
               nameButton="Trang chủ"
               bgColor="#d44fac"
               hovercolor="#d44fac"
@@ -60,7 +60,7 @@ export default function AppDrawer() {
 
           <ListItemButton>
             <ButtonLangding
-              width={"10rem"}
+              width={"5rem"}
               nameButton="Giới thiệu"
               bgColor="#d44fac"
               hovercolor="#d44fac"
@@ -72,7 +72,7 @@ export default function AppDrawer() {
 
           <ListItemButton>
             <ButtonLangding
-              width={"10rem"}
+              width={"5rem"}
               nameButton="Đăng nhập"
               bgColor="#d44fac"
               hovercolor="#d44fac"

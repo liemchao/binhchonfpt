@@ -18,7 +18,7 @@ export default function PageHeader(props) {
     },
     pageIcon: {
       display: "inline-block",
-      padding: theme.spacing(2),
+      padding: theme.spacing(1),
       color: "#B83490",
       paddingleft: theme.spacing(5),
     },
@@ -46,7 +46,7 @@ export default function PageHeader(props) {
             sx={{
               color: "#B83490",
               fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
-              fontSize: isMobile ? "20px" : "40px",
+              fontSize: isMobile ? "15px" : "40px",
             }}
           >
             {title}
@@ -56,7 +56,7 @@ export default function PageHeader(props) {
             sx={{
               color: "#B83490",
               fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
-              fontSize: isMobile ? "20px" : "20px",
+              fontSize: isMobile ? "10px" : "20px",
             }}
           >
             {subTitle}
