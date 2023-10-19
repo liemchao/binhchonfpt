@@ -176,27 +176,67 @@ export default function UserCard(props) {
                 marginRight: "70%",
                 display: "flex",
                 flexDirection: "row",
-                gap: isMobile ? "6%" : "15%",
+                gap: isMobile ? "14%" : "15%",
               }}
             >
               <div style={{ flex: 5, marginRight: "10px" }}>
-                <Typography sx={{ whiteSpace: "nowrap" }} fontWeight="lg">
+                <Typography
+                  sx={{
+                    whiteSpace: "nowrap",
+                    color: "#B83490",
+                    fontFamily: "UTM Swiss Condensed Regular",
+                  }}
+                  fontWeight="lg"
+                >
                   Thời gian bắt đầu
                 </Typography>
-                <Typography fontWeight="lg">19/10/2023</Typography>
+                <Typography
+                  sx={{ color: "#B83490", fontFamily: "UTM Swiss Condensed Regular" }}
+                  fontWeight="lg"
+                >
+                  19/10/2023
+                </Typography>
               </div>
-              <div style={{ flex: 5, marginRight: "30px" }}>
-                <Typography sx={{ whiteSpace: "nowrap" }} fontWeight="lg">
+              <div
+                style={{
+                  flex: 5,
+                  marginRight: "30px",
+                  color: "#B83490",
+                  fontFamily: "UTM Swiss Condensed Regular",
+                }}
+              >
+                <Typography
+                  sx={{
+                    whiteSpace: "nowrap",
+                    color: "#B83490",
+                    fontFamily: "UTM Swiss Condensed Regular",
+                  }}
+                  fontWeight="lg"
+                >
                   Thời gian kết thúc
                 </Typography>
-                <Typography fontWeight="lg"> 30/10/2023</Typography>
+                <Typography
+                  sx={{ color: "#B83490", fontFamily: "UTM Swiss Condensed Regular" }}
+                  fontWeight="lg"
+                >
+                  {" "}
+                  31/10/2023
+                </Typography>
               </div>
               <div style={{ flex: 5, marginRight: "30px" }}>
-                <Typography sx={{ whiteSpace: "nowrap" }} fontWeight="lg">
+                <Typography
+                  sx={{
+                    whiteSpace: "nowrap",
+                    color: "#B83490",
+                    fontFamily: "UTM Swiss Condensed Regular",
+                  }}
+                  fontWeight="lg"
+                >
                   Trạng thái
                 </Typography>
                 <Typography
                   sx={{
+                    fontFamily: "UTM Swiss Condensed Regular",
                     whiteSpace: "nowrap",
                     color:
                       process === "Chưa diễn ra"

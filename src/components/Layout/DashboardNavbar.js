@@ -92,12 +92,16 @@ export default function DashboardNavbar({ onOpenSidebar, open }) {
                 alignItems: "center",
               }}
             >
-              <div style={{ flex: 1 }}></div>
+              <div
+                style={{
+                  flex: isMobile ? 3 : 1,
+                }}
+              ></div>
               <img
                 src={Logo}
                 alt="Logo"
-                width={isMobile ? "150%" : "25%"}
-                height={isMobile ? "150%" : "auto"}
+                width={isMobile ? "auto" : "25%"}
+                height={isMobile ? "auto" : "auto"}
                 style={{
                   mt: "2%",
                   marginRight: "-2rem",

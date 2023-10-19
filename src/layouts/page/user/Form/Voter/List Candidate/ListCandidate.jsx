@@ -103,7 +103,7 @@ export default function ListCandidate() {
 
   useEffect(() => {
     fetchData(token, setCandidates);
-  }, [candidates, token]);
+  }, [candidates, isVoted, process1, process, title, currentPage, token]);
 
   useEffect(() => {
     const callAPI = async () => {
@@ -582,6 +582,12 @@ export default function ListCandidate() {
                 lg={4}
               >
                 <Select
+                  sx={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    height: isMobile ? "2.5rem" : "2.5rem",
+                  }}
                   name="groupid"
                   required
                   defaultValue="Tất cả"
@@ -594,13 +600,15 @@ export default function ListCandidate() {
               <Grid
                 sx={{ marginTop: isMobile ? "10px" : "0px" }}
                 item
-                xs={isMobile ? 5 : 12}
+                ml={isMobile ? 2 : 1}
+                xs={isMobile ? 4 : 12}
                 sm={6}
                 md={2}
                 lg={3}
               >
                 <Box>
                   <TextField
+                    size="small"
                     variant="outlined"
                     label="Chuyên ngành"
                     value={candidates?.votesRemaining?.voteAM + "/" + candidates?.limitVoteOfStage}
@@ -623,6 +631,7 @@ export default function ListCandidate() {
                 lg={isMobile ? 1 : 2}
               >
                 <TextField
+                  size="small"
                   inputProps={{ "aria-label": "search candidate" }}
                   id="outlined-basic"
                   value={title}
@@ -644,6 +653,12 @@ export default function ListCandidate() {
                 lg={1.5}
               >
                 <Select
+                  sx={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    height: isMobile ? "2.5rem" : "2.5rem",
+                  }}
                   name="isvoted"
                   required
                   defaultValue="Tất cả"
@@ -667,6 +682,12 @@ export default function ListCandidate() {
                 lg={4}
               >
                 <Select
+                  sx={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    height: isMobile ? "2.5rem" : "2.5rem",
+                  }}
                   name="groupid"
                   required
                   defaultValue="Tất cả"
@@ -679,13 +700,15 @@ export default function ListCandidate() {
               <Grid
                 sx={{ marginTop: isMobile ? "10px" : "0px" }}
                 item
-                xs={isMobile ? 5 : 12}
+                ml={isMobile ? 2 : 1}
+                xs={isMobile ? 4 : 12}
                 sm={6}
                 md={2}
                 lg={3}
               >
                 <Box>
                   <TextField
+                    size="small"
                     variant="outlined"
                     label="Nhóm môn chung"
                     value={candidates?.votesRemaining?.voteBM + "/" + candidates?.limitVoteOfStage}
@@ -708,6 +731,7 @@ export default function ListCandidate() {
                 lg={isMobile ? 1 : 2}
               >
                 <TextField
+                  size="small"
                   inputProps={{ "aria-label": "search candidate" }}
                   id="outlined-basic"
                   value={title}
@@ -729,6 +753,12 @@ export default function ListCandidate() {
                 lg={1.5}
               >
                 <Select
+                  sx={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    height: isMobile ? "2.5rem" : "2.5rem",
+                  }}
                   name="isvoted"
                   required
                   defaultValue="Tất cả"

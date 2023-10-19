@@ -83,7 +83,7 @@ export default function CustomizedSteppers() {
             },
           }}
         >
-          30/10/2023
+          31/10/2023
         </Typography>
 
         <Typography

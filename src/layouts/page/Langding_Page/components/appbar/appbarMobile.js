@@ -14,11 +14,10 @@ export default function AppbarMobile({ matches }) {
         <MenuIcon />
       </IconButton>
       <AppbarHeader textAlign={"center"} variant="h4">
-        <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
+        <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center", gap: 3 }}>
           <img src={Logo} alt="Logo" style={{ width: "80px", height: "auto" }} />
           <img src={Logo2} alt="Logo" style={{ width: "80px", height: "auto" }} />
           <img src={Logo1} alt="Logo" style={{ width: "80px", height: "auto" }} />
-          <div style={{ flex: 1 }}></div>
         </Box>
       </AppbarHeader>
       {/* <Actions matches={matches} /> */}

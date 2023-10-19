@@ -118,7 +118,7 @@ export default function LangdingPage() {
             <Box id="section4" display="flex" justifyContent="center" sx={{ p: 2, mt: 5 }}>
               <img src={ImageTimeCount}></img>
             </Box>
-            <CountdownTimer startTime={"2023-10-15T00:00:00"} endTime={"2023-10-29T00:00:00"} />
+            <CountdownTimer startTime={"2023-10-19T20:00:00"} endTime={"2023-10-31T00:00:00"} />
             <Box display="flex" justifyContent="center" sx={{ p: 2, visibility: "hidden" }}>
               <img src={ImageMocTime}></img>
             </Box>

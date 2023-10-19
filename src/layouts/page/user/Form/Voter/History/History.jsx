@@ -39,11 +39,12 @@ import { Authen } from "context/authenToken/AuthenToken";
 import Iconify from "assets/theme/components/icon/Iconify";
 import moment from "moment/moment";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: "no", name: "Stt", label: "Stt.", alignRight: false },
+  { id: "no", name: "Stt", label: "STT.", alignRight: false },
   { id: "Ngày", label: "Ngày", alignRight: false },
   { id: "Mô tả", label: "Loại hành động", alignRight: false },
   { id: "Loại hành động", label: "Mô tả", alignRight: false },
@@ -99,6 +100,8 @@ export default function HistoryUser() {
   // const [open, setOpen] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(null);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const dispatch = useDispatch();
 
@@ -203,17 +206,19 @@ export default function HistoryUser() {
                         aria-checked={isItemSelected}
                       >
                         <TableCell>
-                          <Typography variant="subtitle2" noWrap>
+                          <Typography width="2%" variant="subtitle2">
                             {index + 1}
                           </Typography>
                         </TableCell>
-                        <TableCell>
-                          <Typography variant="subtitle2" noWrap>
-                            {moment(time).format("DD-MM-YYYY HH:mm:ss")}
+                        <TableCell
+                          style={{ whiteSpace: "pre-line", width: isMobile ? "40%" : "10%" }}
+                        >
+                          <Typography variant="subtitle2">
+                            {moment(time).format("DD-MM-YYYY HH:mm:ss")}:00
                           </Typography>
                         </TableCell>
 
-                        <TableCell align="left">
+                        <TableCell noWrap>
                           {actionTypeName === "edit vote" && (
                             <Label color="warning">Thay đổi bình chọn</Label>
                           )}
@@ -221,7 +226,7 @@ export default function HistoryUser() {
                             <Label color="success">Đã bình chọn</Label>
                           )}
                         </TableCell>
-                        <TableCell align="left">{description}</TableCell>
+                        <TableCell noWrap>{description}</TableCell>
 
                         {/* <TableCell width="2%">
                           {<IconButton>{getIcon("carbon:view-filled")}</IconButton>}

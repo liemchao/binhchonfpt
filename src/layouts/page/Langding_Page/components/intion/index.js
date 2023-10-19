@@ -123,11 +123,13 @@ export default function Section3() {
                       fontWeight="normal"
                       fontSize={{ xs: "15px", sm: "25px" }} // Kích thước font chữ thay đổi khi trên web hoặc mobile
                       sx={{
+                        marginLeft: "2rem",
                         color: "#B83490",
                         fontFamily: "UTM Swiss Condensed Regular",
                         // Đặt font chữ tùy chỉnh
                         marginTop: isMobile ? "0.3rem" : "0rem",
                         textAlign: "start", // Căn giữa nội dung
+                        textIndent: isMobile ? "-1.5rem" : "-2rem",
                       }}
                     >
                       <li>
