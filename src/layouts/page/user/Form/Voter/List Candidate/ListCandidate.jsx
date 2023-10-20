@@ -915,6 +915,7 @@ export default function ListCandidate() {
             }}
             id="6097a517-11ad-4105-b26a-0e93bea2cb43"
             IdStage="6097a517-11ad-4105-b26a-0e93bea2cb43"
+            token={token}
           />
         </>
       )}
