@@ -93,7 +93,9 @@ export default function ListCandidate() {
       };
 
       const response = await axios.get(
-        `https://votingsystemfpt-001-site1.htempurl.com/api/v1/candidates/stage/6097a517-11ad-4105-b26a-0e93bea2cb43/user/${decode.Username || decode.userId}?page=${currentPage}&byName=${title}&gsg=${process}&special=${process1}&isvoted=${isVoted}`,
+        `https://votingsystemfpt-001-site1.htempurl.com/api/v1/candidates/stage/6097a517-11ad-4105-b26a-0e93bea2cb43/user/${
+          decode.Username || decode.userId
+        }?page=${currentPage}&byName=${title}&gsg=${process}&special=${process1}&isvoted=${isVoted}`,
         config
       );
       setCandidates(response.data.data);
@@ -102,8 +104,7 @@ export default function ListCandidate() {
     }
   };
 
-
-  useEffect(() => { }, [])
+  useEffect(() => {}, []);
 
   useEffect(() => {
     fetchData(token, setCandidates);
@@ -148,6 +149,11 @@ export default function ListCandidate() {
     {
       id: "Tất cả",
       title: "Tất cả",
+    },
+    {
+      id: "Bộ môn Chính trị",
+      title: "Bộ môn Chính trị",
+      nametitle: "Khối ngành giảng viên",
     },
     {
       id: "Khối ngành Ngôn ngữ và Mỹ thuật",

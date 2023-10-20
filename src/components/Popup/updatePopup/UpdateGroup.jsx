@@ -22,7 +22,6 @@ export function NavigationPopup(props) {
   const [deToken, setDeToken] = useState();
 
   const [groupid, setGroupId] = useState("");
-  const [OpenDiaLog, SetOpenDialog] = useState()
   const [selectedMajor, setSelectedMajor] = useState("");
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
