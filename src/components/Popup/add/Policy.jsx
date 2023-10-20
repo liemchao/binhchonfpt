@@ -7,6 +7,7 @@ import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import VotingRules from "layouts/page/Langding_Page/components/rules";
 import { Container, Dialog } from "@mui/material";
 import jwt_decode from "jwt-decode";
+import { getScorebyStage } from "context/redux/action/action";
 
 export default function Policy(props) {
   const { id } = useParams();
@@ -16,7 +17,7 @@ export default function Policy(props) {
   const token = localStorage.getItem("token");
   const decode = jwt_decode(token);
   const handleUnderstand = async () => {
-    // await dispatch(getScorebyStage(id, decode.Username, token));
+    await dispatch(getScorebyStage(id, decode.Username || decode.userId, token));
     SetOpenAlret(false);
   };
   return (
