@@ -12,6 +12,7 @@ import API from "config/axios/API/API";
 import { getScorebyStage } from "context/redux/action/action";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import { useTheme, useMediaQuery } from "@mui/material";
+import Policy from "../add/Policy";
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
 export function NavigationPopup(props) {

@@ -92,9 +92,7 @@ export default function ListCandidate() {
       };
 
       const response = await axios.get(
-        `https://votingsystemfpt-001-site1.htempurl.com/api/v1/candidates/stage/6097a517-11ad-4105-b26a-0e93bea2cb43/user/${
-          decode.Username || decode.userId
-        }?page=${currentPage}&byName=${title}&gsg=${process}&special=${process1}&isvoted=${isVoted}`,
+        `https://votingsystemfpt-001-site1.htempurl.com/api/v1/candidates/stage/6097a517-11ad-4105-b26a-0e93bea2cb43/user/${decode.Username}?page=${currentPage}&byName=${title}&gsg=${process}&special=${process1}&isvoted=${isVoted}`,
         config
       );
       setCandidates(response.data.data);
@@ -219,7 +217,7 @@ export default function ListCandidate() {
   useEffect(() => {
     const callAPIgetList = async () => {
       if (listIdArray !== null) {
-        dispatch(CheckVoter(decode.Username || decode.userId, idCampainStore, token));
+        dispatch(CheckVoter(decode.Username, idCampainStore, token));
       }
     };
     callAPIgetList();
@@ -248,7 +246,7 @@ export default function ListCandidate() {
 
   const handleVotingLike = async (token, idcandidate) => {
     const data = {
-      userId: decode.Username || decode.userId,
+      userId: decode.Username,
       candidateId: idcandidate,
       stageId: id,
     };
@@ -259,7 +257,7 @@ export default function ListCandidate() {
           message: `${req.data?.message}`,
           type: "SUCCESS",
         });
-        await dispatch(getScorebyStage(id, decode.Username || decode.userId, token));
+        await dispatch(getScorebyStage(id, decode.Username, token));
       }
     } catch (error) {
       if (error.response.data.statusCode === 404) {
@@ -302,7 +300,7 @@ export default function ListCandidate() {
           message: `${req.data?.message}`,
           type: "SUCCESS",
         });
-        await dispatch(getScorebyStage(id, decode.Username || decode.userId, token));
+        await dispatch(getScorebyStage(id, decode.Username, token));
       }
     } catch (error) {
       if (error.response.data.statusCode === 404) {
