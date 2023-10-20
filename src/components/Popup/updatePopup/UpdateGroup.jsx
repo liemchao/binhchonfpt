@@ -24,6 +24,7 @@ export function NavigationPopup(props) {
   const [selectedMajor, setSelectedMajor] = useState("");
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [OpenDiaLog, SetOpenDialog] = useState(false);
 
   useEffect(() => {
     const decode = jwt_decode(token);
