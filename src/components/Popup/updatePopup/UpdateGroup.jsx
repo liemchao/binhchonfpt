@@ -12,6 +12,7 @@ import API from "config/axios/API/API";
 import { getScorebyStage } from "context/redux/action/action";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import { useTheme, useMediaQuery } from "@mui/material";
+import Policy from "../add/Policy";
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
 export function NavigationPopup(props) {
@@ -19,7 +20,9 @@ export function NavigationPopup(props) {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const [deToken, setDeToken] = useState();
+
   const [groupid, setGroupId] = useState("");
+  const [OpenDiaLog, SetOpenDialog] = useState()
   const [selectedMajor, setSelectedMajor] = useState("");
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -93,7 +96,7 @@ export function NavigationPopup(props) {
           message: "Cập nhật nhóm thành công",
           type: "SUCCESS",
         });
-        await dispatch(getScorebyStage(IdStage, deToken.Username || deToken.userId, token));
+        await dispatch(getScorebyStage(IdStage, deToken.Username, token));
         onClose();
       }
     } catch (error) {

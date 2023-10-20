@@ -122,7 +122,7 @@ export const callAPIgetListForm = (token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -136,7 +136,7 @@ export const callAPIgetListCampaigns = (token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -150,7 +150,7 @@ export const callAPIgetListCampaignsAdmin = (token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -164,7 +164,7 @@ export const callAPIgeCampaignsRepresentative = () => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -178,7 +178,7 @@ export const callAPIgetListCandidates = (token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -197,7 +197,7 @@ export const callAPIgetListHistory = (userName, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 export const handleGetCampaignById = (id, navigate) => {
@@ -250,7 +250,7 @@ export const GetCampaignById = (id, navigate, token) => {
           payload: req.data.data,
         })
       );
-    } catch (error) {}
+    } catch (error) { }
   };
 };
 
@@ -264,7 +264,7 @@ export const handleGetCandidateByIdCampaign = (token, id) => {
           payload: req.data.data,
         })
       );
-    } catch (error) {}
+    } catch (error) { }
   };
 };
 
@@ -279,7 +279,7 @@ export const GetCampaignbyUserId = (id, token) => {
           payload: req.data.data,
         })
       );
-    } catch (error) {}
+    } catch (error) { }
   };
 };
 
@@ -295,7 +295,7 @@ export const handleGetQuestByIdCampaign = (id, token) => {
           payload: req.data.data,
         })
       );
-    } catch (error) {}
+    } catch (error) { }
   };
 };
 
@@ -335,7 +335,7 @@ export const handleCreateForm = (token, data) => {
           payload: req.data.data,
         })
       );
-    } catch (error) {}
+    } catch (error) { }
   };
 };
 export const handleCreateQuestion = (token, data) => {
@@ -372,7 +372,7 @@ export const getAllCategory = (token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -386,7 +386,7 @@ export const getAllUser = (token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -400,7 +400,7 @@ export const getAllType = (token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -414,7 +414,7 @@ export const getFormId = (id, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 export const getCampaignId = (id, token) => {
@@ -427,7 +427,7 @@ export const getCampaignId = (id, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -441,7 +441,7 @@ export const getCampaignRatio = (id, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -455,7 +455,7 @@ export const getCampaignID = (id, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -488,7 +488,7 @@ export const getformbyIdUser = (id, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -502,7 +502,7 @@ export const getGroupId = (idcampaign, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -521,26 +521,27 @@ export const getScore = (campaignid, userId, token) => {
           payload: res.data.data.listCandidateScore,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
-export const getScorebyStage = (stageid, username, currentPage, token) => {
+export const getScorebyStage = (stageid, username, token) => {
   return async (dispatch) => {
     try {
       const res = await API(
         "GET",
-        URL_API + `/api/v1/candidates/stage/${stageid}/user/${username}}`,
+        URL_API + `/api/v1/candidates/stage/${stageid}/user/${username}`,
         null,
         token
       );
+      console.log("🚀 ~ file: action.js:537 ~ return ~ res:", res)
       dispatch(
         createAction({
           type: PathAction.GET_LIST_SCORE_STAGE,
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -606,7 +607,7 @@ export const getStagebyId = (id, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -620,7 +621,7 @@ export const callAPIProfile = (userid, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -635,7 +636,7 @@ export const getAccount = (token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -649,7 +650,7 @@ export const getFeedBack = (token, id) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -663,7 +664,7 @@ export const getFeedBackCampaign = (id, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 //================
@@ -678,7 +679,7 @@ export const getFeedBackUser = (userName, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 //----------------------------
@@ -698,7 +699,7 @@ export const getListThongke = (token, id, DateAt, ToDate) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -712,7 +713,7 @@ export const getFeeback = (token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -726,7 +727,7 @@ export const getCandidateID = (id, token) => {
           payload: res.data.data[0].candidateId,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -740,7 +741,7 @@ export const getActivity = (id, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -759,7 +760,7 @@ export const getDetailCanidate = (idCandidate, idStage, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -773,7 +774,7 @@ export const getCandidatebyId = (idCandidate, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -787,7 +788,7 @@ export const getstatisticalsById = (id, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -807,7 +808,7 @@ export const getGroupMajorById = (id, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -827,7 +828,7 @@ export const getStatisticalCandidateById = (id, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 
@@ -842,7 +843,7 @@ export const callAPIgetListResult = (id, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 };
 export const callAPIgetDetailQuestion = (id, token) => {
@@ -856,6 +857,21 @@ export const callAPIgetDetailQuestion = (id, token) => {
           payload: res.data.data,
         })
       );
-    } catch (err) {}
+    } catch (err) { }
+  };
+};
+
+export const getCandidateinUpdateGroup = (id, token) => {
+  return async (dispatch) => {
+    try {
+      const res = await API("GET", URL_API + `/api/v1/candidates/state/6097a517-11ad-4105-b26a-0e93bea2cb43/user/${id}`, null, token);
+      console.log("🚀 ~ file: action.js:784 ~ return ~ res:", res);
+      dispatch(
+        createAction({
+          type: PathAction.GET_DETAIL_QUESTION,
+          payload: res.data.data,
+        })
+      );
+    } catch (err) { }
   };
 };
