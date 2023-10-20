@@ -24,8 +24,9 @@ import { useTheme, useMediaQuery } from "@mui/material";
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
 export function NavigationPopup(props) {
-  const { SetisOpen, id, IdStage, token } = props;
+  const { SetisOpen, id, IdStage } = props;
   const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
   const decode = jwt_decode(token);
   const [groupid, setGroupId] = useState("");
   const [selectedMajor, setSelectedMajor] = useState("");
