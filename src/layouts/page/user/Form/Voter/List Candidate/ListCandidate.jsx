@@ -103,7 +103,7 @@ export default function ListCandidate() {
 
   useEffect(() => {
     fetchData(token, setCandidates);
-  }, [candidates, isVoted, process1, process, title, currentPage, token]);
+  }, [isVoted, process1, process, title, currentPage, token]);
 
   useEffect(() => {
     const callAPI = async () => {
