@@ -54,6 +54,7 @@ export default function ListCandidate() {
   const [isopen, setIsopen] = useState(true);
   const [hasopen, setHasopen] = useState(false);
   const token = localStorage.getItem("token");
+
   const decode = jwt_decode(token);
   const [open, setopen] = useState(false);
   const [name, setName] = useState();
@@ -92,7 +93,7 @@ export default function ListCandidate() {
       };
 
       const response = await axios.get(
-        `https://votingsystemfpt-001-site1.htempurl.com/api/v1/candidates/stage/6097a517-11ad-4105-b26a-0e93bea2cb43/user/${decode.Username}?page=${currentPage}&byName=${title}&gsg=${process}&special=${process1}&isvoted=${isVoted}`,
+        `https://votingsystemfpt-001-site1.htempurl.com/api/v1/candidates/stage/6097a517-11ad-4105-b26a-0e93bea2cb43/user/${decode.Username || decode.userId}?page=${currentPage}&byName=${title}&gsg=${process}&special=${process1}&isvoted=${isVoted}`,
         config
       );
       setCandidates(response.data.data);
@@ -101,9 +102,12 @@ export default function ListCandidate() {
     }
   };
 
+
+  useEffect(() => { }, [])
+
   useEffect(() => {
     fetchData(token, setCandidates);
-  }, [candidates, isVoted, process1, process, title, currentPage, token, dispatch]);
+  }, [candidates, isVoted, process1, process, title, currentPage, token, dispatch, fetchData]);
 
   useEffect(() => {
     const callAPI = async () => {

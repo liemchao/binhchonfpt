@@ -20,7 +20,9 @@ export function NavigationPopup(props) {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const [deToken, setDeToken] = useState();
+
   const [groupid, setGroupId] = useState("");
+  const [OpenDiaLog, SetOpenDialog] = useState()
   const [selectedMajor, setSelectedMajor] = useState("");
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -95,7 +97,7 @@ export function NavigationPopup(props) {
           message: "Cập nhật nhóm thành công",
           type: "SUCCESS",
         });
-        await dispatch(getScorebyStage(IdStage, deToken.Username || deToken.userId, token));
+        await dispatch(getScorebyStage(IdStage, deToken.Username, token));
         onClose();
       }
     } catch (error) {
