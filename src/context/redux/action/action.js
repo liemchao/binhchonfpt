@@ -525,12 +525,12 @@ export const getScore = (campaignid, userId, token) => {
   };
 };
 
-export const getScorebyStage = (stageid, username, token) => {
+export const getScorebyStage = (stageid, username, currentPage, token) => {
   return async (dispatch) => {
     try {
       const res = await API(
         "GET",
-        URL_API + `/api/v1/candidates/stage/${stageid}/user/${username}`,
+        URL_API + `/api/v1/candidates/stage/${stageid}/user/${username}?page=${currentPage}`,
         null,
         token
       );

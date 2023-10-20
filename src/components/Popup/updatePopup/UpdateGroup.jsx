@@ -34,7 +34,7 @@ export function NavigationPopup(props) {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   useEffect(() => {
     const callAPI = async () => {
-      if (token!== null) {
+      if (token !== null) {
         await dispatch(getGroupId(id, token));
       }
     };
@@ -86,14 +86,13 @@ export function NavigationPopup(props) {
       };
       const req = await API("PUT", URL_API + `/api/v1/users/${decode.Username}/group`, data, token);
       if (req) {
-        SetOpenDialog(true);
         CustomizedToast({
           message: "Cập nhật nhóm thành công",
           type: "SUCCESS",
         });
-        await dispatch(getScorebyStage(IdStage, decode.Username, token));
-        onClose();
       }
+      await dispatch(getScorebyStage(IdStage, decode.Username, 1, token));
+      onClose();
     } catch (error) {
       if (error.response.data.statusCode === 404) {
         CustomizedToast({
@@ -206,7 +205,7 @@ export function NavigationPopup(props) {
           <ButtonLangding height={"1rem"} onClick={onClose} nameButton="Hủy bỏ"></ButtonLangding>
         </Box>
       </Dialog>
-      <Policy OpenAlret={OpenDiaLog} SetOpenAlret={SetOpenDialog}></Policy>
+      {/* <Policy OpenAlret={OpenDiaLog} SetOpenAlret={SetOpenDialog}></Policy> */}
     </>
   );
 }
