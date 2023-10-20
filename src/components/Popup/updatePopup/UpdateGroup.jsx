@@ -91,7 +91,7 @@ export function NavigationPopup(props) {
           type: "SUCCESS",
         });
       }
-      await dispatch(getScorebyStage(IdStage, decode.Username, 1, token));
+      await dispatch(getScorebyStage(IdStage, decode.Username, token));
       onClose();
     } catch (error) {
       if (error.response.data.statusCode === 404) {

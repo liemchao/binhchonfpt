@@ -103,7 +103,7 @@ export default function ListCandidate() {
 
   useEffect(() => {
     fetchData(token, setCandidates);
-  }, [isVoted, process1, process, title, currentPage, token, dispatch]);
+  }, [candidates, isVoted, process1, process, title, currentPage, token, dispatch]);
 
   useEffect(() => {
     const callAPI = async () => {
@@ -257,7 +257,7 @@ export default function ListCandidate() {
           message: `${req.data?.message}`,
           type: "SUCCESS",
         });
-        await dispatch(getScorebyStage(id, decode.Username, currentPage, token));
+        await dispatch(getScorebyStage(id, decode.Username, token));
       }
     } catch (error) {
       if (error.response.data.statusCode === 404) {
@@ -300,7 +300,7 @@ export default function ListCandidate() {
           message: `${req.data?.message}`,
           type: "SUCCESS",
         });
-        await dispatch(getScorebyStage(id, decode.Username, currentPage, token));
+        await dispatch(getScorebyStage(id, decode.Username, token));
       }
     } catch (error) {
       if (error.response.data.statusCode === 404) {

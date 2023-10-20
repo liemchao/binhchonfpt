@@ -530,7 +530,7 @@ export const getScorebyStage = (stageid, username, currentPage, token) => {
     try {
       const res = await API(
         "GET",
-        URL_API + `/api/v1/candidates/stage/${stageid}/user/${username}?page=${currentPage}`,
+        URL_API + `/api/v1/candidates/stage/${stageid}/user/${username}}`,
         null,
         token
       );
