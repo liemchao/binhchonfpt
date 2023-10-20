@@ -19,7 +19,6 @@ export function NavigationPopup(props) {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const [deToken, setDeToken] = useState();
-
   const [groupid, setGroupId] = useState("");
   const [selectedMajor, setSelectedMajor] = useState("");
   const theme = useTheme();
@@ -89,13 +88,14 @@ export function NavigationPopup(props) {
         token
       );
       if (req) {
+        SetOpenDialog(true);
         CustomizedToast({
           message: "Cập nhật nhóm thành công",
           type: "SUCCESS",
         });
+        await dispatch(getScorebyStage(IdStage, deToken.Username || deToken.userId, token));
+        onClose();
       }
-      await dispatch(getScorebyStage(IdStage, deToken.Username || deToken.userId, token));
-      onClose();
     } catch (error) {
       console.log("🚀 ~ file: UpdateGroup.jsx:101 ~ handleConfirm ~ error:", error);
       if (error?.response?.data?.statusCode === 404) {
@@ -209,7 +209,7 @@ export function NavigationPopup(props) {
           <ButtonLangding height={"1rem"} onClick={onClose} nameButton="Hủy bỏ"></ButtonLangding>
         </Box>
       </Dialog>
-      {/* <Policy OpenAlret={OpenDiaLog} SetOpenAlret={SetOpenDialog}></Policy> */}
+      <Policy OpenAlret={OpenDiaLog} SetOpenAlret={SetOpenDialog}></Policy>
     </>
   );
 }
