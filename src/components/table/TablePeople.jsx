@@ -29,7 +29,7 @@ function descendingComparator(a, b, orderBy) {
 function getComparator(order, orderBy) {
   return order === "desc"
     ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
+    : (a, b) => descendingComparator(a, b, orderBy);
 }
 
 function stableSort(array, comparator) {
@@ -59,8 +59,8 @@ const headCells = [
     label: "Giai đoạn",
   },
   {
-    id: "name",
-    numeric: false,
+    id: "totalScore",
+    numeric: true,
     disablePadding: false,
     label: "Điểm",
   },
@@ -225,13 +225,8 @@ function TablePeople({ people }) {
                           <div key={i}>{stageScore.stageName}</div>
                         ))}
                       </TableCell>
-                      <TableCell>
-                        {row.listStageScore.map((stageScore, i) => (
-                          <div key={i}>{stageScore.stageScore}</div>
-                        ))}
-                      </TableCell>
 
-                      <TableCell align="left">{row.stotalScore}</TableCell>
+                      <TableCell align="left">{row.totalScore}</TableCell>
                     </TableRow>
                   );
                 })}
