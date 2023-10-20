@@ -525,7 +525,7 @@ export const getScore = (campaignid, userId, token) => {
   };
 };
 
-export const getScorebyStage = (stageid, username, currentPage, token) => {
+export const getScorebyStage = (stageid, username, token) => {
   return async (dispatch) => {
     try {
       const res = await API(
