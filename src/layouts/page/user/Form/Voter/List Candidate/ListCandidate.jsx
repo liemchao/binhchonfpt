@@ -256,7 +256,7 @@ export default function ListCandidate() {
 
   const handleVotingLike = async (token, idcandidate) => {
     const data = {
-      userId: decode.Username,
+      userId:  decode.Username || decode.userId,
       candidateId: idcandidate,
       stageId: id,
     };
@@ -267,7 +267,7 @@ export default function ListCandidate() {
           message: `${req.data?.message}`,
           type: "SUCCESS",
         });
-        await dispatch(getScorebyStage(id, decode.Username, token));
+        await dispatch(getScorebyStage(id,  decode.Username || decode.userId, token));
       }
     } catch (error) {
       if (error.response.data.statusCode === 404) {
@@ -299,7 +299,7 @@ export default function ListCandidate() {
 
   const hanldeUnvote = async (token, idcandidate) => {
     const data = {
-      userId: decode.Username,
+      userId:  decode.Username || decode.userId,
       candidateId: idcandidate,
       stageId: id,
     };
@@ -310,7 +310,7 @@ export default function ListCandidate() {
           message: `${req.data?.message}`,
           type: "SUCCESS",
         });
-        await dispatch(getScorebyStage(id, decode.Username, token));
+        await dispatch(getScorebyStage(id,  decode.Username || decode.userId, token));
       }
     } catch (error) {
       if (error.response.data.statusCode === 404) {

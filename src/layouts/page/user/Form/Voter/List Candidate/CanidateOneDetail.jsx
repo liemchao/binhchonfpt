@@ -81,7 +81,7 @@ export default function CandateOneDetail() {
   };
   const handleVotingLike = async (token) => {
     const data = {
-      userId: decoded.Username,
+      userId: decoded.Username || decoded.userId,
       candidateId: idCanidate,
       stageId: idStage,
     };
@@ -107,7 +107,7 @@ export default function CandateOneDetail() {
         });
       } else {
         CustomizedToast({
-          message: "Lỗi mạng",
+          message: "Có lỗi khi xác nhận tài khoản.Vui lòng đăng nhập lại",
           type: "ERROR",
         });
       }
@@ -116,7 +116,7 @@ export default function CandateOneDetail() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const matches = useMediaQuery(theme.breakpoints.down("md"));
-  
+
   return (
     <>
       <Container variant="permanant" fullScreen>
