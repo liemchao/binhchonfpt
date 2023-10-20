@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  Grid,
-  Box,
-} from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Grid, Box } from "@mui/material";
 import Select from "components/Control/Select";
 import PageHeader from "components/Layout/PageHeader";
 import Iconify from "assets/theme/components/icon/Iconify";
@@ -18,7 +10,6 @@ import { CustomizedToast } from "components/toast/ToastCustom";
 import { URL_API } from "config/axios/Url/URL";
 import API from "config/axios/API/API";
 import { getScorebyStage } from "context/redux/action/action";
-import Policy from "../add/Policy";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import { useTheme, useMediaQuery } from "@mui/material";
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
@@ -27,12 +18,18 @@ export function NavigationPopup(props) {
   const { SetisOpen, id, IdStage } = props;
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
-  const decode = jwt_decode(token);
+  const [deToken, setDeToken] = useState();
+
   const [groupid, setGroupId] = useState("");
   const [selectedMajor, setSelectedMajor] = useState("");
-  const [OpenDiaLog, SetOpenDialog] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  useEffect(() => {
+    const decode = jwt_decode(token);
+    setDeToken(decode);
+  }, [token]);
+
   useEffect(() => {
     const callAPI = async () => {
       if (token !== null) {
@@ -85,17 +82,23 @@ export function NavigationPopup(props) {
         campaignId: id,
         groupMajorId: selectedMajor,
       };
-      const req = await API("PUT", URL_API + `/api/v1/users/${decode.Username}/group`, data, token);
+      const req = await API(
+        "PUT",
+        URL_API + `/api/v1/users/${deToken.Username || deToken.userId}/group`,
+        data,
+        token
+      );
       if (req) {
         CustomizedToast({
           message: "Cập nhật nhóm thành công",
           type: "SUCCESS",
         });
       }
-      await dispatch(getScorebyStage(IdStage, decode.Username, token));
+      await dispatch(getScorebyStage(IdStage, deToken.Username || deToken.userId, token));
       onClose();
     } catch (error) {
-      if (error.response.data.statusCode === 404) {
+      console.log("🚀 ~ file: UpdateGroup.jsx:101 ~ handleConfirm ~ error:", error);
+      if (error?.response?.data?.statusCode === 404) {
         CustomizedToast({
           message: `${error.response.data.message}`,
           type: "ERROR",
