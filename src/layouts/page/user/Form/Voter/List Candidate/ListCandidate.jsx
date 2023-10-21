@@ -86,7 +86,9 @@ export default function ListCandidate() {
     "&.Mui-focused": { width: 320, boxShadow: "0.7 rem" },
   }));
 
-  const fetchData = async (token, setCandidates) => {
+  const [newCandidates, setNewCandidates] = useState([]);
+
+  const fetchData = async (token) => {
     try {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
@@ -98,17 +100,32 @@ export default function ListCandidate() {
         }?page=${currentPage}&byName=${title}&gsg=${process}&special=${process1}&isvoted=${isVoted}`,
         config
       );
-      setCandidates(response.data.data);
+      return response.data.data; // Trả về dữ liệu mới
     } catch (error) {
       console.log(error);
+      return []; // Trả về một mảng rỗng nếu có lỗi
     }
   };
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
-    fetchData(token, setCandidates);
-  }, [candidates, isVoted, process1, process, title, currentPage, token, dispatch, fetchData]);
+    let isMounted = true; // Biến flag để kiểm tra xem component đã được unmounted hay chưa
+
+    const fetchDataAndSetCandidates = async () => {
+      const newCandidates = await fetchData(token);
+      if (isMounted) {
+        // Kiểm tra xem component có được mount hay không trước khi cập nhật state
+        setCandidates(newCandidates);
+      }
+    };
+
+    fetchDataAndSetCandidates();
+
+    return () => {
+      isMounted = false; // Đánh dấu component đã unmounted khi useEffect cleanup được gọi
+    };
+  }, [isVoted, process1, process, title, currentPage, token, fetchData]);
+
+  //...
 
   useEffect(() => {
     const callAPI = async () => {
@@ -256,7 +273,7 @@ export default function ListCandidate() {
 
   const handleVotingLike = async (token, idcandidate) => {
     const data = {
-      userId:  decode.Username || decode.userId,
+      userId: decode.Username || decode.userId,
       candidateId: idcandidate,
       stageId: id,
     };
@@ -267,7 +284,7 @@ export default function ListCandidate() {
           message: `${req.data?.message}`,
           type: "SUCCESS",
         });
-        await dispatch(getScorebyStage(id,  decode.Username || decode.userId, token));
+        await dispatch(getScorebyStage(id, decode.Username || decode.userId, token));
       }
     } catch (error) {
       if (error.response.data.statusCode === 404) {
@@ -299,7 +316,7 @@ export default function ListCandidate() {
 
   const hanldeUnvote = async (token, idcandidate) => {
     const data = {
-      userId:  decode.Username || decode.userId,
+      userId: decode.Username || decode.userId,
       candidateId: idcandidate,
       stageId: id,
     };
@@ -310,7 +327,7 @@ export default function ListCandidate() {
           message: `${req.data?.message}`,
           type: "SUCCESS",
         });
-        await dispatch(getScorebyStage(id,  decode.Username || decode.userId, token));
+        await dispatch(getScorebyStage(id, decode.Username || decode.userId, token));
       }
     } catch (error) {
       if (error.response.data.statusCode === 404) {
