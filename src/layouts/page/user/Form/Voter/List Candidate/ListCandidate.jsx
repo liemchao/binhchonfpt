@@ -86,7 +86,6 @@ export default function ListCandidate() {
     "&.Mui-focused": { width: 320, boxShadow: "0.7 rem" },
   }));
 
-  const [newCandidates, setNewCandidates] = useState([]);
 
   const fetchData = async (token) => {
     try {
@@ -123,7 +122,7 @@ export default function ListCandidate() {
     return () => {
       isMounted = false; // Đánh dấu component đã unmounted khi useEffect cleanup được gọi
     };
-  }, [isVoted, process1, process, title, currentPage, token, fetchData]);
+  }, [isVoted, process1, process, title, currentPage, token]);
 
   //...
 
