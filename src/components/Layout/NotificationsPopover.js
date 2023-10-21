@@ -78,8 +78,8 @@ export default function NotificationsPopover() {
     setReadNotifications(updatedNotifications.filter((notification) => notification.isRead));
   };
   useEffect(() => {
+    fetchData();
     const interval = setInterval(() => {
-      fetchData();
       fetchDataProcess();
     }, 6000);
     return () => clearInterval(interval);

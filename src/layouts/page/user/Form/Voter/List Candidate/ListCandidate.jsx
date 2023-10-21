@@ -86,45 +86,38 @@ export default function ListCandidate() {
     "&.Mui-focused": { width: 320, boxShadow: "0.7 rem" },
   }));
 
-
-  const fetchData = async (token) => {
+  const fetchData = async (token, setCandidates) => {
     try {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-
       const response = await axios.get(
         `https://votingsystemfpt-001-site1.htempurl.com/api/v1/candidates/stage/6097a517-11ad-4105-b26a-0e93bea2cb43/user/${
           decode.Username || decode.userId
         }?page=${currentPage}&byName=${title}&gsg=${process}&special=${process1}&isvoted=${isVoted}`,
         config
       );
-      return response.data.data; // Trả về dữ liệu mới
+      setCandidates(response.data.data);
     } catch (error) {
       console.log(error);
-      return []; // Trả về một mảng rỗng nếu có lỗi
     }
   };
 
   useEffect(() => {
-    let isMounted = true; // Biến flag để kiểm tra xem component đã được unmounted hay chưa
-
-    const fetchDataAndSetCandidates = async () => {
-      const newCandidates = await fetchData(token);
-      if (isMounted) {
-        // Kiểm tra xem component có được mount hay không trước khi cập nhật state
-        setCandidates(newCandidates);
-      }
+    const fetchDataWrapper = async () => {
+      await fetchData(token, setCandidates);
     };
 
-    fetchDataAndSetCandidates();
-
-    return () => {
-      isMounted = false; // Đánh dấu component đã unmounted khi useEffect cleanup được gọi
-    };
+    fetchDataWrapper();
   }, [isVoted, process1, process, title, currentPage, token]);
 
-  //...
+  useEffect(() => {
+    fetchData(token, setCandidates);
+  }, [candidates, dispatch]);
+
+  useEffect(() => {
+    fetchData(token, setCandidates);
+  }, []);
 
   useEffect(() => {
     const callAPI = async () => {
