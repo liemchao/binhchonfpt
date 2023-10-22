@@ -17,12 +17,8 @@ import Select from "components/Control/Select";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { handleGetQuestByIdCampaign } from "context/redux/action/action";
-import QuestionPopUp from "components/Popup/create/QuestionPopUp";
-import MultipleInteractionCard from "components/Cards/CardCandidate";
 import Page from "components/Layout/Page";
 import Favorite from "@mui/icons-material/Favorite";
-
 import CardLike from "components/Cards/CardLike";
 import { CustomizedToast } from "components/toast/ToastCustom";
 import { URL_API } from "config/axios/Url/URL";
@@ -31,17 +27,14 @@ import { useCallback } from "react";
 import QRPopUp from "components/Popup/create/QRPopUp";
 import { NavigationPopup } from "components/Popup/updatePopup/UpdateGroup";
 import { getGroupId } from "context/redux/action/action";
-import CandateDetail from "layouts/page/user/Candidate/DetailCandidate";
 import { getScorebyStage } from "context/redux/action/action";
 import FeedbackBubble from "components/Popup/create/FeedblackPopup";
 import jwt_decode from "jwt-decode";
 import { CheckVoter } from "context/redux/action/action";
 import IconButton from "@mui/joy/IconButton";
 import ScrollToTopButton from "./scollpage";
-import { CheckFeedback } from "context/redux/action/action";
 import PolicyIcon from "@mui/icons-material/Policy";
 import Policy from "components/Popup/add/Policy";
-import axios from "axios";
 import { useTheme, useMediaQuery } from "@mui/material";
 
 export default function ListCandidate() {
@@ -49,12 +42,10 @@ export default function ListCandidate() {
   const [Link, setLink] = useState(window.location.href);
   const [IdCanidate, setIdCanidate] = useState();
   const { id } = useParams();
-  const [OpenDiaLog, SetOpenDialog] = useState(false);
   const dispatch = useDispatch();
   const [isopen, setIsopen] = useState(true);
   const [hasopen, setHasopen] = useState(false);
   const token = localStorage.getItem("token");
-
   const decode = jwt_decode(token);
   const [open, setopen] = useState(false);
   const [name, setName] = useState();
@@ -63,7 +54,6 @@ export default function ListCandidate() {
   const [url, setUrl] = useState();
   const [showMore, setShowMore] = useState(false);
   const [process, setProcess] = useState("Tất cả");
-  const [process1, setProcess1] = useState("Tất cả");
   const [seacrchResult, setseacrchResulst] = useState([]);
   const [title, setTitle] = useState("");
   const candidatesPerPage = 6;
@@ -71,9 +61,6 @@ export default function ListCandidate() {
   const [namegroup, setNameGroup] = useState();
   const [isVoted, setisVoted] = useState(false);
   const navigate = useNavigate();
-  const [candidates, setCandidates] = useState([]);
-  const [submitTime, setStartTime] = useState(new Date());
-  const [currentPage, setCurrentPage] = useState(1);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const idCampainStore = "6097a517-11ad-4105-b26a-0e93bea2cb43";
@@ -86,41 +73,9 @@ export default function ListCandidate() {
     "&.Mui-focused": { width: 320, boxShadow: "0.7 rem" },
   }));
 
-  const fetchData = async (token, setCandidates) => {
-    try {
-      const config = {
-        headers: { Authorization: `Bearer ${token}` },
-      };
-      const response = await axios.get(
-        `https://votingsystemfpt-001-site1.htempurl.com/api/v1/candidates/stage/6097a517-11ad-4105-b26a-0e93bea2cb43/user/${
-          decode.Username || decode.userId
-        }?page=${currentPage}&byName=${title}&gsg=${process}&special=${process1}&isvoted=${isVoted}`,
-        config
-      );
-      setCandidates(response.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    const fetchDataWrapper = async () => {
-      await fetchData(token, setCandidates);
-    };
-
-    fetchDataWrapper();
-  }, [isVoted, process1, process, title, currentPage, token]);
-
-  useEffect(() => {
-    fetchData(token, setCandidates);
-  }, [candidates, dispatch]);
-
-  useEffect(() => {
-    fetchData(token, setCandidates);
-  }, []);
-
   useEffect(() => {
     const callAPI = async () => {
+      await dispatch(getScorebyStage(id, decode.Username || decode.userId, token));
       await dispatch(getGroupId(idCampainStore, token));
     };
     callAPI();
@@ -209,7 +164,7 @@ export default function ListCandidate() {
       nametitle: "Ngành học của sinh viên",
     },
     {
-      id: "Bộ môn Khởi nghiệp",
+      id: "Bộ môn Phát triển khởi nghiệp",
       title: "Bộ môn Khởi nghiệp",
       nametitle: "Ngành học của sinh viên",
     },
@@ -224,6 +179,9 @@ export default function ListCandidate() {
       nametitle: "Ngành học của sinh viên",
     },
   ];
+  const liststageScore = useSelector((state) => {
+    return state.liststageScore;
+  });
 
   const listIdArray = useSelector((state) => {
     return state.listIdArray;
@@ -232,6 +190,110 @@ export default function ListCandidate() {
   const idCampaign = useSelector((state) => {
     return state.idCampaign;
   });
+
+  useEffect(() => {
+    if (!title) {
+      if (process === "Tất cả") {
+        setseacrchResulst(liststageScore.candidate);
+      } else if (process === "Khối ngành Quản trị doanh nghiệp") {
+        setseacrchResulst(() => {
+          return liststageScore.candidate.filter((candidate, index) => {
+            return (
+              (candidate.groupName === "Bộ môn Phát triển khởi nghiệp" ||
+                candidate.groupName === "Bộ môn Quản trị Truyền thông đa phương tiện" ||
+                candidate.groupName === "Bộ môn Quản trị Du lịch và khách sạn" ||
+                candidate.groupName === "Bộ môn Kinh tế") &&
+              candidate.fullName.toLowerCase().includes(title.toLowerCase())
+            );
+          });
+        });
+      } else if (process === "Khối ngành Kỹ thuật và Bộ môn Toán") {
+        setseacrchResulst(() => {
+          return liststageScore.candidate.filter((candidate, index) => {
+            return (
+              (candidate.groupName === "Bộ môn Kỹ thuật phần mềm" ||
+                candidate.groupName === "Bộ môn CF" ||
+                candidate.groupName === "Bộ môn An toàn thông tin" ||
+                candidate.groupName === "Bộ môn ITS") &&
+              candidate.fullName.toLowerCase().includes(title.toLowerCase())
+            );
+          });
+        });
+      } else if (process === "Khối ngành Ngôn ngữ và Mỹ thuật") {
+        setseacrchResulst(() => {
+          return liststageScore.candidate.filter((candidate, index) => {
+            return (
+              (candidate.groupName === "Bộ môn Hoạt hình kỹ thuật số" ||
+                candidate.groupName === "Bộ môn Tiếng Anh chuyên ngành" ||
+                candidate.groupName === "Bộ môn Thiết kế đồ họa" ||
+                candidate.groupName === "Bộ môn tiếng Nhật") &&
+              candidate.fullName.toLowerCase().includes(title.toLowerCase())
+            );
+          });
+        });
+      } else {
+        setseacrchResulst(() => {
+          return liststageScore.candidate.filter((candidate, index) => {
+            return candidate.groupName == process;
+          });
+        });
+      }
+    } else {
+      if (process === "Tất cả") {
+        setseacrchResulst(() => {
+          return liststageScore.candidate.filter((candidate, index) => {
+            return candidate.fullName.toLowerCase().includes(title.toLowerCase());
+          });
+        });
+      } else if (process === "Khối ngành Quản trị doanh nghiệp") {
+        setseacrchResulst(() => {
+          return liststageScore.candidate.filter((candidate, index) => {
+            return (
+              (candidate.groupName === "Bộ môn Phát triển khởi nghiệp" ||
+                candidate.groupName === "Bộ môn Quản trị Truyền thông đa phương tiện" ||
+                candidate.groupName === "Bộ môn Quản trị Du lịch và khách sạn" ||
+                candidate.groupName === "Bộ môn Kinh tế") &&
+              candidate.fullName.toLowerCase().includes(title.toLowerCase())
+            );
+          });
+        });
+      } else if (process === "Khối ngành Kỹ thuật và Bộ môn Toán") {
+        setseacrchResulst(() => {
+          return liststageScore.candidate.filter((candidate, index) => {
+            return (
+              (candidate.groupName === "Bộ môn Kỹ thuật phần mềm" ||
+                candidate.groupName === "Bộ môn CF" ||
+                candidate.groupName === "Bộ môn An toàn thông tin" ||
+                candidate.groupName === "Bộ môn ITS") &&
+              candidate.fullName.toLowerCase().includes(title.toLowerCase())
+            );
+          });
+        });
+      } else if (process === "Khối ngành Ngôn ngữ và Đồ họa") {
+        setseacrchResulst(() => {
+          return liststageScore.candidate.filter((candidate, index) => {
+            return (
+              (candidate.groupName === "Bộ môn Hoạt hình kỹ thuật số" ||
+                candidate.groupName === "Bộmôn Tiếng Anh chuyên ngành" ||
+                candidate.groupName === "Bộ môn Thiết kế đồ họa" ||
+                candidate.groupName === "Bộ môn tiếng Nhật") &&
+              candidate.fullName.toLowerCase().includes(title.toLowerCase())
+            );
+          });
+        });
+      } else {
+        setseacrchResulst(() => {
+          return liststageScore.candidate.filter((candidate, index) => {
+            return (
+              candidate.groupName == process &&
+              candidate.fullName.toLowerCase().includes(title.toLowerCase())
+            );
+          });
+        });
+        // Xử lý cho trường hợp khác (process không khớp với bất kỳ khối ngành nào)
+      }
+    }
+  }, [title, process, liststageScore]);
 
   useEffect(() => {
     const callAPIgetList = async () => {
@@ -256,12 +318,6 @@ export default function ListCandidate() {
     },
     [idCandi]
   );
-
-  // const hanldeGetQuestion = async (token, idCandidate) => {
-  //   await dispatch(handleGetQuestByIdCampaign(liststageScore.formId, token));
-  //   setIdCanidate(idCandidate);
-  //   SetOpenPopUp(true);
-  // };
 
   const handleVotingLike = async (token, idcandidate) => {
     const data = {
@@ -296,14 +352,6 @@ export default function ListCandidate() {
         });
       }
     }
-  };
-  const handleSelect1Change = (e) => {
-    setProcess(e.target.value);
-    setProcess1(null);
-  };
-  const handleSelect2Change = (e) => {
-    setProcess1(e.target.value);
-    setProcess(null);
   };
 
   const hanldeUnvote = async (token, idcandidate) => {
@@ -341,21 +389,49 @@ export default function ListCandidate() {
     }
   };
 
+  // const handleGroup1 = (group) => {
+  //   let listCandidate = [];
+  //   if (group === "Tất cả") {
+  //     listCandidate = liststageScore.candidate;
+  //   } else {
+  //     listCandidate = liststageScore.candidate.filter((candidate) => {
+  //       return candidate.groupName === group;
+  //     });
+  //   }
+  //   console.log(listCandidate);
+  //   setseacrchResulst(listCandidate);
+  // };
+
+  const handleStatus = (group) => {
+    let listCandidate = [];
+    if (group === "false") {
+      listCandidate = liststageScore.candidate;
+    } else {
+      listCandidate = liststageScore.candidate.filter((candidate) => {
+        return candidate.isVoted === true;
+      });
+    }
+    console.log(listCandidate);
+    setseacrchResulst(listCandidate);
+  };
+
   const handlePolicyClick = () => {
     SetOpenDialog(true);
   };
 
-  const totalPages = Math.ceil(candidates.totalPage);
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const totalPages = Math.ceil(seacrchResult?.length / candidatesPerPage);
   const handlePageChange = (event, value) => {
+    console.log("Page changed:", value);
     setCurrentPage(value);
   };
 
-  // const getCurrentCandidates = () => {
-  //   const startIndex = (currentPage - 1) * candidatesPerPage;
-  //   const endIndex = startIndex + candidatesPerPage;
-  //   return seacrchResult?.slice(startIndex, endIndex);
-  // };
+  const getCurrentCandidates = () => {
+    const startIndex = (currentPage - 1) * candidatesPerPage;
+    const endIndex = startIndex + candidatesPerPage;
+    return seacrchResult?.slice(startIndex, endIndex);
+  };
 
   return (
     <Page
@@ -373,7 +449,7 @@ export default function ListCandidate() {
         <Grid container spacing={2}>
           <Grid item mt={isMobile ? "-1.4rem" : "0"} xs={12}>
             <Paper>
-              {candidates.campaignName === "Chiến dịch bình chọn giảng viên FPT 2023" ? (
+              {liststageScore.campaignName === "Chiến dịch bình chọn giảng viên FPT 2023" ? (
                 <Typography
                   variant="h4"
                   fontWeight="bold"
@@ -395,7 +471,7 @@ export default function ListCandidate() {
                     fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
                   }}
                 >
-                  {candidates.campaignName}
+                  {liststageScore.campaignName}
                   <Tooltip
                     title="Thể lệ bình chọn"
                     sx={{
@@ -429,7 +505,8 @@ export default function ListCandidate() {
             marginTop: isMobile ? "0px" : "1%",
           }}
         >
-          {candidates.votesRemaining?.groupNameOfVoter === "Giai đoạn chuyên ngành (HK1-HK6)" ? (
+          {liststageScore.votesRemaining?.groupNameOfVoter ===
+          "Giai đoạn chuyên ngành (HK1-HK6)" ? (
             <Grid container sx={{ display: "flex", flexWrap: isMobile ? "wrap" : "nowrap" }}>
               <Grid
                 sx={{ marginTop: isMobile ? "10px" : "0px" }}
@@ -450,7 +527,9 @@ export default function ListCandidate() {
                   required
                   defaultValue="Tất cả"
                   label={"Giảng viên nhóm môn chung"}
-                  onChange={handleSelect1Change}
+                  onChange={(e) => {
+                    setProcess(e.target.value);
+                  }}
                   options={getOptions1()}
                 />
               </Grid>
@@ -469,7 +548,11 @@ export default function ListCandidate() {
                     sx={{ padding: isMobile ? "1px" : "0px" }}
                     variant="outlined"
                     label="Nhóm môn chung"
-                    value={candidates?.votesRemaining?.voteBM + "/" + candidates?.limitVoteOfStage}
+                    value={
+                      liststageScore?.votesRemaining?.voteBM +
+                      "/" +
+                      liststageScore?.limitVoteOfStage
+                    }
                     InputProps={{
                       startAdornment: (
                         <div
@@ -532,7 +615,9 @@ export default function ListCandidate() {
                   defaultValue="Tất cả"
                   label={"Giảng viên chuyên ngành"}
                   height="10rem"
-                  onChange={handleSelect2Change}
+                  onChange={(e) => {
+                    setProcess(e.target.value);
+                  }}
                   options={getOptions()}
                 />
               </Grid>
@@ -550,7 +635,11 @@ export default function ListCandidate() {
                     size="small"
                     variant="outlined"
                     label="Chuyên ngành"
-                    value={candidates?.votesRemaining?.voteAM + "/" + candidates?.limitVoteOfStage}
+                    value={
+                      liststageScore?.votesRemaining?.voteAM +
+                      "/" +
+                      liststageScore?.limitVoteOfStage
+                    }
                     InputProps={{
                       startAdornment: (
                         <div style={{ color: "#D44FAC", marginTop: "2px" }}>
@@ -583,13 +672,14 @@ export default function ListCandidate() {
                   defaultValue="Tất cả"
                   label="Trạng thái"
                   onChange={(e) => {
-                    setisVoted(e.target.value);
+                    handleStatus(e.target.value);
                   }}
                   options={getOption2()}
                 />
               </Grid>
             </Grid>
-          ) : candidates.votesRemaining?.groupNameOfVoter === "Giai đoạn chuyên ngành (HK7-HK9)" ? (
+          ) : liststageScore.votesRemaining?.groupNameOfVoter ===
+            "Giai đoạn chuyên ngành (HK7-HK9)" ? (
             <Grid container sx={{ display: "flex", flexWrap: isMobile ? "wrap" : "nowrap" }}>
               <Grid
                 item
@@ -612,7 +702,9 @@ export default function ListCandidate() {
                   defaultValue="Tất cả"
                   label={"Giảng viên chuyên ngành"}
                   height="10rem"
-                  onChange={handleSelect2Change}
+                  onChange={(e) => {
+                    setProcess(e.target.value);
+                  }}
                   options={getOptions()}
                 />
               </Grid>
@@ -630,7 +722,11 @@ export default function ListCandidate() {
                     size="small"
                     variant="outlined"
                     label="Chuyên ngành"
-                    value={candidates?.votesRemaining?.voteAM + "/" + candidates?.limitVoteOfStage}
+                    value={
+                      liststageScore?.votesRemaining?.voteAM +
+                      "/" +
+                      liststageScore?.limitVoteOfStage
+                    }
                     InputProps={{
                       startAdornment: (
                         <div style={{ color: "#D44FAC", marginTop: "2px" }}>
@@ -683,13 +779,13 @@ export default function ListCandidate() {
                   defaultValue="Tất cả"
                   label="Trạng thái"
                   onChange={(e) => {
-                    setisVoted(e.target.value);
+                    handleStatus(e.target.value);
                   }}
                   options={getOption2()}
                 />
               </Grid>
             </Grid>
-          ) : candidates?.votesRemaining?.groupNameOfVoter === "Giai đoạn dự bị" ? (
+          ) : liststageScore?.votesRemaining?.groupNameOfVoter === "Giai đoạn dự bị" ? (
             <Grid container sx={{ display: "flex", flexWrap: isMobile ? "wrap" : "nowrap" }}>
               <Grid
                 item
@@ -712,7 +808,9 @@ export default function ListCandidate() {
                   defaultValue="Tất cả"
                   label={"Giảng viên nhóm môn chung"}
                   height="10rem"
-                  onChange={handleSelect1Change}
+                  onChange={(e) => {
+                    setProcess(e.target.value);
+                  }}
                   options={getOptions1()}
                 />
               </Grid>
@@ -730,7 +828,11 @@ export default function ListCandidate() {
                     size="small"
                     variant="outlined"
                     label="Nhóm môn chung"
-                    value={candidates?.votesRemaining?.voteBM + "/" + candidates?.limitVoteOfStage}
+                    value={
+                      liststageScore?.votesRemaining?.voteBM +
+                      "/" +
+                      liststageScore?.limitVoteOfStage
+                    }
                     InputProps={{
                       startAdornment: (
                         <div style={{ color: "#D44FAC", marginTop: "2px" }}>
@@ -783,7 +885,7 @@ export default function ListCandidate() {
                   defaultValue="Tất cả"
                   label="Trạng thái"
                   onChange={(e) => {
-                    setisVoted(e.target.value);
+                    handleStatus(e.target.value);
                   }}
                   options={getOption2()}
                 />
@@ -823,7 +925,9 @@ export default function ListCandidate() {
                   variant="outlined"
                   label="Số phiếu hiện có"
                   value={
-                    candidates?.votesRemaining?.voteRemaining + "/" + candidates?.limitVoteOfStage
+                    liststageScore?.votesRemaining?.voteRemaining +
+                    "/" +
+                    liststageScore?.limitVoteOfStage
                   }
                   InputProps={{
                     startAdornment: (
@@ -856,7 +960,7 @@ export default function ListCandidate() {
             </>
           )}
         </Box>
-        {candidates.formId ? (
+        {liststageScore.formId ? (
           <></>
         ) : (
           <Box
@@ -867,7 +971,7 @@ export default function ListCandidate() {
             }}
           >
             <Grid container spacing={3} mt={-2} bottom={1} sx={{ gap: "6rem" }}>
-              {candidates.candidate?.map((card, index) => (
+              {getCurrentCandidates()?.map((card, index) => (
                 <Grid item xs={6} md={3} key={index}>
                   <CardLike
                     id={card?.candidateId}
@@ -908,7 +1012,8 @@ export default function ListCandidate() {
           onChange={handlePageChange}
         />
         <ScrollToTopButton />
-        {candidates?.votesRemaining?.voteRemaining === 0 && candidates?.feedBacked === false ? (
+        {liststageScore?.votesRemaining?.voteRemaining === 0 &&
+        liststageScore?.feedBacked === false ? (
           <FeedbackBubble
             open={true}
             // setOpen={true}
@@ -937,20 +1042,20 @@ export default function ListCandidate() {
           />
         </>
       )}
-      <CandateDetail
+      {/* <CandateDetail
         OpenPopUp={hasopen}
         SetOpenPopUp={setHasopen}
         name={name}
         image={url}
-        idform={candidates?.formId}
+        idform={liststageScore?.formId}
         idStage={id}
         idCandi={idCandi}
         score={scores}
         namegroup={namegroup}
-      />
+      /> */}
       {/* <Policy OpenAlret={OpenArlert} SetOpenAlret={setOpenArlert} /> */}
       <QRPopUp OpenPopUp={open} SetOpenPopUp={setopen} link={Link} />
-      <Policy OpenAlret={OpenDiaLog} SetOpenAlret={SetOpenDialog}></Policy>
+      <Policy OpenAlret={OpenPopUp} SetOpenAlret={SetOpenPopUp}></Policy>
     </Page>
   );
 }

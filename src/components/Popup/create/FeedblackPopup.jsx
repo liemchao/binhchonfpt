@@ -45,7 +45,7 @@ export default function FeedbackBubble(props) {
     };
 
     axios
-      .post("https://votingsystemfpt-001-site1.htempurl.com/api/v1/feedbacks", feedbackData, {
+      .post("https://votingsystemfptu-001-site1.dtempurl.com/api/v1/feedbacks", feedbackData, {
         headers: {
           Authorization: `Bearer ${token}`,
           // other headers if needed

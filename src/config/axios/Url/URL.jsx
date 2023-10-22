@@ -1,1 +1,1 @@
-export const URL_API = `https://votingsystemfpt-001-site1.htempurl.com`;
+export const URL_API = `https://votingsystemfptu-001-site1.dtempurl.com`;
