@@ -416,7 +416,7 @@ export default function ListCandidate() {
   };
 
   const handlePolicyClick = () => {
-    SetOpenDialog(true);
+    SetOpenPopUp(true);
   };
 
   const [currentPage, setCurrentPage] = useState(1);
