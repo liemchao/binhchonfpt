@@ -1,6 +1,7 @@
 import { filter } from "lodash";
 import { useState } from "react";
 import * as React from "react";
+import { CSVLink } from "react-csv";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 // material
 import {
@@ -243,6 +244,9 @@ export default function ManageAccount() {
               }}
             />
           </Typography>
+          {/* <CSVLink style={{ textDecoration: "none" }} data={filterCandidate} filename="Account">
+            <ButtonLangding nameButton="Xuất tập tin" bgColor="#FFA500" hovercolor="#F7941D" />
+          </CSVLink> */}
         </Stack>
 
         <Card>

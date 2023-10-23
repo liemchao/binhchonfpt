@@ -49,23 +49,39 @@ export default function SigninPoppop(props) {
   const navigate = useNavigate();
 
   const hanldeLoginWithgg = async () => {
-    const hihi = await auth.signInWithPopup(ggProvider);
-    auth.onAuthStateChanged(async (user) => {
-      const res = await API(
-        "POST",
-        URL_API + `/api/v1/authen/firebase?idtoken=${user._delegate.accessToken}`
-      );
-      localStorage.setItem("token", res.data.data.token);
-      const token = localStorage.getItem("token");
-      const detoken = jwt_decode(token);
-      if (detoken.RoleName === "user") {
-        CustomizedToast({
-          message: "Đăng nhập thành công",
-          type: "SUCCESS",
-        });
-        handleClose();
-      }
-    });
+    try {
+      const hihi = await auth.signInWithPopup(ggProvider);
+      auth.onAuthStateChanged(async (user) => {
+        const res = await API(
+          "POST",
+          URL_API + `/api/v1/authen/firebase?idtoken=${user._delegate.accessToken}`
+        );
+        localStorage.setItem("token", res.data.data.token);
+        const token = localStorage.getItem("token");
+        const detoken = jwt_decode(token);
+        if (detoken.RoleName === "user" && detoken.Username.includes("@fpt.edu.vn")) {
+          CustomizedToast({
+            message: "Đăng nhập thành công",
+            type: "SUCCESS",
+          });
+          handleClose();
+        } else {
+          CustomizedToast({
+            message: "Tài khoản không được phép truy cập vào hệ thống",
+            type: "ERROR",
+          });
+          localStorage.removeItem("token"); // Xóa token đã lưu
+          navigate("/");
+        }
+      });
+    } catch (error) {
+      CustomizedToast({
+        message: "Tên tài khoản hoặc mật khẩu sai",
+        type: "ERROR",
+      });
+      localStorage.removeItem("token"); // Xóa token đã lưu
+      navigate("/");
+    }
   };
 
   const formik = useFormik({

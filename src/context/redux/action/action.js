@@ -91,16 +91,29 @@ export const loginFirebase = (idtoken, navigate) => {
         })
       );
       if (detoken.RoleName === "user") {
-        navigate("/user/campaign");
-        CustomizedToast({
-          message: "Đăng nhập thành công",
-          type: "SUCCESS",
-        });
+        if (detoken.Username.includes("@fpt.edu.vn")) {
+          navigate("/user/campaign");
+          CustomizedToast({
+            message: "Đăng nhập thành công",
+            type: "SUCCESS",
+          });
+        } else {
+          CustomizedToast({
+            message: "Tài khoản cái nhân không được phép tham gia hệ thống.",
+            type: "ERROR",
+          });
+          localStorage.removeItem("token");
+        }
       } else if (detoken.RoleName === "admin") {
         navigate("/admin/account");
         CustomizedToast({
           message: "Đăng nhập thành công",
           type: "SUCCESS",
+        });
+      } else {
+        CustomizedToast({
+          message: "Tên tài khoản hoặc mật khẩu sai.",
+          type: "ERROR",
         });
       }
     } catch (e) {
