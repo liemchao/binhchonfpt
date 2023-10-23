@@ -52,22 +52,35 @@ export default function SigninPoppop(props) {
     try {
       const hihi = await auth.signInWithPopup(ggProvider);
       auth.onAuthStateChanged(async (user) => {
-        const res = await API(
-          "POST",
-          URL_API + `/api/v1/authen/firebase?idtoken=${user._delegate.accessToken}`
-        );
-        localStorage.setItem("token", res.data.data.token);
-        const token = localStorage.getItem("token");
-        const detoken = jwt_decode(token);
-        if (detoken.RoleName === "user" && detoken.Username.includes("@fpt.edu.vn")) {
+        try {
+          const res = await API(
+            "POST",
+            URL_API + `/api/v1/authen/firebase?idtoken=${user._delegate.accessToken}`
+          );
+
+          if (res) {
+            localStorage.setItem("token", res.data.data.token);
+            const token = localStorage.getItem("token");
+            const detoken = jwt_decode(token);
+
+            if (detoken.RoleName === "user") {
+              CustomizedToast({
+                message: "Đăng nhập thành công",
+                type: "SUCCESS",
+              });
+              handleClose();
+            } else {
+              CustomizedToast({
+                message: "Tài khoản của bạn không được phép đăng nhập vào hệ thống",
+                type: "ERROR",
+              });
+              localStorage.removeItem("token"); // Xóa token đã lưu
+              navigate("/");
+            }
+          }
+        } catch (error) {
           CustomizedToast({
-            message: "Đăng nhập thành công",
-            type: "SUCCESS",
-          });
-          handleClose();
-        } else {
-          CustomizedToast({
-            message: "Tài khoản của bạn không được phép đăng nhập vào hệ thống",
+            message: `${error.response.data.message}`,
             type: "ERROR",
           });
           localStorage.removeItem("token"); // Xóa token đã lưu

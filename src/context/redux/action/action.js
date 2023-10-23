@@ -81,44 +81,46 @@ export const loginFirebase = (idtoken, navigate) => {
   return async (dispatch) => {
     try {
       const res = await API("POST", URL_API + `/api/v1/authen/firebase?idtoken=${idtoken}`);
-      localStorage.setItem("token", res.data.data.token);
-      const token = localStorage.getItem("token");
-      const detoken = jwt_decode(token);
-      dispatch(
-        createAction({
-          type: PathAction.LOGIN_USER,
-          payload: res.data.token,
-        })
-      );
-      if (detoken.RoleName === "user") {
-        if (detoken.Username.includes("@fpt.edu.vn")) {
-          navigate("/user/campaign");
+      if (res) {
+        localStorage.setItem("token", res.data.data.token);
+        const token = localStorage.getItem("token");
+        const detoken = jwt_decode(token);
+        dispatch(
+          createAction({
+            type: PathAction.LOGIN_USER,
+            payload: res.data.token,
+          })
+        );
+        if (detoken.RoleName === "user") {
+          if (detoken.Username.includes("@fpt.edu.vn")) {
+            navigate("/user/campaign");
+            CustomizedToast({
+              message: "Đăng nhập thành công",
+              type: "SUCCESS",
+            });
+          } else {
+            CustomizedToast({
+              message: "Tài khoản của bạn không được phép đăng nhập vào hệ thống.",
+              type: "ERROR",
+            });
+            localStorage.removeItem("token");
+          }
+        } else if (detoken.RoleName === "admin") {
+          navigate("/admin/account");
           CustomizedToast({
             message: "Đăng nhập thành công",
             type: "SUCCESS",
           });
         } else {
           CustomizedToast({
-            message: "Tài khoản của bạn không được phép đăng nhập vào hệ thống.",
+            message: "Tên tài khoản hoặc mật khẩu sai.",
             type: "ERROR",
           });
-          localStorage.removeItem("token");
         }
-      } else if (detoken.RoleName === "admin") {
-        navigate("/admin/account");
-        CustomizedToast({
-          message: "Đăng nhập thành công",
-          type: "SUCCESS",
-        });
-      } else {
-        CustomizedToast({
-          message: "Tên tài khoản hoặc mật khẩu sai.",
-          type: "ERROR",
-        });
       }
-    } catch (e) {
+    } catch (error) {
       CustomizedToast({
-        message: "Tên tài khoản hoặc mật khẩu sai",
+        message: `${error.response.data.message}`,
         type: "ERROR",
       });
     }

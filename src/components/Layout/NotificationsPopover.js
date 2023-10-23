@@ -59,16 +59,16 @@ export default function NotificationsPopover() {
     }
   };
 
-  const fetchDataProcess = async () => {
-    try {
-      const response = await axios.put(
-        `https://votingsystemfptu-001-site1.dtempurl.com/api/v1/campaigns/update-process`,
-        token
-      );
-    } catch (error) {
-      console.error("Lỗi khi gọi API:", error);
-    }
-  };
+  // const fetchDataProcess = async () => {
+  //   try {
+  //     const response = await axios.put(
+  //       `https://votingsystemfptu-001-site1.dtempurl.com/api/v1/campaigns/update-process`,
+  //       token
+  //     );
+  //   } catch (error) {
+  //     console.error("Lỗi khi gọi API:", error);
+  //   }
+  // };
   const handleMarkAllAsRead = () => {
     const updatedNotifications = notifications.map((notification) => ({
       ...notification,
@@ -77,13 +77,13 @@ export default function NotificationsPopover() {
     setNotifications(updatedNotifications);
     setReadNotifications(updatedNotifications.filter((notification) => notification.isRead));
   };
-  useEffect(() => {
-    fetchData();
-    const interval = setInterval(() => {
-      fetchDataProcess();
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [decode.Username]);
+  // useEffect(() => {
+  //   fetchData();
+  //   const interval = setInterval(() => {
+  //     fetchDataProcess();
+  //   }, 6000);
+  //   return () => clearInterval(interval);
+  // }, [decode.Username]);
 
   useEffect(() => {
     if (data) {
