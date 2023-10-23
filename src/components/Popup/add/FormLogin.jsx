@@ -67,7 +67,7 @@ export default function SigninPoppop(props) {
           handleClose();
         } else {
           CustomizedToast({
-            message: "Tài khoản không được phép truy cập vào hệ thống",
+            message: "Tài khoản của bạn không được phép đăng nhập vào hệ thống",
             type: "ERROR",
           });
           localStorage.removeItem("token"); // Xóa token đã lưu

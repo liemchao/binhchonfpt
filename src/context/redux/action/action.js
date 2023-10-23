@@ -99,7 +99,7 @@ export const loginFirebase = (idtoken, navigate) => {
           });
         } else {
           CustomizedToast({
-            message: "Tài khoản cái nhân không được phép tham gia hệ thống.",
+            message: "Tài khoản của bạn không được phép đăng nhập vào hệ thống.",
             type: "ERROR",
           });
           localStorage.removeItem("token");
