@@ -591,7 +591,7 @@ export const CheckFeedback = (userId, campaignid, token) => {
     try {
       const res = await API(
         "GET",
-        URL_API + `api/v1/feedbacks/user/${userId}/campaign/${campaignid}`,
+        URL_API + `/api/v1/feedbacks/user/${userId}/campaign/${campaignid}`,
         null,
         token
       );
