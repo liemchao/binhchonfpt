@@ -92,7 +92,7 @@ export default function MultipleInteractionCard1(props) {
                 borderRadius: "50%",
                 right: "4rem",
                 bottom: 0,
-                transform: "translateY(-625%)",
+                transform: "translateY(-690%)",
               }}
             >
               #{index}
