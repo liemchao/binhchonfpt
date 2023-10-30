@@ -236,11 +236,11 @@ const navConfig6 = [
     icon: getIcon("eva:file-text-fill"),
     // s
   },
-  {
-    title: "Top 10",
-    path: "/user/top10",
-    icon: getIcon("eva:file-text-fill"),
-  },
+  // {
+  //   title: "Top 10",
+  //   path: "/user/top10",
+  //   icon: getIcon("eva:file-text-fill"),
+  // },
 ];
 
 const exportedObject = {
