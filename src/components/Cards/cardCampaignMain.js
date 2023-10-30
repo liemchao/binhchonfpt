@@ -1,13 +1,10 @@
 import * as React from "react";
-import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
 import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
-import ButtonCustomize from "assets/theme/components/button/ButtonCustomize";
 import { useState } from "react";
 import { useEffect } from "react";
-import boderimage from "../../assets/images/GIOI THIEU - KHUNG TEXT 1.png";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import { Card } from "@mui/material";
 import { useTheme, useMediaQuery } from "@mui/material";
@@ -25,6 +22,7 @@ export default function MainCard(props) {
     onClickJoin,
     onClickShare,
     dayEnd,
+    onClickResult,
     startTime,
     visibilityCandidate,
   } = props;
@@ -159,15 +157,30 @@ export default function MainCard(props) {
                   bgColor="#d44fac"
                   onClick={onClickShare}
                   borderRadius={"50px"}
+                  disabled={process === "Đã kết thúc"}
                 />
-                <ButtonLangding
-                  height={isMobile ? "3.5rem" : "3.5rem"}
-                  width={isMobile ? "8rem" : "12rem"}
-                  nameButton="THAM GIA"
-                  bgColor="#d44fac"
-                  onClick={onClickJoin}
-                  borderRadius={"50px"}
-                />
+                {process === "Đã kết thúc" ? (
+                  <ButtonLangding
+                    nameButton="Kết quả"
+                    height={isMobile ? "3.5rem" : "3.5rem"}
+                    width={isMobile ? "8rem" : "12rem"}
+                    bgColor={"#FFA500"}
+                    hovercolor={"#F7941D"}
+                    onClick={onClickResult}
+                    borderRadius={"50px"}
+                  />
+                ) : (
+                  <ButtonLangding
+                    nameButton="THAM GIA"
+                    height={isMobile ? "3.5rem" : "3.5rem"}
+                    width={isMobile ? "8rem" : "12rem"}
+                    bgColor={isButtonDisabled ? "#CCCCCC" : "#FFA500"}
+                    hovercolor={isButtonDisabled ? "#CCCCCC" : "#F7941D"}
+                    onClick={onClickJoin}
+                    disabled={isButtonDisabled}
+                    borderRadius={"50px"}
+                  />
+                )}
               </Box>
               <div style={{ visibility: "hidden" }}>
                 <ButtonLangding

@@ -5,9 +5,6 @@ import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
-import ButtonCustomize from "assets/theme/components/button/ButtonCustomize";
-import { Rating } from "@mui/material";
-import moment from "moment";
 import { useState } from "react";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 
@@ -120,9 +117,7 @@ export default function CampaignCard(props) {
           >
             {title}
           </Typography>
-          {/* <Typography level="body2" fontWeight="lg" textColor="text.tertiary">
-            {creater}
-          </Typography> */}
+
           <Sheet
             sx={{
               bgcolor: "background.level1",

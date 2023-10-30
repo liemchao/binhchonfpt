@@ -68,10 +68,9 @@ const navConfigUser = [
     // s
   },
   // {
-  //   title: "Thống kê",
-  //   path: "/user/statistal",
+  //   title: "Top 10",
+  //   path: "/result/6097a517-11ad-4105-b26a-0e93bea2cb43",
   //   icon: getIcon("eva:file-text-fill"),
-  //   // s
   // },
 ];
 

@@ -2,26 +2,60 @@ import { Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import "./custom-fonts.css";
 import { useTheme, useMediaQuery } from "@mui/material";
+import axios from "axios";
+import dayjs from "dayjs";
 
-const CountdownTimer = ({ startTime, endTime }) => {
+const CountdownTimer = () => {
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(null);
   const [remainingTime, setRemainingTime] = useState(calculateRemainingTime());
-  const gradient = "linear-gradient(to bottom, #df40af 45%, #ac0078 5%, #1e2024 50% )";
-  const textShadow = "2px 5px 5px rgba(0, 0, 0, 0.3)"; // Điều chỉnh shadow theo nhu cầu của bạn
+  const [timerId, setTimerId] = useState(null);
+
+  const gradient = "linear-gradient(to bottom, #df40af 45%, #ac0078 5%, #1e2024 50%)";
+  const textShadow = "2px 5px 5px rgba(0, 0, 0, 0.3)";
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setRemainingTime(calculateRemainingTime());
-    }, 1000);
 
-    return () => clearInterval(timer);
+  useEffect(() => {
+    axios
+      .get("https://votingsystemfptu-001-site1.htempurl.com/api/v1/campaigns/representative")
+      .then((response) => {
+        const now = new Date();
+        const endTimeValue = dayjs(response.data.data.endTime).format("DD-MM-YYYY HH:mm:ss");
+
+        setStartTime(dayjs(now).format("DD-MM-YYYY HH:mm:ss"));
+        setEndTime(endTimeValue);
+      })
+      .catch((error) => {
+        console.error("Error fetching API data:", error);
+      });
+
+    return () => {
+      // Clear the interval when the component is unmounted
+      clearInterval(timerId);
+    };
   }, []);
 
-  function calculateRemainingTime() {
-    const now = new Date().getTime();
-    const targetDate = new Date(endTime).getTime();
-    const timeDifference = targetDate - now;
+  useEffect(() => {
+    if (endTime) {
+      const now = new Date();
+      const timeDifference = dayjs(endTime, "DD-MM-YYYY HH:mm:ss").diff(now, "millisecond");
+      setRemainingTime(calculateRemainingTime(timeDifference));
 
+      // Start the countdown timer
+      const id = setInterval(() => {
+        const updatedTimeDifference = dayjs(endTime, "DD-MM-YYYY HH:mm:ss").diff(
+          new Date(),
+          "millisecond"
+        );
+        setRemainingTime(calculateRemainingTime(updatedTimeDifference));
+      }, 1000);
+
+      setTimerId(id);
+    }
+  }, [endTime]);
+
+  function calculateRemainingTime(timeDifference) {
     if (timeDifference <= 0) {
       return {
         days: 0,
@@ -57,7 +91,7 @@ const CountdownTimer = ({ startTime, endTime }) => {
         style={{
           display: "flex",
           justifyContent: "center",
-          gap: isMobile ? "2rem" : "6rem",
+          gap: isMobile ? "2rem" : "6.2rem",
           marginBottom: "2rem",
         }}
       >

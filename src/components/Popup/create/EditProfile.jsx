@@ -22,12 +22,7 @@ export default function EditProfile(props) {
   const { token } = useContext(Authen);
   const dispath = useDispatch();
 
-  //   useEffect(() => {
-  //     const callAPI = async () => {
-  //       //
-  //     };
-  //     callAPI();
-  //   }, [dispath]);
+
 
   const formByid = useSelector((state) => {
     //
@@ -47,7 +42,6 @@ export default function EditProfile(props) {
               maxHeight: "max-content",
               maxWidth: "100%",
               mx: "auto",
-              // to make the demo resizable
               overflow: "auto",
               resize: "horizontal",
             }}

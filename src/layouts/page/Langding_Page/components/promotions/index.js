@@ -38,6 +38,7 @@ export default function Promotions() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [open, setopen] = useState(false);
+  const [id, setId] = useState();
 
   useEffect(() => {
     const callAPI = async () => {
@@ -67,6 +68,11 @@ export default function Promotions() {
     );
   }, []);
 
+  const handleClickResult = useCallback((id) => {
+    setId(id);
+    navigate(`/result/${id}`);
+  }, []);
+
   return (
     <>
       <Grid container className={classes.root}>
@@ -89,6 +95,9 @@ export default function Promotions() {
             }}
             onClickJoin={() => {
               handleCampaignStage(navigate);
+            }}
+            onClickResult={() => {
+              handleClickResult(item.campaignId, navigate);
             }}
           />
         </Grid>
