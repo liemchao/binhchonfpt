@@ -13,7 +13,7 @@ import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Favorite from "@mui/icons-material/Favorite";
-
+import "./Fire.css";
 const getIcon = (name) => <Iconify icon={name} width={40} height={40} />;
 export default function CardTop1(props) {
   const {
@@ -32,6 +32,10 @@ export default function CardTop1(props) {
 
   return (
     <>
+      <div class="pyro">
+        <div class="before"></div>
+        <div class="after"></div>
+      </div>
       <Card
         id={id}
         variant="outlined"
@@ -145,6 +149,10 @@ export default function CardTop1(props) {
           </CardContent>
         </CardOverflow>
       </Card>
+      <div class="pyro">
+        <div class="before"></div>
+        <div class="after"></div>
+      </div>
     </>
   );
 }

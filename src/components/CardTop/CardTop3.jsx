@@ -89,7 +89,7 @@ export default function CardTop3(props) {
                 position: "absolute",
                 zIndex: 2,
                 borderRadius: "50%",
-                right: "4rem",
+                right: "3rem",
                 bottom: 0,
                 transform: "translateY(-560%)",
               }}

@@ -6,7 +6,6 @@ import CardTop2 from "components/CardTop/CardTop2";
 import CardTop3 from "components/CardTop/CardTop3";
 import MultipleInteractionCard from "components/Cards/CardCandidate";
 import MultipleInteractionCard1 from "components/Cards/cardtop";
-
 export default function Test() {
   const data = [
     {
