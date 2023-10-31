@@ -159,7 +159,7 @@ export default function MainCard(props) {
                   borderRadius={"50px"}
                   disabled={process === "Đã kết thúc"}
                 />
-                {process === "Đã kết thúc" ? (
+                {/* {process === "Đã kết thúc" ? (
                   <ButtonLangding
                     nameButton="Kết quả"
                     height={isMobile ? "3.5rem" : "3.5rem"}
@@ -169,18 +169,18 @@ export default function MainCard(props) {
                     onClick={onClickResult}
                     borderRadius={"50px"}
                   />
-                ) : (
-                  <ButtonLangding
-                    nameButton="THAM GIA"
-                    height={isMobile ? "3.5rem" : "3.5rem"}
-                    width={isMobile ? "8rem" : "12rem"}
-                    bgColor={isButtonDisabled ? "#CCCCCC" : "#FFA500"}
-                    hovercolor={isButtonDisabled ? "#CCCCCC" : "#F7941D"}
-                    onClick={onClickJoin}
-                    disabled={isButtonDisabled}
-                    borderRadius={"50px"}
-                  />
-                )}
+                ) : ( */}
+                <ButtonLangding
+                  nameButton="THAM GIA"
+                  height={isMobile ? "3.5rem" : "3.5rem"}
+                  width={isMobile ? "8rem" : "12rem"}
+                  bgColor={isButtonDisabled ? "#CCCCCC" : "#FFA500"}
+                  hovercolor={isButtonDisabled ? "#CCCCCC" : "#F7941D"}
+                  onClick={onClickJoin}
+                  disabled={isButtonDisabled}
+                  borderRadius={"50px"}
+                />
+                {/* )} */}
               </Box>
               <div style={{ visibility: "hidden" }}>
                 <ButtonLangding

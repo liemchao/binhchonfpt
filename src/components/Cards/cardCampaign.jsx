@@ -298,7 +298,7 @@ export default function UserCard(props) {
                   disabled={isButtonDisabled}
                   borderRadius={"50px"}
                 />
-                {publishTheResult && process === "Đã kết thúc" ? (
+                {/* {publishTheResult && process === "Đã kết thúc" ? (
                   <ButtonLangding
                     nameButton="Kết quả"
                     height={isMobile ? "3.5rem" : "3.5rem"}
@@ -308,7 +308,7 @@ export default function UserCard(props) {
                     onClick={onClickResult}
                     borderRadius={"50px"}
                   />
-                ) : (
+                ) : ( */}
                   <ButtonLangding
                     nameButton="Tham gia"
                     height={isMobile ? "3.5rem" : "3.5rem"}
@@ -319,7 +319,7 @@ export default function UserCard(props) {
                     disabled={isButtonDisabled}
                     borderRadius={"50px"}
                   />
-                )}
+                {/* )} */}
               </Box>
             )}
           </Box>

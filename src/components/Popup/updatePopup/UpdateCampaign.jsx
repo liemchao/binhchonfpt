@@ -21,6 +21,7 @@ import dayjs from "dayjs";
 import { getCampaignId } from "context/redux/action/action";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import API from "config/axios/API/API";
+import TextArea from "components/Control/TextArea";
 const schema = yup.object().shape({});
 
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
@@ -109,6 +110,7 @@ export default function UpdateCampaign(props) {
       userId: decode.Username,
       categoryId: object.categoryId,
       endTime: object.endTime,
+      description: object.description,
       ImageFile: "",
     },
 
@@ -119,6 +121,7 @@ export default function UpdateCampaign(props) {
       formData.append("visibility", display);
       formData.append("categoryId", formik.values.categoryId);
       formData.append("userId", decode.Username);
+      formData.append("description", formik.values.description);
       formData.append("ImageFile", formik.values.ImageFile);
       try {
         const req = await API(
@@ -186,7 +189,7 @@ export default function UpdateCampaign(props) {
                 }}
               >
                 <Box
-                  sx={{ float: "left", width: "60%", flexGrow: 1, mt: "2rem" }}
+                  sx={{ float: "left", width: "60%", flexGrow: 1, mt: "1rem" }}
                   display="flex"
                   justifyContent="center"
                   alignItems="center"
@@ -271,7 +274,24 @@ export default function UpdateCampaign(props) {
                         />
                       </Box>
                     </Grid>
-                    <Box width="200px" marginTop={"10%"} ml={"12rem"} mb={"2rem"}>
+                    <Grid item xs={12}>
+                      <TextArea
+                        columns={12}
+                        width="85%"
+                        row={6}
+                        maxRows={6}
+                        multiline
+                        defaultValue={object.description}
+                        marginRight="4rem"
+                        variant="outlined"
+                        label="Mô tả"
+                        name="description"
+                        onChange={(event) => {
+                          formik.handleChange(event);
+                        }}
+                      />
+                    </Grid>
+                    <Box width="200px" marginTop={"1%"} ml={"10rem"} mb={"2rem"}>
                       <ButtonLangding
                         width="10rem"
                         variant="contained"
