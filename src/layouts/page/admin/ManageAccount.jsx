@@ -234,6 +234,13 @@ export default function ManageAccount() {
     <Page title="Admin">
       <Container maxWidth={false}>
         <Stack direction="row" alignItems="center" justifyContent="flex-end" mb={1}>
+          <CSVLink
+            style={{ textDecoration: "none", marginTop: "-0.6rem", marginRight: "1rem" }}
+            data={filterCandidate}
+            filename="Account"
+          >
+            <ButtonLangding nameButton="Xuất tập tin" bgColor="#FFA500" hovercolor="#F7941D" />
+          </CSVLink>
           <Typography variant="h4" gutterBottom>
             <ButtonLangding
               nameButton="Thêm tài khoản"
@@ -244,9 +251,6 @@ export default function ManageAccount() {
               }}
             />
           </Typography>
-          {/* <CSVLink style={{ textDecoration: "none" }} data={filterCandidate} filename="Account">
-            <ButtonLangding nameButton="Xuất tập tin" bgColor="#FFA500" hovercolor="#F7941D" />
-          </CSVLink> */}
         </Stack>
 
         <Card>

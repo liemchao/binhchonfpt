@@ -126,7 +126,7 @@ function EnhancedTableToolbar(props) {
           <DatePicker
             label="Đến ngày"
             value={toDate}
-            onChange={(newValue) => setToDate(newValue)}
+            onChange={(newValue) => setToDate(newValue.subtract(-12, "hours"))}
           />
         </DemoContainer>
       </LocalizationProvider>
@@ -166,6 +166,7 @@ function TableStatistical({ id }) {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [dateAt, setDateAt] = useState("");
   const [toDate, setToDate] = useState("");
+
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedRows, setExpandedRows] = useState([]);
   const token = localStorage.getItem("token");

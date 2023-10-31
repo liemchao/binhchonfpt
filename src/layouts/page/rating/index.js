@@ -40,7 +40,7 @@ import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} color={"#090914"} />;
 
 const TABLE_HEAD = [
-  { id: "stt", name: "Stt", label: "Stt.", alignRight: false },
+  { id: "stt", name: "Stt", label: "STT.", alignRight: false },
   { id: "images", name: "Hình", alignRight: false },
   { id: "name", label: "Tên ứng cử viên", alignRight: false },
   { id: "Score", label: "Điểm", alignRight: false },
@@ -158,7 +158,7 @@ const TopList = () => {
   return (
     <Page title="User">
       <Container maxWidth={false}>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
           <Typography variant="h4" gutterBottom>
             {/* <Icon icon="emojione-monotone:pot-of-form" fontSize={100} /> */}
           </Typography>
@@ -406,7 +406,7 @@ const TopAndTable = () => {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   return (
-    <div style={{ display: "flex", height: "100%", columnGap: "1px", marginTop: "2rem" }}>
+    <div style={{ display: "flex", height: "100%", columnGap: "1px", marginTop: "-2rem" }}>
       <div style={{ flex: 1, height: "100%" }}>
         <Box
           sx={{
@@ -419,7 +419,15 @@ const TopAndTable = () => {
             alignItems: "center",
           }}
         >
-          <Typography variant="h5" sx={{ marginBottom: "16px" }}>
+          <Typography
+            variant="h5"
+            sx={{
+              marginBottom: "16px",
+              color: "#B83490",
+              fontFamily: "UTM Swiss Condensed Regular",
+              fontSize: "1.7rem",
+            }}
+          >
             Danh sách xếp hạng
           </Typography>
           <TopList />
@@ -437,7 +445,16 @@ const TopAndTable = () => {
             alignItems: "center",
           }}
         >
-          <Typography variant="h5" sx={{ marginTop: "16px", marginBottom: "16px" }}>
+          <Typography
+            variant="h5"
+            sx={{
+              marginTop: "16px",
+              marginBottom: "16px",
+              color: "#B83490",
+              fontFamily: "UTM Swiss Condensed Regular",
+              fontSize: "1.7rem",
+            }}
+          >
             Kết quả chiến dịch
           </Typography>
           <UserTable />

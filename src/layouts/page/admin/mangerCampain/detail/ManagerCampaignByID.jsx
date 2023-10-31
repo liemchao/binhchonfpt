@@ -154,7 +154,7 @@ export default function ManagerCampaignByID() {
           aria-label="full width tabs example"
         >
           {/* <Tab label="Thống kê" {...a11yProps(0)} /> */}
-          <Tab color="#B83490" label="Thông kê" {...a11yProps(0)} />
+          <Tab color="#B83490" label="Thống kê" {...a11yProps(0)} />
           <Tab color="#B83490" label="Theo nhóm bình chọn" {...a11yProps(1)} />
           <Tab color="#B83490" label="Theo nhóm ứng viên" {...a11yProps(2)} />
           <Tab
@@ -174,7 +174,7 @@ export default function ManagerCampaignByID() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <Box sx={{ position: "absolute", right: 11, top: 2, pb: 2, mt: 2, mb: 2 }}>
+          {/* <Box sx={{ position: "absolute", right: 11, top: 2, pb: 2, mt: 2, mb: 2 }}>
             <ButtonLangding
               nameButton="Chạy script kết quả"
               variant="solid"
@@ -191,7 +191,7 @@ export default function ManagerCampaignByID() {
               sx={{ justifySelf: "center" }}
               onClick={() => updateCampaigns()}
             ></ButtonLangding>
-          </Box>
+          </Box> */}
           <Box sx={{ mt: 4 }}>
             <Box sx={{ marginTop: 4 }}>
               <div style={{ display: "flex" }}>
