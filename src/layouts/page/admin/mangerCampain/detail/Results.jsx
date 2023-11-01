@@ -37,10 +37,6 @@ function Results() {
   });
 
   if (!results) {
-    CustomizedToast({
-      message: "Kết quả của chương trình chưa được công bố. Vui lòng chờ!",
-      type: "ERROR",
-    });
     return null; // or handle the case when results is not available
   }
 
