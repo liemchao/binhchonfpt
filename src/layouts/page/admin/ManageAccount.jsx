@@ -48,6 +48,7 @@ import { useCallback } from "react";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import ReplyIcon from "@mui/icons-material/Reply";
 import { CustomizedToast } from "components/toast/ToastCustom";
+import { getAccountStatic } from "context/redux/action/action";
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
@@ -128,12 +129,12 @@ export default function ManageAccount() {
   }, []);
 
   const dispatch = useDispatch();
-  const Navigate = useNavigate();
   const { token } = useContext(Authen);
 
   React.useEffect(() => {
     const callAPI = async () => {
       await dispatch(getAccount(token));
+      await dispatch(getAccountStatic(token));
     };
     callAPI();
   }, [dispatch, token]);
@@ -142,6 +143,9 @@ export default function ManageAccount() {
 
   const account = useSelector((state) => {
     return state.account;
+  });
+  const voter = useSelector((state) => {
+    return state.accountvoter;
   });
 
   const getOptions = () => [
@@ -239,9 +243,16 @@ export default function ManageAccount() {
             data={filterCandidate}
             filename="Account"
           >
-            <ButtonLangding nameButton="Xuất tập tin" bgColor="#FFA500" hovercolor="#F7941D" />
+            <ButtonLangding nameButton="Tài khoản" bgColor="#FFA500" hovercolor="#F7941D" />
           </CSVLink>
-          <Typography variant="h4" gutterBottom>
+          <CSVLink
+            style={{ textDecoration: "none", marginTop: "-0.6rem", marginRight: "1rem" }}
+            data={voter}
+            filename="voter"
+          >
+            <ButtonLangding nameButton="Người tham gia" bgColor="#FFA500" hovercolor="#F7941D" />
+          </CSVLink>
+          {/* <Typography variant="h4" gutterBottom>
             <ButtonLangding
               nameButton="Thêm tài khoản"
               bgColor="#FFA500"
@@ -250,7 +261,7 @@ export default function ManageAccount() {
                 handleClickOpenNewAccount();
               }}
             />
-          </Typography>
+          </Typography> */}
         </Stack>
 
         <Card>

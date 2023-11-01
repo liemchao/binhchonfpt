@@ -49,7 +49,7 @@ export default function Thongke() {
       </Grid>
       <Grid item xs={6}>
         <AppWidgetSummary
-          title="Số phiếu"
+          title="Số người tham gia"
           total={statistical.voter}
           icon="fluent:heart-16-filled"
           color="error"

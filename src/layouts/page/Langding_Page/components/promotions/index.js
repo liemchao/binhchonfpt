@@ -97,7 +97,7 @@ export default function Promotions() {
               handleCampaignStage(navigate);
             }}
             onClickResult={() => {
-              handleClickResult(item.campaignId, navigate);
+              handleClickResult(campaigns.campaignId, navigate);
             }}
           />
         </Grid>

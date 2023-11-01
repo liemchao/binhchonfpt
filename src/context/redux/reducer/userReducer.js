@@ -38,6 +38,7 @@ const initialState = {
   candidateOne: {},
   candidateonedetail: {},
   feedback: [],
+  accountvoter: [],
   feedbackcampaign: [],
   thongKe: [],
   candidateId: "",
@@ -195,6 +196,9 @@ export default function userReducer(state = initialState, { type, payload }) {
       break;
     case PathAction.CHECK_FEEDBACK:
       state.checkfeeback = payload;
+      break;
+    case PathAction.GET_LIST_ACCOUNT_THONGKE:
+      state.accountvoter = payload;
       break;
     default:
       return { ...state };

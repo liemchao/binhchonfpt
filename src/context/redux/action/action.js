@@ -890,3 +890,17 @@ export const callAPIgetDetailQuestion = (id, token) => {
 //     } catch (err) { }
 //   };
 // };
+
+export const getAccountStatic = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await API("GET", URL_API + `/api/v1/statisticals/voteOfVoter`, null, token);
+      dispatch(
+        createAction({
+          type: PathAction.GET_LIST_ACCOUNT_THONGKE,
+          payload: res.data.data,
+        })
+      );
+    } catch (err) {}
+  };
+};

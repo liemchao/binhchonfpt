@@ -13,6 +13,7 @@ import CardTop1 from "components/CardTop/CardTop1";
 import CardTop2 from "components/CardTop/CardTop2";
 import CardTop3 from "components/CardTop/CardTop3";
 import MultipleInteractionCard1 from "components/Cards/cardtop";
+import { CustomizedToast } from "components/toast/ToastCustom";
 
 function Results() {
   const [order, setOrder] = React.useState("asc");
@@ -36,6 +37,10 @@ function Results() {
   });
 
   if (!results) {
+    CustomizedToast({
+      message: "Kết quả của chương trình chưa được công bố. Vui lòng chờ!",
+      type: "ERROR",
+    });
     return null; // or handle the case when results is not available
   }
 
