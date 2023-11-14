@@ -14,6 +14,7 @@ const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 import Logo from "assets/images/Logo_main.png";
 import Logo2 from "assets/images/styled pink.png";
 import Logo1 from "assets/images/full.png";
+import { useSelector } from "react-redux";
 const MENU_OPTIONS = [
   {
     label: "Thông tin cá nhân",
@@ -54,6 +55,9 @@ export default function AppbarDesktop({ matches }) {
   const handleCloseNotion = (event) => {
     setOpen(!open);
   };
+  const design = useSelector((state) => {
+    return state.design;
+  });
   return (
     <AppbarContainer>
       {/* <AppbarHeader color="white" variant="h3">
@@ -62,14 +66,9 @@ export default function AppbarDesktop({ matches }) {
       <MyList type="row" sx={{ marginLeft: "-30rem" }}>
         <img src={Logo} alt="Logo" style={{ width: "130px", height: "auto" }} />
         <img
-          src={Logo2}
+          src={design.icon}
           alt="Logo"
           style={{ width: "110px", marginLeft: "1rem", height: "auto" }}
-        />
-        <img
-          src={Logo1}
-          alt="Logo"
-          style={{ width: "120px", marginLeft: "1rem", height: "auto" }}
         />
       </MyList>
       {token ? (

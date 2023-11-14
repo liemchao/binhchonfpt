@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Typography, Grid, Box, Card, CardContent } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useSelector } from "react-redux";
 const VotingRules = () => {
   const [showMore, setShowMore] = useState(false);
 
@@ -11,7 +12,9 @@ const VotingRules = () => {
   const handleHideMore = () => {
     setShowMore(false);
   };
-
+  const design = useSelector((state) => {
+    return state.design;
+  });
   return (
     <Container>
       <Grid container spacing={2}>
@@ -27,7 +30,7 @@ const VotingRules = () => {
               variant="h4"
               fontWeight="bold"
               sx={{
-                color: "#B83490",
+                color: design.textColor,
                 fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
                 "@media (max-width: 600px)": {
                   fontSize: "1.2rem",
@@ -40,7 +43,7 @@ const VotingRules = () => {
             <Typography
               variant="h5"
               sx={{
-                color: "#B83490",
+                color: design.textColor,
                 fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
                 "@media (max-width: 600px)": {
                   fontSize: "1.2rem",
@@ -53,7 +56,7 @@ const VotingRules = () => {
             <Typography
               variant="h5"
               sx={{
-                color: "#B83490",
+                color: design.textColor,
                 fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                 "@media (max-width: 600px)": {
                   fontSize: "1.2rem",
@@ -68,7 +71,7 @@ const VotingRules = () => {
               fontWeight="bold"
               fontStyle={"italic"}
               sx={{
-                color: "#B83490",
+                color: design.textColor,
                 fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                 "@media (max-width: 600px)": {
                   fontSize: "1.1rem",
@@ -107,7 +110,7 @@ const VotingRules = () => {
                     <Typography
                       variant="h5"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -121,7 +124,7 @@ const VotingRules = () => {
                       variant="h5"
                       fontWeight="bold"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -172,7 +175,7 @@ const VotingRules = () => {
                     <Typography
                       variant="h5"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -186,7 +189,7 @@ const VotingRules = () => {
                       variant="h5"
                       fontWeight="bold"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -223,7 +226,7 @@ const VotingRules = () => {
                     <Typography
                       variant="h5"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -237,7 +240,7 @@ const VotingRules = () => {
                       variant="h5"
                       fontWeight="bold"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -252,7 +255,7 @@ const VotingRules = () => {
                       variant="body"
                       fontWeight="bold"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -279,7 +282,7 @@ const VotingRules = () => {
                     <Typography
                       variant="h5"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -293,7 +296,7 @@ const VotingRules = () => {
                       variant="h5"
                       fontWeight="bold"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -332,7 +335,7 @@ const VotingRules = () => {
                     <Typography
                       variant="h5"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -346,7 +349,7 @@ const VotingRules = () => {
                       variant="h5"
                       fontWeight="bold"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -361,7 +364,7 @@ const VotingRules = () => {
                       variant="h5"
                       fontWeight="bold"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -398,7 +401,7 @@ const VotingRules = () => {
                     <Typography
                       variant="h5"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -412,7 +415,7 @@ const VotingRules = () => {
                       variant="h5"
                       fontWeight="bold"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -426,7 +429,7 @@ const VotingRules = () => {
                       variant="body"
                       fontWeight="bold"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -477,7 +480,7 @@ const VotingRules = () => {
                     <Typography
                       variant="h5"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",
@@ -491,7 +494,7 @@ const VotingRules = () => {
                       variant="h5"
                       fontWeight="bold"
                       sx={{
-                        color: "#B83490",
+                        color: design.textColor,
                         fontFamily: "'UTM Swiss Condensed Regular'", // Đặt font chữ tùy chỉnh
                         "@media (max-width: 600px)": {
                           fontSize: "10px",

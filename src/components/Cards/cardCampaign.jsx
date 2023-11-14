@@ -94,7 +94,6 @@ export default function UserCard(props) {
         sx={{
           backgroundImage:
             "url(https://res.cloudinary.com/dxevluwyr/image/upload/v1694155547/BackGround_xhgdfp.png)",
-
           backgroundSize: "cover",
           backgroundColor: "transparent",
           border: "none",

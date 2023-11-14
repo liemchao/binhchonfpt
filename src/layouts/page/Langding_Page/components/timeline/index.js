@@ -2,8 +2,12 @@ import * as React from "react";
 import Stack from "@mui/material/Stack";
 import Imagetimeline from "assets/images/Moc thoi gian - timeline.png";
 import { Typography } from "@mui/joy";
+import { useSelector } from "react-redux";
 
 export default function CustomizedSteppers() {
+  const design = useSelector((state) => {
+    return state.design;
+  });
   return (
     <Stack sx={{ width: "100%" }} spacing={4}>
       <div style={{ position: "relative", display: "inline-block" }}>
@@ -14,7 +18,7 @@ export default function CustomizedSteppers() {
             position: "absolute",
             bottom: "-10%",
             left: "10%",
-            color: "#B83490",
+            color: design.textColor,
             fontFamily: "UTM Swiss Condensed Regular",
             fontSize: 30,
             "@media (max-width: 600px)": {
@@ -34,7 +38,7 @@ export default function CustomizedSteppers() {
             position: "absolute",
             bottom: "30%",
             left: "10%",
-            color: "#B83490",
+            color: design.textColor,
             fontFamily: "UTM Swiss Condensed Regular",
             fontSize: 30,
             "@media (max-width: 600px)": {
@@ -44,7 +48,7 @@ export default function CustomizedSteppers() {
             },
           }}
         >
-          19/10/2023
+          {design.time1}
         </Typography>
 
         <Typography
@@ -53,7 +57,7 @@ export default function CustomizedSteppers() {
             position: "absolute",
             bottom: "-4%",
             left: "32%",
-            color: "#B83490",
+            color: design.textColor,
             fontFamily: "UTM Swiss Condensed Regular",
             fontSize: 30,
             "@media (max-width: 600px)": {
@@ -73,7 +77,7 @@ export default function CustomizedSteppers() {
             position: "absolute",
             bottom: "35%",
             left: "30%",
-            color: "#B83490",
+            color: design.textColor,
             fontFamily: "UTM Swiss Condensed Regular",
             fontSize: 30,
             "@media (max-width: 600px)": {
@@ -83,7 +87,7 @@ export default function CustomizedSteppers() {
             },
           }}
         >
-          31/10/2023
+          {design.time2}
         </Typography>
 
         <Typography
@@ -92,7 +96,7 @@ export default function CustomizedSteppers() {
             position: "absolute",
             bottom: "16%",
             left: "54%",
-            color: "#B83490",
+            color: design.textColor,
             fontFamily: "UTM Swiss Condensed Regular",
             fontSize: 30,
             "@media (max-width: 600px)": {
@@ -111,7 +115,7 @@ export default function CustomizedSteppers() {
             position: "absolute",
             bottom: "60%",
             left: "54%",
-            color: "#B83490",
+            color: design.textColor,
             fontFamily: "UTM Swiss Condensed Regular",
             fontSize: 30,
             "@media (max-width: 600px)": {
@@ -121,7 +125,7 @@ export default function CustomizedSteppers() {
             },
           }}
         >
-          01/11/2023
+          {design.time3}
         </Typography>
 
         <Typography
@@ -130,7 +134,7 @@ export default function CustomizedSteppers() {
             position: "absolute",
             bottom: "43%",
             left: "76%",
-            color: "#B83490",
+            color: design.textColor,
             fontFamily: "UTM Swiss Condensed Regular",
             fontSize: 30,
             "@media (max-width: 600px)": {
@@ -150,7 +154,7 @@ export default function CustomizedSteppers() {
             position: "absolute",
             bottom: "80%",
             left: "76%",
-            color: "#B83490",
+            color: design.textColor,
             fontFamily: "UTM Swiss Condensed Regular",
             fontSize: 30,
             "@media (max-width: 600px)": {
@@ -160,7 +164,7 @@ export default function CustomizedSteppers() {
             },
           }}
         >
-          12/11/2023
+          {design.time4}
         </Typography>
       </div>
     </Stack>

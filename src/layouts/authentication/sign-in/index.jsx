@@ -12,11 +12,11 @@ import Checkbox from "@mui/material/Checkbox";
 import { useFormik } from "formik";
 import { Box, Button, InputAdornment, Typography, IconButton } from "@mui/material";
 import { LoginAthen, loginFirebase } from "../../../context/redux/action/action";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import firebase, { auth } from "../../../config/Firebase/firebase.js";
 import GoogleButton from "components/Control/GoogleButton";
 import { useState } from "react";
-import logo from "assets/images/full 3 logo.png";
+import logo from "assets/images/Logo_main.png";
 import Logo1 from "assets/images/logos/LogoFVS.svg";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -79,12 +79,14 @@ export default function SignInSide() {
       dispatch(LoginAthen(adminData, navigate));
     },
   });
+  const design = useSelector((state) => {
+    return state.design;
+  });
 
   return (
     <div
       style={{
-        backgroundImage:
-          "url(https://res.cloudinary.com/dxevluwyr/image/upload/v1694155547/BackGround_xhgdfp.png)",
+        backgroundImage: `url("${design.backgroundImage}")`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -104,8 +106,18 @@ export default function SignInSide() {
               src={logo}
               alt="Logo"
               style={{
-                width: isMobile ? "70%" : "100%", // Để hình ảnh lấp đầy chiều rộng của container
+                width: isMobile ? "45%" : "45%", // Để hình ảnh lấp đầy chiều rộng của container
                 height: "auto",
+                marginLeft: "1%",
+              }}
+            />
+            <img
+              src={design.icon}
+              alt="Logo"
+              style={{
+                width: isMobile ? "45%" : "45%", // Để hình ảnh lấp đầy chiều rộng của container
+                height: "auto",
+                marginLeft: "5%",
               }}
             />
           </Box>
@@ -146,7 +158,7 @@ export default function SignInSide() {
               component="form"
               noValidate
               onSubmit={formik.handleSubmit}
-              sx={{ marginTop: "-2rem" }}
+              sx={{ marginTop: "-3rem" }}
             >
               <TextField
                 margin="normal"

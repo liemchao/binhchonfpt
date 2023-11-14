@@ -29,6 +29,8 @@ import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import { getFeedBackCampaign } from "context/redux/action/action";
 import jwt_decode from "jwt-decode";
 import { getScore } from "context/redux/action/action";
+import UpdateDesign from "components/Popup/updatePopup/UpdateDesgin";
+import { useState } from "react";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -68,10 +70,9 @@ export default function ManagerCampaignByID() {
   const decode = jwt_decode(token);
   const dispatch = useDispatch();
   const id = useParams();
-
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
-
+  const [OpenPopUp, SetOpenPopUp] = useState(false);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -120,16 +121,11 @@ export default function ManagerCampaignByID() {
       });
   };
 
-  const handleScript = async () => {
-    await API(
-      "GET",
-      URL_API + `/api/v1/scrip/campaign/${id.id}/stage/${campaignStage[0].stageId}`,
-      null,
-      token
-    )
+  const handleDelete = async () => {
+    await API("GET", URL_API + `/api/v1/statisticals/delete-data`, null, token)
       .then((res) => {
         CustomizedToast({
-          message: "chạy script thành công",
+          message: "Xóa kết quả chiến dịch thành công",
           type: "SUCCESS",
         });
       })
@@ -160,7 +156,7 @@ export default function ManagerCampaignByID() {
           <Tab
             disabled={campaignById.process === "Đã kết thúc" ? false : true}
             sx={{
-              backgroundColor: campaignById.process === "Đã kết thúc" ? "#096BDE" : "gray",
+              backgroundColor: campaignById.process === "Đã kết thúc" ? "#B83490" : "gray",
               color: campaignById.process === "Đã kết thúc" ? "white" : "white",
             }}
             label="Top"
@@ -174,24 +170,28 @@ export default function ManagerCampaignByID() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          {/* <Box sx={{ position: "absolute", right: 11, top: 2, pb: 2, mt: 2, mb: 2 }}>
+          <Box sx={{ position: "absolute", right: 60, top: 2, pb: 2, mt: 2, mb: 2 }}>
             <ButtonLangding
-              nameButton="Chạy script kết quả"
+              nameButton="Xóa kết quả"
               variant="solid"
               color="primary"
               sx={{ justifySelf: "center" }}
-              onClick={() => handleScript()}
+              onClick={() => {
+                handleDelete();
+              }}
             ></ButtonLangding>
           </Box>
-          <Box sx={{ position: "absolute", right: 250, mr: 2, top: 2, pb: 2, mt: 2, mb: 2 }}>
+          <Box sx={{ position: "absolute", right: 200, mr: 2, top: 2, pb: 2, mt: 2, mb: 2 }}>
             <ButtonLangding
-              nameButton="Chiến dịch tiêu biểu"
+              nameButton="Tạo thiết kế"
               variant="solid"
               color="primary"
               sx={{ justifySelf: "center" }}
-              onClick={() => updateCampaigns()}
+              onClick={() => {
+                SetOpenPopUp(true);
+              }}
             ></ButtonLangding>
-          </Box> */}
+          </Box>
           <Box sx={{ mt: 4 }}>
             <Box sx={{ marginTop: 4 }}>
               <div style={{ display: "flex" }}>
@@ -220,6 +220,11 @@ export default function ManagerCampaignByID() {
           <Results />
         </TabPanel>
       </SwipeableViews>
+      <UpdateDesign
+        OpenDesign={OpenPopUp}
+        SetOpenDesign={SetOpenPopUp}
+        id={"6097a517-11ad-4105-b26a-0e93bea2cb43"}
+      />
     </Box>
   );
 }

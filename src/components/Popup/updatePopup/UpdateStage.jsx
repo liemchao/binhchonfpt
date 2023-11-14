@@ -17,6 +17,7 @@ import AddForm from "layouts/page/stage/AddForm";
 import { useEffect } from "react";
 import { getStagebyId } from "context/redux/action/action";
 import StageUpdate from "layouts/page/stage/Updatestage/UpdateStage";
+import moment from "moment/moment";
 
 export default function UpdateStage() {
   const dispatch = useDispatch();
@@ -65,8 +66,8 @@ export default function UpdateStage() {
       title: title,
       description: description,
       content: content,
-      startTime: startTime,
-      endTime: endTime,
+      startTime: moment(startTime, "YYYY-MM-DD HH:mm:ss").subtract(-7, "hours"),
+      endTime: moment(endTime, "YYYY-MM-DD HH:mm:ss").subtract(-7, "hours"),
       campaignId: stagedetail.campaignId,
       limitVote: limitVoter,
       formId: localStorage.getItem("formID"),

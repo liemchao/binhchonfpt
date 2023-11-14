@@ -44,6 +44,7 @@ const initialState = {
   candidateId: "",
   activy: [],
   statistical: {},
+  design: {},
   voterOfVoter: [],
   statisticalCandidate: [],
   detailQuestion: {},
@@ -199,6 +200,9 @@ export default function userReducer(state = initialState, { type, payload }) {
       break;
     case PathAction.GET_LIST_ACCOUNT_THONGKE:
       state.accountvoter = payload;
+      break;
+    case PathAction.GET_DESGN:
+      state.design = payload;
       break;
     default:
       return { ...state };

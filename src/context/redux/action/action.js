@@ -92,19 +92,11 @@ export const loginFirebase = (idtoken, navigate) => {
           })
         );
         if (detoken.RoleName === "user") {
-          if (detoken.Username.includes("@fpt.edu.vn")) {
-            navigate("/user/campaign");
-            CustomizedToast({
-              message: "Đăng nhập thành công",
-              type: "SUCCESS",
-            });
-          } else {
-            CustomizedToast({
-              message: "Tài khoản của bạn không được phép đăng nhập vào hệ thống.",
-              type: "ERROR",
-            });
-            localStorage.removeItem("token");
-          }
+          navigate("/user/campaign");
+          CustomizedToast({
+            message: "Đăng nhập thành công",
+            type: "SUCCESS",
+          });
         } else if (detoken.RoleName === "admin") {
           navigate("/admin/account");
           CustomizedToast({
@@ -898,6 +890,20 @@ export const getAccountStatic = (token) => {
       dispatch(
         createAction({
           type: PathAction.GET_LIST_ACCOUNT_THONGKE,
+          payload: res.data.data,
+        })
+      );
+    } catch (err) {}
+  };
+};
+
+export const getDesigin = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await API("GET", URL_API + `/api/v1/designs/introduction`, null);
+      dispatch(
+        createAction({
+          type: PathAction.GET_DESGN,
           payload: res.data.data,
         })
       );

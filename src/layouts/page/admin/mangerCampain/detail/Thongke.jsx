@@ -51,7 +51,7 @@ export default function Thongke() {
         <AppWidgetSummary
           title="Số người tham gia"
           total={statistical.voter}
-          icon="fluent:heart-16-filled"
+          icon="fluent:people-12-filled"
           color="error"
           bgcolor="#FFF7CD"
         />

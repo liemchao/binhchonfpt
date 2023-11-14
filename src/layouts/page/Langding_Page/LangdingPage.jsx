@@ -22,9 +22,20 @@ import { useTheme, useMediaQuery } from "@mui/material";
 import { Link } from "react-scroll";
 import ScrollToTopButton from "../user/Form/Voter/List Candidate/scollpage";
 import ScrollToTopButtonTop from "../user/Form/Voter/List Candidate/scollLandingPage";
+import { useDispatch, useSelector } from "react-redux";
+import { getDesigin } from "context/redux/action/action";
 //----------------------------------------------------------------
 
 export default function LangdingPage() {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    const callAPI = async () => {
+      await dispatch(getDesigin());
+    };
+    callAPI();
+  }, []);
+
   const styles = {
     section: {
       position: "relative",
@@ -44,12 +55,16 @@ export default function LangdingPage() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const design = useSelector((state) => {
+    return state.design;
+  });
+
   return (
     <Container
       maxWidth="none"
       sx={{
         background: "#fff",
-        backgroundImage: `url("https://res.cloudinary.com/dxevluwyr/image/upload/v1694155547/BackGround_xhgdfp.png?fbclid=IwAR39NUtxnEeju10pZTzJFAqpQiDKjpW2are7Q_MAfYpZVf50ca-jnF-rmXo")`,
+        backgroundImage: `url("${design.backgroundImage}")`,
         backgroundSize: "cover", // Thêm thuộc tính backgroundSize với giá trị "cover"
       }}
     >

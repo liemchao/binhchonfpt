@@ -123,9 +123,23 @@ export default function ManagerCampaign() {
   };
 
   return (
-    <Paper sx={{ margin: 2, padding: 2, paddingLeft: "4rem" }}>
+    <Paper
+      sx={{
+        margin: 2,
+        padding: 2,
+        paddingLeft: "4rem",
+        backgroundColor: "transparent",
+        position: "relative",
+        border: "none",
+      }}
+    >
       <Stack direction="row" alignItems="center" mb={1}>
-        <Box sx={{ flex: 1, paddingRight: "1rem" }}>
+        <Box
+          sx={{
+            flex: 1,
+            paddingRight: "1rem",
+          }}
+        >
           {" "}
           <Box
             component="form"
@@ -147,7 +161,13 @@ export default function ManagerCampaign() {
             />
           </Box>
         </Box>
-        <Box sx={{ display: "flex", justifyContent: "flex-start", padding: 1 }}>
+        <Box
+          sx={{
+            backgroundColor: "transparent",
+            position: "relative",
+            border: "none",
+          }}
+        >
           <Select
             sx={{
               display: "flex",

@@ -237,7 +237,7 @@ export default function ManageAccount() {
   return (
     <Page title="Admin">
       <Container maxWidth={false}>
-        <Stack direction="row" alignItems="center" justifyContent="flex-end" mb={1}>
+        <Stack direction="row" alignItems="center" justifyContent="flex-end" mb={0} mt={-1}>
           <CSVLink
             style={{ textDecoration: "none", marginTop: "-0.6rem", marginRight: "1rem" }}
             data={filterCandidate}
@@ -252,7 +252,7 @@ export default function ManageAccount() {
           >
             <ButtonLangding nameButton="Người tham gia" bgColor="#FFA500" hovercolor="#F7941D" />
           </CSVLink>
-          {/* <Typography variant="h4" gutterBottom>
+          <Typography variant="h4" gutterBottom>
             <ButtonLangding
               nameButton="Thêm tài khoản"
               bgColor="#FFA500"
@@ -261,7 +261,7 @@ export default function ManageAccount() {
                 handleClickOpenNewAccount();
               }}
             />
-          </Typography> */}
+          </Typography>
         </Stack>
 
         <Card>
