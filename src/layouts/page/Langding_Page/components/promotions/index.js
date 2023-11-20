@@ -77,7 +77,7 @@ export default function Promotions() {
     <>
       <Grid container className={classes.root}>
         <Grid item xs={12} md={5}>
-          <img src={Logo1} alt="Logo" className={classes.image} />
+          <img src={campaigns.imgUrl} alt="Logo" className={classes.image} />
         </Grid>
         <Grid item xs={12} md={7}>
           <MainCard
@@ -85,6 +85,7 @@ export default function Promotions() {
             creater={campaigns.userId}
             url={campaigns.imgUrl}
             title={campaigns.title}
+            description={campaigns.description}
             visibilityCandidate={campaigns.visibilityCandidate}
             totalCandidate={campaigns.totalCandidate}
             process={campaigns.process}

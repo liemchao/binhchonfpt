@@ -37,6 +37,8 @@ import ReviewsIcon from "@mui/icons-material/Reviews";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import PolicyIcon from "@mui/icons-material/Policy";
+import LabelImportantIcon from "@mui/icons-material/LabelImportant";
+import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -50,6 +52,9 @@ import Policy from "components/Popup/add/Policy";
 import PolicyOwer from "components/Popup/add/PolicyOwer";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import { AspectRatio } from "@mui/joy";
+import StarsIcon from "@mui/icons-material/Stars";
+import axios from "axios";
+import { CustomizedToast } from "components/toast/ToastCustom";
 
 export default function CampaignOwenrList() {
   const navigate = useNavigate();
@@ -134,6 +139,64 @@ export default function CampaignOwenrList() {
   const handleClickNewUser = useCallback((id) => {
     setId(id);
     navigate(`/user/createCandidate/${id}`);
+  }, []);
+
+  const handleUpdateProcess = useCallback(async (id) => {
+    try {
+      const response = await axios.put(
+        `https://votingsystemfptu-001-site1.htempurl.com/api/v1/campaigns/update-process`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response) {
+        CustomizedToast({
+          message: `Cập nhật tiến trình thành công`,
+          type: "SUCCESS",
+        });
+      }
+      await dispatch(GetCampaignbyUserId(decode.Username, token));
+    } catch (error) {
+      CustomizedToast({
+        message: `Cập nhật tiến trình  thất bại`,
+        type: "ERROR",
+      });
+    }
+  }, []);
+  const handleUpdateRelust = useCallback(async (id) => {
+    try {
+      const response = await axios.put(
+        `https://votingsystemfptu-001-site1.htempurl.com/api/v1/campaigns/publish-result/6097a517-11ad-4105-b26a-0e93bea2cb43`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        CustomizedToast({
+          message: `Cập nhật công bố kết quả thành công`,
+          type: "SUCCESS",
+        });
+      }
+      await dispatch(GetCampaignbyUserId(decode.Username, token));
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        CustomizedToast({
+          message: `Unauthorized Access: Đăng nhập lại để tiếp tục`,
+          type: "ERROR",
+        });
+      } else {
+        CustomizedToast({
+          message: `Cập nhật công bố kết quả thất bại`,
+          type: "ERROR",
+        });
+      }
+    }
   }, []);
 
   const handleRatio = useCallback(
@@ -254,6 +317,60 @@ export default function CampaignOwenrList() {
                   </div>
                   <CardActions sx={{ justifyContent: "flex-end" }}>
                     <ButtonGroup variant="soft" aria-label="tooltip button group">
+                      {item.campaignId === "6097a517-11ad-4105-b26a-0e93bea2cb43" && (
+                        <Tooltip title="Tham gia chiến dịch" variant="outlined">
+                          <IconButton
+                            sx={{
+                              backgroundColor: "#D75BAF",
+                              "&:hover": {
+                                background: "linear-gradient(to right, #d44fac, #890761)",
+                                color: "white",
+                              },
+                            }}
+                            variant="solid"
+                            onClick={() => {
+                              navigate(`/user/candidate/6097a517-11ad-4105-b26a-0e93bea2cb43`);
+                            }}
+                          >
+                            <LabelImportantIcon />
+                          </IconButton>
+                        </Tooltip>
+                      )}
+                      <Tooltip title="Cập nhật tiến trình" variant="outlined">
+                        <IconButton
+                          sx={{
+                            backgroundColor: "#D75BAF",
+                            "&:hover": {
+                              background: "linear-gradient(to right, #d44fac, #890761)",
+                              color: "white",
+                            },
+                          }}
+                          variant="solid"
+                          onClick={() => {
+                            handleUpdateProcess(item.campaignId);
+                          }}
+                        >
+                          <AccessAlarmIcon />
+                        </IconButton>
+                      </Tooltip>
+                      <Tooltip title="Công bố kết quả" variant="outlined">
+                        <IconButton
+                          sx={{
+                            backgroundColor: "#D75BAF",
+                            "&:hover": {
+                              background: "linear-gradient(to right, #d44fac, #890761)",
+                              color: "white",
+                            },
+                          }}
+                          variant="solid"
+                          onClick={() => {
+                            handleUpdateRelust(item.campaignId);
+                          }}
+                        >
+                          <StarsIcon />
+                        </IconButton>
+                      </Tooltip>
+
                       <Tooltip title="Thêm giai đoạn" variant="outlined">
                         <IconButton
                           sx={{
@@ -344,25 +461,6 @@ export default function CampaignOwenrList() {
                           <ReviewsIcon />
                         </IconButton>
                       </Tooltip>
-                      {item.campaignId === "6097a517-11ad-4105-b26a-0e93bea2cb43" && (
-                        <Tooltip title="Thể lệ bình chọn" variant="outlined">
-                          <IconButton
-                            sx={{
-                              backgroundColor: "#D75BAF",
-                              "&:hover": {
-                                background: "linear-gradient(to right, #d44fac, #890761)",
-                                color: "white",
-                              },
-                            }}
-                            variant="solid"
-                            onClick={() => {
-                              handlePolicy(item.campaignId);
-                            }}
-                          >
-                            <PolicyIcon />
-                          </IconButton>
-                        </Tooltip>
-                      )}
 
                       <Tooltip title="Chỉnh sửa chiến dịch" variant="outlined">
                         <IconButton

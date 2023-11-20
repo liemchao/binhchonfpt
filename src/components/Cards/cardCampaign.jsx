@@ -12,6 +12,7 @@ import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import dayjs from "dayjs";
 import { Description } from "@mui/icons-material";
 import { useTheme, useMediaQuery } from "@mui/material";
+import { useSelector } from "react-redux";
 
 export default function UserCard(props) {
   const {
@@ -39,6 +40,9 @@ export default function UserCard(props) {
   );
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const design = useSelector((state) => {
+    return state.design;
+  });
   useEffect(() => {
     setIsButtonDisabled(process === "Chưa bắt đầu" || process === "Đã kết thúc");
   }, [process]);
@@ -92,8 +96,7 @@ export default function UserCard(props) {
       <Card
         orientation="horizontal"
         sx={{
-          backgroundImage:
-            "url(https://res.cloudinary.com/dxevluwyr/image/upload/v1694155547/BackGround_xhgdfp.png)",
+          backgroundImage: `url("${design.backgroundImage}")`,
           backgroundSize: "cover",
           backgroundColor: "transparent",
           border: "none",
@@ -141,7 +144,7 @@ export default function UserCard(props) {
             fontWeight="bold"
             sx={{
               fontSize: isMobile ? "23px" : "40px",
-              color: "#B83490",
+              color: design.textColor,
               fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
             }}
           >
@@ -182,7 +185,7 @@ export default function UserCard(props) {
                 <Typography
                   sx={{
                     whiteSpace: "nowrap",
-                    color: "#B83490",
+                    color: design.textColor,
                     fontFamily: "UTM Swiss Condensed Regular",
                   }}
                   fontWeight="lg"
@@ -190,24 +193,24 @@ export default function UserCard(props) {
                   Thời gian bắt đầu
                 </Typography>
                 <Typography
-                  sx={{ color: "#B83490", fontFamily: "UTM Swiss Condensed Regular" }}
+                  sx={{ color: design.textColor, fontFamily: "UTM Swiss Condensed Regular" }}
                   fontWeight="lg"
                 >
-                  19/10/2023
+                  {startTime}
                 </Typography>
               </div>
               <div
                 style={{
                   flex: 5,
                   marginRight: "30px",
-                  color: "#B83490",
+                  color: design.textColor,
                   fontFamily: "UTM Swiss Condensed Regular",
                 }}
               >
                 <Typography
                   sx={{
                     whiteSpace: "nowrap",
-                    color: "#B83490",
+                    color: design.textColor,
                     fontFamily: "UTM Swiss Condensed Regular",
                   }}
                   fontWeight="lg"
@@ -215,18 +218,18 @@ export default function UserCard(props) {
                   Thời gian kết thúc
                 </Typography>
                 <Typography
-                  sx={{ color: "#B83490", fontFamily: "UTM Swiss Condensed Regular" }}
+                  sx={{ color: design.textColor, fontFamily: "UTM Swiss Condensed Regular" }}
                   fontWeight="lg"
                 >
                   {" "}
-                  31/10/2023
+                  {dayEnd}
                 </Typography>
               </div>
               <div style={{ flex: 5, marginRight: "30px" }}>
                 <Typography
                   sx={{
                     whiteSpace: "nowrap",
-                    color: "#B83490",
+                    color: design.textColor,
                     fontFamily: "UTM Swiss Condensed Regular",
                   }}
                   fontWeight="lg"

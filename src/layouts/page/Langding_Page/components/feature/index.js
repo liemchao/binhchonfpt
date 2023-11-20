@@ -9,9 +9,23 @@ import ButtonCustomize from "assets/theme/components/button/ButtonCustomize";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import Logo1 from "assets/images/Group 9.png";
 import { useMediaQuery } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { getDesiginHome } from "context/redux/action/action";
 
 export default function Section2() {
+  const dispatch = useDispatch();
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
+  useEffect(() => {
+    const callAPI = async () => {
+      await dispatch(getDesiginHome());
+    };
+    callAPI();
+  }, []);
+  const designhome = useSelector((state) => {
+    return state.designhome;
+  });
   return (
     <section id="section-2">
       <>
@@ -24,7 +38,7 @@ export default function Section2() {
           style={{ width: "100%" }}
         >
           <img
-            src={Logo1}
+            src={designhome.logo2}
             alt="Logo"
             style={{
               width: isMobile ? "15rem" : "30rem",
@@ -108,7 +122,7 @@ export default function Section2() {
                     <Typography
                       fontSize={{ xs: "30px", sm: "60px" }} // Kích thước font chữ thay đổi khi trên web hoặc mobile
                       sx={{
-                        color: "#B83490",
+                        color: designhome.textColor,
                         fontFamily: "VLABRAHAMLINCOLN",
                         textAlign: "start", // Đặt font chữ tùy chỉnh
                       }}
@@ -121,17 +135,25 @@ export default function Section2() {
                       fontWeight="normal"
                       fontSize={{ xs: "16px", sm: "25px" }} // Kích thước font chữ thay đổi khi trên web hoặc mobile
                       sx={{
-                        color: "#B83490",
+                        color: designhome.textColor,
                         fontFamily: "UTM Swiss Condensed Regular",
                         // Đặt font chữ tùy chỉnh
                         marginTop: isMobile ? "0rem" : "-1rem",
                         textAlign: "start", // Căn giữa nội dung
                       }}
                     >
-                      <li>Bình chọn</li>
+                      {designhome.description2?.split(".").map((sentence, index) => (
+                        <React.Fragment key={index}>
+                          {index > 0} {/* Thêm dấu chấm (.) trước câu từ thứ hai trở đi */}
+                          {sentence}
+                          <br /> {/* Xuống dòng sau mỗi câu */}
+                        </React.Fragment>
+                      ))}
+
+                      {/* <li>Bình chọn</li>
                       <li>Kết thúc bình chọn</li>
                       <li>Công bố top 10</li>
-                      <li>Vinh danh top 10</li>
+                      <li>Vinh danh top 10</li> */}
                     </Typography>
                     <Box
                       sx={{

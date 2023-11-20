@@ -13,16 +13,29 @@ import MyComponent from "./components/search";
 import Select2 from "./components/search";
 import Select3 from "./components/search";
 import ScrollToTopButton from "../user/Form/Voter/List Candidate/scollpage";
+import { getDesigin } from "context/redux/action/action";
+import { useDispatch, useSelector } from "react-redux";
 
 //----------------------------------------------------------------
 
 export default function IntroducePage() {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    const callAPI = async () => {
+      await dispatch(getDesigin());
+    };
+    callAPI();
+  }, []);
+  const design = useSelector((state) => {
+    return state.design;
+  });
   return (
     <Container
       maxWidth="none"
       sx={{
         background: "#fff",
-        backgroundImage: `url("https://res.cloudinary.com/dxevluwyr/image/upload/v1694155547/BackGround_xhgdfp.png?fbclid=IwAR39NUtxnEeju10pZTzJFAqpQiDKjpW2are7Q_MAfYpZVf50ca-jnF-rmXo")`,
+        backgroundImage: `url("${design.backgroundImage}")`,
         backgroundSize: "cover",
       }}
     >

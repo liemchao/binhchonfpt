@@ -8,6 +8,9 @@ import { Card } from "@mui/material";
 import Sheet from "@mui/joy/Sheet";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import { useMediaQuery } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { getDesiginHome } from "context/redux/action/action";
+import React, { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,8 +40,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MyComponent() {
+  const dispatch = useDispatch();
+
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const classes = useStyles(isMobile);
+  useEffect(() => {
+    const callAPI = async () => {
+      await dispatch(getDesiginHome());
+    };
+    callAPI();
+  }, []);
+  const designhome = useSelector((state) => {
+    return state.designhome;
+  });
   return (
     <section id="section-3" className={classes.root}>
       {isMobile ? (
@@ -52,7 +66,7 @@ export default function MyComponent() {
             style={{ width: "100%" }}
           >
             <img
-              src={Logo1}
+              src={designhome.logo1}
               alt="Logo"
               style={{
                 width: isMobile ? "15rem" : "30rem",
@@ -159,16 +173,7 @@ export default function MyComponent() {
                           textAlign: "start", // Căn giữa nội dung
                         }}
                       >
-                        <li>
-                          Danh hiệu <strong>"Inspiring Instructor Awards"</strong> nhằm tôn vinh
-                          những nỗ lực, cống hiến của Giảng viên trong hành trình định hướng, giúp
-                          đỡ sinh viên thu nhận kiến thức và truyền cảm hứng đến sinh viên FPTU
-                          HCMC.
-                        </li>
-                        <li>
-                          Đây là danh hiệu được bình chọn định kỳ hằng năm và dành cho tất cả giảng
-                          viên dạy ở 3 học kì gần nhất của thời điểm đó: Fall, Spring, Summer.
-                        </li>
+                        {designhome.description1}
                       </Typography>
                       <Box
                         sx={{
@@ -283,7 +288,7 @@ export default function MyComponent() {
                       <Typography
                         fontSize={isMobile ? "30px" : "60px"}
                         sx={{
-                          color: "#B83490",
+                          color: designhome.textColor,
                           fontFamily: "VLABRAHAMLINCOLN",
                           textAlign: "start", // Đặt font chữ tùy chỉnh
                         }}
@@ -297,24 +302,21 @@ export default function MyComponent() {
                         fontSize={isMobile ? "15px" : "25px"}
                         sx={{
                           marginLeft: "2rem",
-                          color: "#B83490",
+                          color: designhome.textColor,
                           fontFamily: "UTM Swiss Condensed Regular",
                           // Đặt font chữ tùy chỉnh
                           marginTop: isMobile ? "0.2rem" : "0rem",
-                          textIndent: isMobile ? "-1.5rem" : "-2rem", // Khoảng cách đầu dòng
+                          textIndent: isMobile ? "-1.5rem" : "0.2rem", // Khoảng cách đầu dòng
                           textAlign: "start", // Căn giữa nội dung
                         }}
                       >
-                        <li>
-                          Danh hiệu <strong>"Inspiring Instructor Awards"</strong> nhằm tôn vinh
-                          những nỗ lực, cống hiến của Giảng viên trong hành trình định hướng, giúp
-                          đỡ sinh viên thu nhận kiến thức và truyền cảm hứng đến sinh viên FPTU
-                          HCMC.
-                        </li>
-                        <li>
-                          Đây là danh hiệu được bình chọn định kỳ hằng năm và dành cho tất cả giảng
-                          viên dạy ở 3 học kì gần nhất của thời điểm đó: Fall, Spring, Summer.
-                        </li>
+                        {designhome.description1?.split(".").map((sentence, index) => (
+                          <React.Fragment key={index}>
+                            {index > 0} {/* Thêm dấu chấm (.) trước câu từ thứ hai trở đi */}
+                            {sentence}
+                            <br /> {/* Xuống dòng sau mỗi câu */}
+                          </React.Fragment>
+                        ))}
                       </Typography>
                       <Box
                         sx={{
@@ -342,7 +344,7 @@ export default function MyComponent() {
               </Card>
             </Box>
             <img
-              src={Logo1}
+              src={designhome.logo1}
               alt="Logo"
               style={{
                 width: isMobile ? "15rem" : "30rem",

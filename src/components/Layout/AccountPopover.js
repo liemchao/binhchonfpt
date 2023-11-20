@@ -35,7 +35,9 @@ export default function AccountPopover() {
   const dispatch = useDispatch();
   // const { token } = useContext(Authen);
   const token = localStorage.getItem("token");
-
+  const design = useSelector((state) => {
+    return state.design;
+  });
   const [open, setOpen] = useState(null);
   const navigate = useNavigate();
 
@@ -152,7 +154,7 @@ export default function AccountPopover() {
             variant="h6"
             fontWeight="bold"
             sx={{
-              color: "#B83490",
+              color: design.textColor,
               fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
             }}
             noWrap
@@ -171,7 +173,7 @@ export default function AccountPopover() {
               component={RouterLink}
               onClick={handleCloseNotion}
               sx={{
-                color: "#B83490",
+                color: design.textColor,
                 fontFamily: "UTM Swiss Condensed Regular",
                 fontWeight: "bold",
               }}
@@ -191,7 +193,7 @@ export default function AccountPopover() {
             variant="h6"
             fontWeight="bold"
             sx={{
-              color: "#B83490",
+              color: design.textColor,
               fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
             }}
           >

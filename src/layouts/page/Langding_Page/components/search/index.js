@@ -8,6 +8,9 @@ import { Card } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
 import Sheet from "@mui/joy/Sheet";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
+import { getDesiginHome } from "context/redux/action/action";
+import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,9 +40,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Select3() {
+  const dispatch = useDispatch();
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const classes = useStyles(isMobile);
-
+  useEffect(() => {
+    const callAPI = async () => {
+      await dispatch(getDesiginHome());
+    };
+    callAPI();
+  }, []);
+  const designhome = useSelector((state) => {
+    return state.designhome;
+  });
   return (
     <section id="section-3" className={classes.root}>
       {isMobile ? (
@@ -53,7 +65,7 @@ export default function Select3() {
             style={{ width: "100%" }}
           >
             <img
-              src={Logo1}
+              src={designhome.logo3}
               alt="Logo"
               style={{
                 width: isMobile ? "15rem" : "30rem",
@@ -138,7 +150,7 @@ export default function Select3() {
                       <Typography
                         fontSize={isMobile ? "30px" : "60px"}
                         sx={{
-                          color: "#B83490",
+                          color: designhome.textColor,
                           fontFamily: "VLABRAHAMLINCOLN",
                           textAlign: "start", // Đặt font chữ tùy chỉnh
                         }}
@@ -152,7 +164,7 @@ export default function Select3() {
                         fontSize={isMobile ? "15px" : "25px"}
                         sx={{
                           marginLeft: "2rem",
-                          color: "#B83490",
+                          color: designhome.textColor,
                           fontFamily: "UTM Swiss Condensed Regular",
                           // Đặt font chữ tùy chỉnh
                           marginTop: isMobile ? "1rem" : "0rem",
@@ -160,13 +172,13 @@ export default function Select3() {
                           textAlign: "start", // Căn giữa nội dung
                         }}
                       >
-                        <li>Chương trình dành cho tất cả sinh viên đang học tại FPTU HCMC.</li>
-                        <li>Sinh viên bình chọn cho giảng viên yêu thích.</li>
-                        <li>Hệ thống sẽ tính điểm theo tổng lượt bình chọn của sinh viên.</li>
-                        <li>
-                          Sau thời gian bình chọn, hệ thống lọc ra top 10 giảng viên đạt danh hiệu
-                          <strong> “Inspiring Instructor Awards”.</strong>
-                        </li>
+                        {designhome.description3?.split(".").map((sentence, index) => (
+                          <React.Fragment key={index}>
+                            {index > 0} {/* Thêm dấu chấm (.) trước câu từ thứ hai trở đi */}
+                            {sentence}
+                            <br /> {/* Xuống dòng sau mỗi câu */}
+                          </React.Fragment>
+                        ))}
                       </Typography>
                       <Box
                         sx={{
@@ -281,7 +293,7 @@ export default function Select3() {
                       <Typography
                         fontSize={isMobile ? "30px" : "60px"}
                         sx={{
-                          color: "#B83490",
+                          color: designhome.textColor,
                           fontFamily: "VLABRAHAMLINCOLN",
                           textAlign: "start", // Đặt font chữ tùy chỉnh
                         }}
@@ -295,21 +307,29 @@ export default function Select3() {
                         fontSize={isMobile ? "15px" : "25px"}
                         sx={{
                           marginLeft: "2rem",
-                          color: "#B83490",
+                          color: designhome.textColor,
                           fontFamily: "UTM Swiss Condensed Regular",
                           // Đặt font chữ tùy chỉnh
                           marginTop: isMobile ? "1rem" : "0rem",
-                          textIndent: isMobile ? "-1.5rem" : "-2rem", // Khoảng cách đầu dòng
+                          textIndent: isMobile ? "-1.5rem" : "0.1rem", // Khoảng cách đầu dòng
                           textAlign: "start", // Căn giữa nội dung
                         }}
                       >
-                        <li>Chương trình dành cho tất cả sinh viên đang học tại FPTU HCMC.</li>
+                        {designhome.description3?.split(".").map((sentence, index) => (
+                          <React.Fragment key={index}>
+                            {index > 0} {/* Thêm dấu chấm (.) trước câu từ thứ hai trở đi */}
+                            {sentence}
+                            <br /> {/* Xuống dòng sau mỗi câu */}
+                          </React.Fragment>
+                        ))}
+
+                        {/* <li>Chương trình dành cho tất cả sinh viên đang học tại FPTU HCMC.</li>
                         <li>Sinh viên bình chọn cho giảng viên yêu thích.</li>
                         <li>Hệ thống sẽ tính điểm theo tổng lượt bình chọn của sinh viên.</li>
                         <li>
                           Sau thời gian bình chọn, hệ thống lọc ra top 10 giảng viên đạt danh hiệu
                           <strong> “Inspiring Instructor Awards”.</strong>
-                        </li>
+                        </li> */}
                       </Typography>
                       <Box
                         sx={{
@@ -337,7 +357,7 @@ export default function Select3() {
               </Card>
             </Box>
             <img
-              src={Logo1}
+              src={designhome.logo3}
               alt="Logo"
               style={{
                 width: isMobile ? "15rem" : "30rem",

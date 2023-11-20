@@ -2,6 +2,7 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import { useTheme, useMediaQuery } from "@mui/material";
+import { useSelector } from "react-redux";
 
 export default function ButtonLangding(props) {
   const {
@@ -31,6 +32,9 @@ export default function ButtonLangding(props) {
   } = props;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const design = useSelector((state) => {
+    return state.design;
+  });
   const ColorButton = styled(Button)(({ theme }) => ({
     // color: theme.palette.getContrastText("#ffff"),
     backgroundColor: "transparent",
@@ -41,7 +45,7 @@ export default function ButtonLangding(props) {
     display: "center",
     textTransform: "none",
     fontSize: isMobile ? "15px" : "25px",
-    color: "#d44fac",
+    color: design.textColor,
     border: "1px solid #d44fac",
     fontFamily: ["UTM Swiss Condensed Regular"].join(","),
   }));

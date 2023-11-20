@@ -11,9 +11,22 @@ import Logo1 from "assets/images/award.png";
 // import các icon từ '@mui/icons-material'
 import { Assessment, CheckCircle, Security } from "@mui/icons-material";
 import { useMediaQuery } from "@mui/material";
+import { getDesiginHome } from "context/redux/action/action";
+import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
 
 export default function Section3() {
+  const dispatch = useDispatch();
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  useEffect(() => {
+    const callAPI = async () => {
+      await dispatch(getDesiginHome());
+    };
+    callAPI();
+  }, []);
+  const designhome = useSelector((state) => {
+    return state.designhome;
+  });
   return (
     <section id="section-2">
       <>
@@ -26,7 +39,7 @@ export default function Section3() {
           style={{ width: "100%" }}
         >
           <img
-            src={Logo1}
+            src={designhome.logo4}
             alt="Logo"
             style={{
               width: isMobile ? "15rem" : "30rem",
@@ -110,7 +123,7 @@ export default function Section3() {
                     <Typography
                       fontSize={{ xs: "30px", sm: "60px" }} // Kích thước font chữ thay đổi khi trên web hoặc mobile
                       sx={{
-                        color: "#B83490",
+                        color: designhome.textColor,
                         fontFamily: "VLABRAHAMLINCOLN",
                         textAlign: "start", // Đặt font chữ tùy chỉnh
                       }}
@@ -124,19 +137,27 @@ export default function Section3() {
                       fontSize={{ xs: "15px", sm: "25px" }} // Kích thước font chữ thay đổi khi trên web hoặc mobile
                       sx={{
                         marginLeft: "2rem",
-                        color: "#B83490",
+                        color: designhome.textColor,
                         fontFamily: "UTM Swiss Condensed Regular",
                         // Đặt font chữ tùy chỉnh
                         marginTop: isMobile ? "0.3rem" : "0rem",
                         textAlign: "start", // Căn giữa nội dung
-                        textIndent: isMobile ? "-1.5rem" : "-2rem",
+                        textIndent: isMobile ? "-1.5rem" : "0.3rem",
                       }}
                     >
-                      <li>
+                      {designhome.description4?.split(".").map((sentence, index) => (
+                        <React.Fragment key={index}>
+                          {index > 0} {/* Thêm dấu chấm (.) trước câu từ thứ hai trở đi */}
+                          {sentence}
+                          <br /> {/* Xuống dòng sau mỗi câu */}
+                        </React.Fragment>
+                      ))}
+
+                      {/* <li>
                         Top 10 giảng viên đạt danh hiệu{" "}
                         <strong>"Inspiring Instructor Awards"</strong> sẽ được vinh danh tại ngày
                         hội Convocation Day.
-                      </li>
+                      </li> */}
                     </Typography>
                     <Box
                       sx={{

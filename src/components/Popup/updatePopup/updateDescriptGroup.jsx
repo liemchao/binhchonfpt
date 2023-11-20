@@ -29,17 +29,12 @@ import { getCampaignRatio } from "context/redux/action/action";
 
 const schema = yup.object().shape({});
 
-export function AddGroup(props) {
-  const { OpenPopUp, SetOpenPopUp, id } = props;
+export function UpdateDescriptionGroup(props) {
+  const { OpenPopUp, SetOpenPopUp, id, name } = props;
   const dispatch = useDispatch();
   const { token } = useContext(Authen);
   const decode = jwt_decode(token);
   const [display, setDisplay] = useState(true);
-
-  const getOptions = () => [
-    { id: true, title: "Nhóm bình chọn", nametitle: "Trạng thái người bình chọn" },
-    { id: false, title: "Nhóm ứng cử viên", nametitle: "Trạng thái người bình chọn" },
-  ];
 
   const onClose = () => {
     SetOpenPopUp(false);
@@ -50,29 +45,24 @@ export function AddGroup(props) {
     validateOnMount: true,
     validateOnBlur: true,
     initialValues: {
-      name: "",
+      name: name,
       description: "",
-      isVoter: true,
-      campaignId: id,
     },
     onSubmit: async (values) => {
       const data = {
         name: formik.values.name,
         description: formik.values.description,
-        isVoter: display,
-        campaignId: id,
       };
       try {
-        const req = await API("POST", URL_API + `/api/v1/groups`, data, token);
-
+        const req = await API("PUT", URL_API + `/api/v1/groups/${id}`, data, token);
         if (req) {
           CustomizedToast({
-            message: "Thêm nhóm thành công",
+            message: "Cập nhật nhóm thành công",
             type: "SUCCESS",
           });
         }
-        dispatch(getGroupId(id, token));
-        dispatch(getCampaignRatio(id, token));
+        dispatch(getGroupId("6097a517-11ad-4105-b26a-0e93bea2cb43", token));
+        dispatch(getCampaignRatio("6097a517-11ad-4105-b26a-0e93bea2cb43", token));
       } catch (error) {
         if (error.response.data.statusCode === 404) {
           CustomizedToast({
@@ -98,8 +88,8 @@ export function AddGroup(props) {
     <Dialog open={OpenPopUp} onClose={onClose}>
       <DialogTitle>
         <PageHeader
-          title="Thêm nhóm cho chiến dịch"
-          subTitle="Nhóm ứng cử viên và người bình chọn"
+          title="Chỉnh sửa mô tả nhóm"
+          subTitle="Chỉnh sửa mô tả nhóm"
           icon={getIcon("akar-icons:edit")}
         />
       </DialogTitle>
@@ -131,55 +121,26 @@ export function AddGroup(props) {
                         required
                         variant="outlined"
                         name="name"
+                        defaultValue={name}
                         label="Tên nhóm"
                         onChange={(event) => {
                           formik.handleChange(event);
                         }}
                       />
-                      {/* nếu sai thì nó đỏ */}
-                      {/* {formik.touched.title && formik.errors.title && (
-                      <FormHelperText
-                        error
-                        id="standard-weight-helper-text-username-login"
-                        style={{ fontSize: "16px" }}
-                      >
-                        {formik.errors.title}
-                      </FormHelperText>
-                    )} */}
                     </Grid>
                     <Grid item xs={12}>
                       <Input
-                        required
                         placeholder="Điền CN- hoặc NC- với tên nhóm: CN-Tên Nhóm"
+                        required
                         variant="outlined"
                         name="description"
+                        place
                         label="Mô tả"
                         onChange={(event) => {
                           formik.handleChange(event);
                         }}
                       />
                     </Grid>
-                    <Grid item xs={12}>
-                      <Box
-                        sx={{
-                          flexDirection: "row",
-                        }}
-                      >
-                        <Select
-                          name="isVoter"
-                          required
-                          defaultValue="0"
-                          label="Loại nhóm"
-                          width="14rem"
-                          height="10rem"
-                          onChange={(e) => {
-                            setDisplay(e.target.value);
-                          }}
-                          options={getOptions()}
-                        />
-                      </Box>
-                    </Grid>
-
                     <Box
                       width="200px"
                       marginTop={"2%"}
@@ -204,13 +165,13 @@ export function AddGroup(props) {
         </Grid>
       </DialogContent>
       {/* <DialogActions>
-        <Button  color="primary">
-          Hủy bỏ
-        </Button>
-        <Button onClick={handleConfirm} color="primary">
-          Xác nhận
-        </Button>
-      </DialogActions> */}
+          <Button  color="primary">
+            Hủy bỏ
+          </Button>
+          <Button onClick={handleConfirm} color="primary">
+            Xác nhận
+          </Button>
+        </DialogActions> */}
     </Dialog>
   );
 }

@@ -72,8 +72,8 @@ export default function UpdateCandidate(props) {
   });
 
   useEffect(() => {
-    setInput(object.imgUrl || []);
-  }, [object.imgUrl]);
+    setInput(object.avatarUrl || []);
+  }, [object.avatarUrl]);
 
   const getGroupOption = () => {
     const GroupOption = [];

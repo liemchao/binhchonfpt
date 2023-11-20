@@ -45,6 +45,8 @@ const initialState = {
   activy: [],
   statistical: {},
   design: {},
+  designsetting: {},
+  designhome: {},
   voterOfVoter: [],
   statisticalCandidate: [],
   detailQuestion: {},
@@ -203,6 +205,12 @@ export default function userReducer(state = initialState, { type, payload }) {
       break;
     case PathAction.GET_DESGN:
       state.design = payload;
+      break;
+    case PathAction.GET_SETTING_DESGN:
+      state.designsetting = payload;
+      break;
+    case PathAction.GET_DESGN_HOME:
+      state.designhome = payload;
       break;
     default:
       return { ...state };

@@ -18,6 +18,7 @@ import { getCandidatebyId } from "context/redux/action/action";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import { handleGetCandidateByIdCampaign } from "context/redux/action/action";
 import TextArea from "components/Control/TextArea";
+import { getSettingDesign } from "context/redux/action/action";
 const schema = yup.object().shape({});
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
@@ -32,8 +33,6 @@ export default function UpdateDesign(props) {
   const [input3, setInput3] = useState([]);
   const [input4, setInput4] = useState([]);
 
-  const [display, setDisplay] = useState();
-
   const [loading, setLoading] = useState(true);
   const formData = new FormData();
   const handleClose = () => {
@@ -45,8 +44,7 @@ export default function UpdateDesign(props) {
     const { files } = e.target;
     const selecteds = [...[...files]];
     const image = URL.createObjectURL(selecteds[0]);
-    formik.setFieldValue("Backgroud", selecteds[0]);
-    // formData.append("File1", selecteds[0]);
+    formik.setFieldValue("backgroundImage", selecteds[0]);
     setImageBackgroud([image]);
   }
 
@@ -54,52 +52,40 @@ export default function UpdateDesign(props) {
     const { files } = e.target;
     const selecteds = [...[...files]];
     const image = URL.createObjectURL(selecteds[0]);
-    formik.setFieldValue("Logo", selecteds[0]);
+    formik.setFieldValue("icon", selecteds[0]);
     setLogo([image]);
   }
 
   function _treat1(e) {
     const { files } = e.target;
-    let images = [];
     const selecteds = [...[...files]];
-    formik.setFieldValue("ImageFile1", e.target.files[0]);
-    return (
-      selecteds.forEach((i) => images.push(URL.createObjectURL(i))),
-      formData.append("File", selecteds),
-      setInput1(images)
-    );
+    const image = URL.createObjectURL(selecteds[0]);
+    formik.setFieldValue("logo1", selecteds[0]);
+    setInput1([image]);
   }
 
   function _treat2(e) {
     const { files } = e.target;
-    let images = [];
     const selecteds = [...[...files]];
-    formik.setFieldValue("ImageFile2", e.target.files[0]);
-    selecteds.forEach((i) => images.push(URL.createObjectURL(i))), setInput2(images);
+    const image = URL.createObjectURL(selecteds[0]);
+    formik.setFieldValue("logo2", selecteds[0]);
+    setInput2([image]);
   }
 
   function _treat3(e) {
     const { files } = e.target;
-    let images = [];
     const selecteds = [...[...files]];
-    formik.setFieldValue("ImageFile3", e.target.files[0]);
-    return (
-      selecteds.forEach((i) => images.push(URL.createObjectURL(i))),
-      // formData.append("File", selecteds),
-      setInput3(images)
-    );
+    const image = URL.createObjectURL(selecteds[0]);
+    formik.setFieldValue("logo3", selecteds[0]);
+    setInput3([image]);
   }
 
   function _treat4(e) {
     const { files } = e.target;
-    let images = [];
     const selecteds = [...[...files]];
-    formik.setFieldValue("ImageFile4", e.target.files[0]);
-    return (
-      selecteds.forEach((i) => images.push(URL.createObjectURL(i))),
-      // formData.append("File", selecteds),
-      setInput4(images)
-    );
+    const image = URL.createObjectURL(selecteds[0]);
+    formik.setFieldValue("logo4", selecteds[0]);
+    setInput4([image]);
   }
 
   useEffect(() => {
@@ -107,10 +93,7 @@ export default function UpdateDesign(props) {
       try {
         setLoading(true);
 
-        await Promise.all([
-          dispatch(getCandidatebyId(id, token)),
-          dispatch(getGroupId(idCampaign, token)),
-        ]);
+        await Promise.all([dispatch(getSettingDesign(token))]);
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -120,72 +103,84 @@ export default function UpdateDesign(props) {
   }, [dispatch, id, token]);
 
   const object = useSelector((state) => {
-    return state.candidateonedetail;
+    return state.designsetting;
   });
+  useEffect(() => {
+    setImageBackgroud(object.backgroundImage || []);
+    setLogo(object.icon || []);
+    setInput1(object.logo1 || []);
+    setInput2(object.logo2 || []);
+    setInput3(object.logo3 || []);
+    setInput4(object.logo4 || []);
+  }, [object.backgroundImage]);
 
   const listGroup = useSelector((state) => {
     return state.listGroup;
   });
 
- 
-
-  const getGroupOption = () => {
-    const GroupOption = [];
-    for (var i = 0; i < listGroup.length; i++) {
-      if (listGroup[i].isVoter === false) {
-        GroupOption.push({
-          id: listGroup[i].groupId,
-          title: listGroup[i].name,
-        });
-      }
-    }
-    return GroupOption;
-  };
-
   React.useEffect(() => {
-    API("GET", URL_API + `/api/v1/candidates/${id}`, null, token)
+    API("GET", URL_API + `/api/v1/designs`, null, token)
       .then((res) => {
-        formik.setFieldValue("FullName", res.data.data.fullName);
-        formik.setFieldValue("Description", res.data.data.description);
-        setDisplay(res.data.data.groupId);
+        formik.setFieldValue("textColor", res.data.textColor);
+        formik.setFieldValue("icon", res.data.icon);
+        formik.setFieldValue("backgroundImage", res.data.backgroundImage);
+        formik.setFieldValue("description1", res.data.description1);
+        formik.setFieldValue("description2", res.data.description2);
+        formik.setFieldValue("description3", res.data.description3);
+        formik.setFieldValue("description4", res.data.description4);
+        formik.setFieldValue("logo1", res.data.logo1);
+        formik.setFieldValue("logo2", res.data.logo2);
+        formik.setFieldValue("logo3", res.data.logo3);
+        formik.setFieldValue("logo4", res.data.logo4);
+        formik.setFieldValue("time1", res.data.time1);
+        formik.setFieldValue("time2", res.data.time2);
+        formik.setFieldValue("time3", res.data.time3);
+        formik.setFieldValue("time4", res.data.time4);
       })
       .catch((error) => {});
-  }, [id]);
+  }, []);
 
   const formik = useFormik({
     validationSchema: schema,
     validateOnMount: true,
     validateOnBlur: true,
     initialValues: {
-      FullName: object.FullName,
-      Description: object.description,
-      GroupId: object.groupId,
-      Backgroud: null,
-      Logo: null,
-      ImageFile1: null,
-      ImageFile2: null,
-      ImageFile3: null,
-      ImageFile4: null,
+      textColor: object.textColor,
+      icon: object.icon,
+      backgroundImage: object.backgroundImage,
+      description1: object.description1,
+      description2: object.description2,
+      description3: object.description3,
+      description4: object.description4,
+      logo1: object.logo1,
+      logo2: object.logo2,
+      logo3: object.logo3,
+      logo4: object.logo4,
+      time1: object.time1,
+      time2: object.time2,
+      time3: object.time3,
+      time4: object.time4,
     },
 
     onSubmit: async (values) => {
-      formData.append("FullName", formik.values.FullName);
-      formData.append("Description", formik.values.Description);
-      formData.append("GroupId", display);
-      formData.append("Backgroud", formik.values.Backgroud);
-      formData.append("Logo", formik.values.Logo);
-      formData.append("ImageFile1", formik.values.ImageFile1);
-      formData.append("ImageFile2", formik.values.ImageFile2);
-      formData.append("ImageFile3", formik.values.ImageFile3);
-      formData.append("ImageFile4", formik.values.ImageFile4);
+      formData.append("textColor", formik.values.textColor);
+      formData.append("icon", formik.values.icon);
+      formData.append("backgroundImage", formik.values.backgroundImage);
+      formData.append("description1", formik.values.description1);
+      formData.append("description2", formik.values.description2);
+      formData.append("description3", formik.values.description3);
+      formData.append("description4", formik.values.description4);
+      formData.append("logo1", formik.values.logo1);
+      formData.append("logo2", formik.values.logo2);
+      formData.append("logo3", formik.values.logo3);
+      formData.append("logo4", formik.values.logo4);
+      formData.append("time1", formik.values.time1);
+      formData.append("time2", formik.values.time2);
+      formData.append("time3", formik.values.time3);
+      formData.append("time4", formik.values.time4);
 
       try {
-        const req = await API(
-          "PUT",
-          URL_API + `/api/v1/candidates/${object.candidateId}`,
-          formData,
-          token
-        );
+        const req = await API("PUT", URL_API + `/api/v1/designs`, formData, token);
         if (req) {
           CustomizedToast({
             message: "Chỉnh sửa thông tin thành công",
@@ -253,9 +248,9 @@ export default function UpdateDesign(props) {
                       <Input
                         required
                         variant="outlined"
-                        name="FullName"
+                        name="textColor"
                         label="Màu chữ"
-                        values={formik.values.FullName}
+                        defaultValue={object.textColor}
                         onChange={(event) => {
                           formik.handleChange(event);
                         }}
@@ -265,9 +260,9 @@ export default function UpdateDesign(props) {
                       <Input
                         required
                         variant="outlined"
-                        name="Description"
+                        name="time1"
                         label="Thời gian mở cổng bình chọn"
-                        values={formik.values.Description}
+                        defaultValue={object.time1}
                         onChange={(event) => {
                           formik.handleChange(event);
                         }}
@@ -278,9 +273,9 @@ export default function UpdateDesign(props) {
                       <Input
                         required
                         variant="outlined"
-                        name="Description"
+                        name="time2"
                         label="Thời gian đóng cổng bình chọn"
-                        values={formik.values.Description}
+                        defaultValue={object.time2}
                         onChange={(event) => {
                           formik.handleChange(event);
                         }}
@@ -291,9 +286,9 @@ export default function UpdateDesign(props) {
                       <Input
                         required
                         variant="outlined"
-                        name="Description"
+                        name="time3"
                         label="Thời gian công bố top 10"
-                        values={formik.values.Description}
+                        defaultValue={object.time3}
                         onChange={(event) => {
                           formik.handleChange(event);
                         }}
@@ -303,9 +298,9 @@ export default function UpdateDesign(props) {
                       <Input
                         required
                         variant="outlined"
-                        name="Description"
+                        name="time4"
                         label="Thời gian vinh danh top 10"
-                        values={formik.values.Description}
+                        defaultValue={object.time4}
                         onChange={(event) => {
                           formik.handleChange(event);
                         }}
@@ -314,6 +309,7 @@ export default function UpdateDesign(props) {
                     <Grid item xs={12}>
                       <TextArea
                         required
+                        name="description1"
                         columns={12}
                         width="85%"
                         row={6}
@@ -321,7 +317,7 @@ export default function UpdateDesign(props) {
                         multiline
                         label="Mô tả 1"
                         variant="outlined"
-                        values={formik.values.Description}
+                        defaultValue={object.description1}
                         onChange={(event) => {
                           formik.handleChange(event);
                         }}
@@ -330,13 +326,14 @@ export default function UpdateDesign(props) {
                     <Grid item xs={12}>
                       <TextArea
                         columns={12}
+                        name="description2"
                         width="85%"
                         row={6}
                         maxRows={6}
                         multiline
                         variant="outlined"
                         label="Mô tả 2"
-                        values={formik.values.Description}
+                        defaultValue={object.description2}
                         onChange={(event) => {
                           formik.handleChange(event);
                         }}
@@ -345,6 +342,7 @@ export default function UpdateDesign(props) {
                     <Grid item xs={12}>
                       <TextArea
                         columns={12}
+                        name="description3"
                         width="85%"
                         row={6}
                         maxRows={6}
@@ -352,8 +350,7 @@ export default function UpdateDesign(props) {
                         variant="outlined"
                         required
                         label="Mô tả 3"
-                        name="description"
-                        values={formik.values.Description}
+                        defaultValue={object.description3}
                         onChange={(event) => {
                           formik.handleChange(event);
                         }}
@@ -362,13 +359,14 @@ export default function UpdateDesign(props) {
                     <Grid item xs={12}>
                       <TextArea
                         columns={12}
+                        name="description4"
                         width="85%"
                         row={6}
                         maxRows={6}
                         multiline
                         variant="outlined"
                         label="Mô tả 4"
-                        values={formik.values.Description}
+                        defaultValue={object.description4}
                         onChange={(event) => {
                           formik.handleChange(event);
                         }}
@@ -390,15 +388,13 @@ export default function UpdateDesign(props) {
                   <Box sx={{ float: "left", width: "50%", mt: "2rem" }}>
                     <label>
                       <input
+                        name="Backgroud"
                         accept="image/*"
-                        id="0"
                         type="file"
-                        multiple
                         onChange={_treat_BackGroud}
                         style={{ display: "none" }}
                       />
                       <ButtonLangding
-                        id="0"
                         width="8rem"
                         variant="contained"
                         component="span"
@@ -406,7 +402,6 @@ export default function UpdateDesign(props) {
                       ></ButtonLangding>
 
                       <Box
-                        id="0"
                         sx={{
                           height: 100,
                           width: 100,
@@ -439,13 +434,11 @@ export default function UpdateDesign(props) {
                     <label>
                       <input
                         accept="image/*"
-                        id="1"
                         type="file"
                         onChange={_treat2}
                         style={{ display: "none" }}
                       />
                       <ButtonLangding
-                        id="1"
                         width="9rem"
                         variant="contained"
                         component="span"
@@ -453,7 +446,6 @@ export default function UpdateDesign(props) {
                       ></ButtonLangding>
 
                       <Box
-                        id="1"
                         sx={{
                           height: 100,
                           width: 100,
@@ -486,8 +478,6 @@ export default function UpdateDesign(props) {
                     <label>
                       <input
                         accept="image/*"
-                        id="1"
-                        multiple
                         type="file"
                         onChange={_treat_Logo}
                         style={{ display: "none" }}
@@ -532,8 +522,6 @@ export default function UpdateDesign(props) {
                     <label>
                       <input
                         accept="image/*"
-                        id="contained-button-file4"
-                        multiple
                         type="file"
                         onChange={_treat3}
                         style={{ display: "none" }}
@@ -580,8 +568,6 @@ export default function UpdateDesign(props) {
                     <label>
                       <input
                         accept="image/*"
-                        id="contained-button-file"
-                        multiple
                         type="file"
                         onChange={_treat1}
                         style={{ display: "none" }}
@@ -626,8 +612,6 @@ export default function UpdateDesign(props) {
                     <label>
                       <input
                         accept="image/*"
-                        id="contained-button-file"
-                        multiple
                         type="file"
                         onChange={_treat4}
                         style={{ display: "none" }}

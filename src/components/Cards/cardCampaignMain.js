@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import { Card } from "@mui/material";
 import { useTheme, useMediaQuery } from "@mui/material";
+import { useSelector } from "react-redux";
 
 export default function MainCard(props) {
   const theme = useTheme();
@@ -17,6 +18,7 @@ export default function MainCard(props) {
     title,
     process,
     totalCandidate,
+    description,
     url,
     creater,
     onClickJoin,
@@ -26,9 +28,13 @@ export default function MainCard(props) {
     startTime,
     visibilityCandidate,
   } = props;
+
   const [isButtonDisabled, setIsButtonDisabled] = useState(
     process === "Chưa bắt đầu" || process === "Đã kết thúc"
   );
+  const design = useSelector((state) => {
+    return state.design;
+  });
   useEffect(() => {
     setIsButtonDisabled(process === "Chưa bắt đầu" || process === "Đã kết thúc");
   }, [process]);
@@ -115,7 +121,7 @@ export default function MainCard(props) {
                 fontWeight="lg"
                 sx={{
                   textAlign: "center",
-                  color: "#B83490",
+                  color: design.textColor,
 
                   fontFamily: "UTM Swiss Condensed Regular", // Đặt font chữ tùy chỉnh
                 }}
@@ -128,17 +134,18 @@ export default function MainCard(props) {
                 fontWeight="normal"
                 fontSize={isMobile ? 13 : 32}
                 sx={{
-                  color: "#B83490",
+                  color: design.textColor,
                   fontFamily: "UTM Swiss Condensed Regular",
                   // Đặt font chữ tùy chỉnh
                   marginTop: "-1rem",
                   textAlign: "center", // Căn giữa nội dung
                 }}
               >
-                Danh hiệu <strong>Inspiring Instructor Awards 2023</strong> nhằm tôn vinh những nỗ
+                {description}
+                {/* Danh hiệu <strong>Inspiring Instructor Awards 2023</strong> nhằm tôn vinh những nỗ
                 lực, cống hiến của Giảng viên trong hành trình định hướng, giúp đỡ sinh viên thu
                 nhận kiến thức và truyền cảm hứng đến sinh viên <strong>FPTU HCMC</strong> trong 3
-                học kỳ: <strong>Fall 2022, Spring 2023 và Summer 2023.</strong>
+                học kỳ: <strong>Fall 2022, Spring 2023 và Summer 2023.</strong> */}
               </Typography>
               <Box
                 sx={{
@@ -154,7 +161,7 @@ export default function MainCard(props) {
                   height={isMobile ? "3.5rem" : "3.5rem"}
                   width={isMobile ? "8rem" : "12rem"}
                   nameButton="CHIA SẺ"
-                  bgColor="#d44fac"
+                  bgColor={design.textColor}
                   onClick={onClickShare}
                   borderRadius={"50px"}
                   disabled={process === "Đã kết thúc"}
@@ -164,8 +171,8 @@ export default function MainCard(props) {
                     nameButton="TOP 10"
                     height={isMobile ? "3.5rem" : "3.5rem"}
                     width={isMobile ? "8rem" : "12rem"}
-                    bgColor={"#FFA500"}
-                    hovercolor={"#F7941D"}
+                    bgColor={design.textColor}
+                    hovercolor={design.textColor}
                     onClick={onClickResult}
                     borderRadius={"50px"}
                   />

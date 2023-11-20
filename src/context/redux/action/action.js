@@ -910,3 +910,31 @@ export const getDesigin = (token) => {
     } catch (err) {}
   };
 };
+
+export const getSettingDesign = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await API("GET", URL_API + `/api/v1/designs`, null, token);
+      dispatch(
+        createAction({
+          type: PathAction.GET_SETTING_DESGN,
+          payload: res.data.data,
+        })
+      );
+    } catch (err) {}
+  };
+};
+
+export const getDesiginHome = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await API("GET", URL_API + `/api/v1/designs/home`, null);
+      dispatch(
+        createAction({
+          type: PathAction.GET_DESGN_HOME,
+          payload: res.data.data,
+        })
+      );
+    } catch (err) {}
+  };
+};

@@ -90,10 +90,48 @@ export default function ListCandidate() {
     return state.listGroup;
   });
 
+  const getOptions = () => {
+    const GroupOption = [
+      {
+        id: "Tất cả",
+        title: "Tất cả",
+        choose: true,
+      },
+    ];
+    for (var i = 0; i < listGroup.length; i++) {
+      if (listGroup[i].description.includes("CN")) {
+        GroupOption.push({
+          id: listGroup[i].name,
+          title: listGroup[i].name,
+        });
+      }
+    }
+    return GroupOption;
+  };
+
+  const getOptions1 = () => {
+    const GroupOption = [
+      {
+        id: "Tất cả",
+        title: "Tất cả",
+        choose: true,
+      },
+    ];
+    for (var i = 0; i < listGroup.length; i++) {
+      if (listGroup[i].description === "NC") {
+        GroupOption.push({
+          id: listGroup[i].name,
+          title: listGroup[i].name,
+        });
+      }
+    }
+    return GroupOption;
+  };
+
   const getGroupOption = () => {
     const GroupOption = [
       {
-        id: "false",
+        id: "Tất cả",
         title: "Tất cả",
         choose: true,
       },
@@ -109,32 +147,32 @@ export default function ListCandidate() {
     return GroupOption;
   };
 
-  const getOptions = () => [
-    {
-      id: "Tất cả",
-      title: "Tất cả",
-    },
-    {
-      id: "Bộ môn Chính trị",
-      title: "Bộ môn Chính trị",
-      nametitle: "Khối ngành giảng viên",
-    },
-    {
-      id: "Khối ngành Ngôn ngữ và Mỹ thuật",
-      title: "Khối ngành Ngôn ngữ và Mỹ thuật",
-      nametitle: "Khối ngành giảng viên",
-    },
-    {
-      id: "Khối ngành Quản trị doanh nghiệp",
-      title: "Khối ngành Quản trị doanh nghiệp",
-      nametitle: "Khối ngành giảng viên",
-    },
-    {
-      id: "Khối ngành Kỹ thuật và Bộ môn Toán",
-      title: "Khối ngành Kỹ thuật và Bộ môn Toán",
-      nametitle: "Khối ngành giảng viên",
-    },
-  ];
+  // const getOptions = () => [
+  //   {
+  //     id: "Tất cả",
+  //     title: "Tất cả",
+  //   },
+  //   {
+  //     id: "Bộ môn Chính trị",
+  //     title: "Bộ môn Chính trị",
+  //     nametitle: "Khối ngành giảng viên",
+  //   },
+  //   {
+  //     id: "Khối ngành Ngôn ngữ và Mỹ thuật",
+  //     title: "Khối ngành Ngôn ngữ và Mỹ thuật",
+  //     nametitle: "Khối ngành giảng viên",
+  //   },
+  //   {
+  //     id: "Khối ngành Quản trị doanh nghiệp",
+  //     title: "Khối ngành Quản trị doanh nghiệp",
+  //     nametitle: "Khối ngành giảng viên",
+  //   },
+  //   {
+  //     id: "Khối ngành Kỹ thuật và Bộ môn Toán",
+  //     title: "Khối ngành Kỹ thuật và Bộ môn Toán",
+  //     nametitle: "Khối ngành giảng viên",
+  //   },
+  // ];
   const getOption2 = () => [
     {
       id: "false",
@@ -147,38 +185,38 @@ export default function ListCandidate() {
     },
   ];
 
-  const getOptions1 = () => [
-    {
-      id: "Tất cả",
-      title: "Tất cả",
-    },
+  // const getOptions1 = () => [
+  //   {
+  //     id: "Tất cả",
+  //     title: "Tất cả",
+  //   },
 
-    {
-      id: "Bộ môn Âm nhạc Truyền thống",
-      title: "Bộ môn Âm nhạc truyền thống",
-      nametitle: "Ngành học của sinh viên",
-    },
-    {
-      id: "Bộ môn Giáo dục thể chất",
-      title: "Bộ môn Giáo dục thể chất",
-      nametitle: "Ngành học của sinh viên",
-    },
-    {
-      id: "Bộ môn Phát triển khởi nghiệp",
-      title: "Bộ môn Khởi nghiệp",
-      nametitle: "Ngành học của sinh viên",
-    },
-    {
-      id: "Bộ môn Kỹ năng mềm",
-      title: "Bộ môn Kỹ năng mềm",
-      nametitle: "Ngành học của sinh viên",
-    },
-    {
-      id: "Bộ môn Tiếng Anh dự bị",
-      title: "Bộ môn Tiếng Anh dự bị",
-      nametitle: "Ngành học của sinh viên",
-    },
-  ];
+  //   {
+  //     id: "Bộ môn Âm nhạc Truyền thống",
+  //     title: "Bộ môn Âm nhạc truyền thống",
+  //     nametitle: "Ngành học của sinh viên",
+  //   },
+  //   {
+  //     id: "Bộ môn Giáo dục thể chất",
+  //     title: "Bộ môn Giáo dục thể chất",
+  //     nametitle: "Ngành học của sinh viên",
+  //   },
+  //   {
+  //     id: "Bộ môn Phát triển khởi nghiệp",
+  //     title: "Bộ môn Khởi nghiệp",
+  //     nametitle: "Ngành học của sinh viên",
+  //   },
+  //   {
+  //     id: "Bộ môn Kỹ năng mềm",
+  //     title: "Bộ môn Kỹ năng mềm",
+  //     nametitle: "Ngành học của sinh viên",
+  //   },
+  //   {
+  //     id: "Bộ môn Tiếng Anh dự bị",
+  //     title: "Bộ môn Tiếng Anh dự bị",
+  //     nametitle: "Ngành học của sinh viên",
+  //   },
+  // ];
   const liststageScore = useSelector((state) => {
     return state.liststageScore;
   });

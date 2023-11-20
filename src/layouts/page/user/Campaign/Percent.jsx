@@ -28,6 +28,7 @@ import ButtonLangding from "assets/theme/components/button/ButtonLangding";
 import Label from "components/label/Label";
 import { AddGroup } from "components/Popup/create/AddGroup";
 import { UpdateRatio } from "components/Popup/updatePopup/updateRatio";
+import { UpdateDescriptionGroup } from "components/Popup/updatePopup/updateDescriptGroup";
 
 const schema = yup.object().shape({});
 const getIcon = (name, color) => <Iconify icon={name} width={22} height={22} color={color} />;
@@ -38,6 +39,10 @@ const LeftCard = () => {
   const { id } = useParams();
   const decode = jwt_decode(token);
   const [OpenPopUp, SetOpenPopUp] = useState(false);
+  const [OpenUpdate, SetOpenUpdate] = useState(false);
+  const [name, setName] = useState();
+  const [idgroup, setidGroup] = useState();
+
   useEffect(() => {
     const callAPI = async () => {
       await dispacth(getGroupId(id, token));
@@ -56,26 +61,11 @@ const LeftCard = () => {
   const handleClickOpen = useCallback(() => {
     SetOpenPopUp(true);
   }, []);
-
-  const handleRemoveItem = async (idCandiate) => {
-    const data = {
-      userId: decode.Username,
-      campaignId: id,
-    };
-    try {
-      const res = await API("DELETE", URL_API + `/api/v1/candidates/${idCandiate}`, data, token);
-      CustomizedToast({
-        message: "Xóa ứng cử viên thành công",
-        type: "SUCCESS",
-      });
-      dispacth(handleGetCandidateByIdCampaign(token, id));
-    } catch (error) {
-      CustomizedToast({
-        message: "Xóa ứng cử viên không thành công",
-        type: "ERROR",
-      });
-    }
-  };
+  const handleUpdate = useCallback((id, name) => {
+    setidGroup(id);
+    setName(name);
+    SetOpenUpdate(true);
+  }, []);
 
   return (
     <Paper maxWidth="md">
@@ -98,8 +88,9 @@ const LeftCard = () => {
           <TableHead>
             <TableRow>
               <TableCell>Stt</TableCell>
-              <TableCell>Nhóm người bình chọn</TableCell>
-              <TableCell>Nhóm ứng cử viên</TableCell>
+              <TableCell>Tên nhóm</TableCell>
+              <TableCell>Loại nhóm</TableCell>
+              <TableCell>Mô tả</TableCell>
               <TableCell>Chỉnh sửa</TableCell>
             </TableRow>
           </TableHead>
@@ -121,7 +112,18 @@ const LeftCard = () => {
                     )}
                   </div>
                 </TableCell>
-                <TableCell>{<IconButton>{getIcon("ic:baseline-edit")}</IconButton>}</TableCell>
+                <TableCell>{item.description}</TableCell>
+                <TableCell>
+                  {
+                    <IconButton
+                      onClick={() => {
+                        handleUpdate(item.groupId, item.name);
+                      }}
+                    >
+                      {getIcon("ic:baseline-edit")}
+                    </IconButton>
+                  }
+                </TableCell>
 
                 {/* <TableCell>
                   {
@@ -136,6 +138,12 @@ const LeftCard = () => {
         </Table>
       </TableContainer>
       <AddGroup OpenPopUp={OpenPopUp} SetOpenPopUp={SetOpenPopUp} id={id} />
+      <UpdateDescriptionGroup
+        OpenPopUp={OpenUpdate}
+        SetOpenPopUp={SetOpenUpdate}
+        id={idgroup}
+        name={name}
+      />
     </Paper>
   );
 };
